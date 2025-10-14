@@ -2,23 +2,12 @@
   "name": "growtt",
   "private": true,
   "type": "module",
-  "pkg": {
-    "assets": [
-      "dist/spa/*"
-    ],
-    "scripts": [
-      "dist/server/**/*.js"
-    ]
-  },
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build",
-    "build:server": "vite build --config vite.config.server.ts",
-    "start": "node dist/server/node-build.mjs",
-    "test": "vitest --run",
-    "format.fix": "prettier --write .",
-    "typecheck": "tsc"
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
+     "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
     "dotenv": "^17.2.1",
