@@ -68,19 +68,20 @@ export default function Index() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6 text-lg text-white/90">
-                <a href="#" className="hover:text-white transition-colors">Home</a>
-                <a href="#" className="hover:text-white transition-colors">About Us</a>
-                <a href="#" className="hover:text-white transition-colors">Services</a>
-              </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex md:justify-start items-center gap-8">
-              {/* <div className="flex items-center gap-6 text-sm text-white/90">
+            <GrowttLogo />
+            {/* <div className="hidden md:flex md:items-center gap-6 text-lg text-white/90">
                 <a href="#" className="hover:text-white transition-colors">Home</a>
                 <a href="#" className="hover:text-white transition-colors">About Us</a>
                 <a href="#" className="hover:text-white transition-colors">Services</a>
               </div> */}
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex md:justify-start items-center gap-8">
+              <div className="flex items-center gap-6 text-sm text-white/90">
+                <a href="#" className="hover:text-white transition-colors">Home</a>
+                <a href="#" className="hover:text-white transition-colors">About Us</a>
+                <a href="#" className="hover:text-white transition-colors">Services</a>
+              </div>
               <div className="flex items-center gap-3">
                 <button className="px-4 py-2 text-lg text-white border border-growtt-orange rounded-md hover:bg-white/10 transition-colors">
                   Sign In
@@ -96,7 +97,7 @@ export default function Index() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden text-white p-2"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6 mr-8" /> : <Menu className="w-6 h-6 mr-8" />}
             </button>
           </div>
 
@@ -113,10 +114,10 @@ export default function Index() {
                   <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Home</a>
                   <a href="#" className="text-white/90 hover:text-white transition-colors py-2">About Us</a>
                   <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Services</a>
-                  <button className="px-4 py-2 text-sm text-white border border-white/20 rounded-md hover:bg-white/10 transition-colors">
+                  <button className="w-[170px] px-4 py-2 text-sm text-white border border-white/20 rounded-md hover:bg-white/10 transition-colors">
                     Sign In
                   </button>
-                  <button className="px-4 py-2 text-sm bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
+                  <button className=" w-[170px] px-4 py-2 text-sm bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
                     Get Started
                   </button>
                 </div>
