@@ -2,6 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Facebook, Instagram, Twitter, Linkedin, Youtube, Menu, X, TrendingUp, LineChart, Lock } from "lucide-react";
 import { useState } from "react";
 import { GrowttLogo } from '../components/logo';
+import { FAQModal } from "../components/Modal/FAQModal";
+import { NewsletterModal } from "../components/Modal/Newsletter";
+import { WaitlistModal } from "../components/Modal/WaitListModal";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -21,38 +24,66 @@ export default function Index() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentLearningIndex, setCurrentLearningIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+  const [showFAQModal, setShowFAQModal] = useState(false);
+  const [showNewsletterModal, setShowNewsletterModal] = useState(false);
+
+  const handleNewsletterSubscribe = () => {
+  setShowNewsletterModal(false);
+  setShowWaitlistModal(true);
+};
+
+const handleWaitlistSubscribe = () => {
+  setShowWaitlistModal(false);
+  setShowFAQModal(true);
+};
 
   const learningModules = [
     {
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/5fcdd4c7b38e33772e45d0e21d0531f2071eaf48?width=634",
-      title: "Study: Investment Basics",
+      image: "/images/Hard Cover Book (1).png",
+      title: "Investment Made Simple",
       description: "Learn the fundamentals of investing"
     },
     {
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/20c8da2c4f9e1a18775c7b57aa4185a77824391b?width=634",
-      title: "Guide: First-Time Investor",
+      image: "/images/Hard Cover Book (2).png",
+      title: "5 Skills to learn and earn as a student",
       description: "Your guide to smart investing"
     },
     {
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/d19682e4cbc06c749a4b885cd3ae9849cd0efe94?width=634",
-      title: "Webinar: Mastering the Market",
+      image: "/images/Hard Cover Book.png",
+      title: "Webinar: Mastering the New Tax Rules",
       description: "Learn from top investors"
+    }, {
+      image: "/images/Hard Cover Book (2).png",
+      title: "5 Skills to learn and earn as a student",
+      description: "Your guide to smart investing"
+    },
+
+    {
+      image: "/images/Hard Cover Book (1).png",
+      title: "Investment Made Simple",
+      description: "Learn the fundamentals of investing"
     },
     {
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/44c5b6397f776ccbc607f1cdeb50cc3e000b6bcb?width=634",
-      title: "Advanced Investment Strategies",
-      description: "Strategies for experienced investors"
-    },
-    {
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/566e0f3b8dea69365134c205f66df4b18bcb68cb?width=634",
-      title: "Retirement Planning",
-      description: "Plan for your financial future"
-    },
-    {
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/4660a904f1aefbc073cb3ced504bda46e764d293?width=634",
-      title: "Tax Implications of Investments",
-      description: "Understand tax rules for investments"
+      image: "/images/Hard Cover Book.png",
+      title: "Webinar: Mastering the New Tax Rules",
+      description: "Learn from top investors"
     }
+    // {
+    //   image: "https://api.builder.io/api/v1/image/assets/TEMP/44c5b6397f776ccbc607f1cdeb50cc3e000b6bcb?width=634",
+    //   title: "Advanced Investment Strategies",
+    //   description: "Strategies for experienced investors"
+    // },
+    // {
+    //   image: "https://api.builder.io/api/v1/image/assets/TEMP/566e0f3b8dea69365134c205f66df4b18bcb68cb?width=634",
+    //   title: "Retirement Planning",
+    //   description: "Plan for your financial future"
+    // },
+    // {
+    //   image: "https://api.builder.io/api/v1/image/assets/TEMP/4660a904f1aefbc073cb3ced504bda46e764d293?width=634",
+    //   title: "Tax Implications of Investments",
+    //   description: "Understand tax rules for investments"
+    // }
   ];
 
   const visibleModules = learningModules.slice(currentLearningIndex, currentLearningIndex + 4);
@@ -83,11 +114,15 @@ export default function Index() {
                 <a href="#" className="hover:text-white transition-colors">Services</a>
               </div>
               <div className="flex items-center gap-3">
-                <button className="px-4 py-2 text-lg text-white border border-growtt-orange rounded-md hover:bg-white/10 transition-colors">
-                  Sign In
+                <button 
+                onClick={() => setShowNewsletterModal(true)}
+                className="px-4 py-2 text-lg text-white border border-growtt-orange rounded-md hover:bg-white/10 transition-colors">
+                  Subscribe
                 </button>
-                <button className="px-4 py-2 text-lg bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
-                  Get Started
+                <button 
+                onClick={() => setShowWaitlistModal(true)}
+                className="px-4 py-2 text-lg bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
+                  Join Waitlist
                 </button>
               </div>
             </div>
@@ -111,16 +146,20 @@ export default function Index() {
                 className="md:hidden mt-4 pb-4"
               >
                 <div className="flex flex-col gap-4">
-                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Home</a>
-                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">About Us</a>
-                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Services</a>
-                  <button className="w-[170px] px-4 py-2 text-sm text-white border border-white/20 rounded-md hover:bg-white/10 transition-colors">
-                    Sign In
-                  </button>
-                  <button className=" w-[170px] px-4 py-2 text-sm bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
-                    Get Started
-                  </button>
-                </div>
+  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Home</a>
+  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">About Us</a>
+  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Services</a>
+  <button 
+    onClick={() => setShowNewsletterModal(true)}
+    className="w-[170px] px-4 py-2 text-sm text-white border border-white/20 rounded-md hover:bg-white/10 transition-colors">
+    Subscribe
+  </button>
+  <button 
+    onClick={() => setShowWaitlistModal(true)}
+    className="w-[170px] px-4 py-2 text-sm bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
+    Join Waitlist
+  </button>
+</div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -147,9 +186,11 @@ export default function Index() {
                 Unlock smarter investment opportunities with data-driven insights. Explore alternative portfolios, Bitcoin, Ethereum and build a more informed strategy today.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors flex items-center gap-2">
-                  Get Started
-                </button>
+                <button 
+  onClick={() => setShowWaitlistModal(true)}
+  className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors flex items-center gap-2">
+  Get Started
+</button>
                 <button className="px-6 py-3 border border-white/20 text-white rounded-md hover:bg-white/10 transition-colors flex items-center gap-2">
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 5v14l11-7z"/>
@@ -373,7 +414,7 @@ export default function Index() {
       </section>
 
       {/* Seeds Your Currency Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-16 bg-gray-50">
+      {/* <section className="py-20 px-4 sm:px-6 lg:px-16 bg-gray-50">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -419,7 +460,7 @@ export default function Index() {
             ))}
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Premium Learning Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-16 bg-growtt-gray">
@@ -596,6 +637,20 @@ export default function Index() {
           </div>
         </div>
       </footer>
+    {/* Modals */}
+      <NewsletterModal 
+        open={showNewsletterModal} 
+        onOpenChange={setShowNewsletterModal}
+      />
+      <WaitlistModal 
+        open={showWaitlistModal} 
+        onOpenChange={setShowWaitlistModal}
+        onSubscribe={handleWaitlistSubscribe}
+      />
+      <FAQModal 
+        open={showFAQModal} 
+        onOpenChange={setShowFAQModal}
+      />
     </div>
   );
 }
