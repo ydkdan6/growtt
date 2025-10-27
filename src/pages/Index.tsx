@@ -610,19 +610,19 @@ const handleWaitlistSubscribe = () => {
               <a href="#" className="text-gray-900 hover:text-growtt-teal transition-colors text-sm">Help Center</a>
             </div>
             <div className="flex gap-3 justify-end">
-              <a href="#" className="text-gray-900 hover:text-growtt-teal transition-colors">
+              <a href="#" target="_blank" className="text-gray-900 hover:text-growtt-teal transition-colors">
                 <Facebook className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-900 hover:text-growtt-teal transition-colors">
+              <a href="https://www.instagram.com/growttco/?hl=am-et" target="_blank" className="text-gray-900 hover:text-growtt-teal transition-colors">
                 <Instagram className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-900 hover:text-growtt-teal transition-colors">
+              <a href="#" target="_blank" className="text-gray-900 hover:text-growtt-teal transition-colors">
                 <Twitter className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-900 hover:text-growtt-teal transition-colors">
+              <a href="https://www.linkedin.com/company/growttco/" target="_blank" className="text-gray-900 hover:text-growtt-teal transition-colors">
                 <Linkedin className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-900 hover:text-growtt-teal transition-colors">
+              <a href="https://www.youtube.com/@GrowttCo" target="_blank" className="text-gray-900 hover:text-growtt-teal transition-colors">
                 <Youtube className="w-6 h-6" />
               </a>
             </div>
