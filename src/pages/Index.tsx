@@ -510,6 +510,7 @@ const handleWaitlistSubscribe = () => {
                   <div className="text-center">
                     <h4 className="text-xl font-normal text-gray-900 mb-2">{module.title}</h4>
                     <p className="text-gray-600 text-sm">{module.description}</p>
+                    <h4 className="text-[18px] font-normal text-gray-900 mb-2">{module.price}</h4>
                   </div>
                 </motion.div>
               ))}
