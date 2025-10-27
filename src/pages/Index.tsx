@@ -42,32 +42,32 @@ const handleWaitlistSubscribe = () => {
     {
       image: "/images/Hard Cover Book (1).png",
       title: "Investment Made Simple",
-      description: "Learn the fundamentals of investing"
+      description: "Start from 10k naira and build wealth"
     },
     {
       image: "/images/Hard Cover Book (2).png",
       title: "5 Skills to learn and earn as a student",
-      description: "Your guide to smart investing"
+      description: "Learn Skill earn income"
     },
     {
       image: "/images/Hard Cover Book.png",
       title: "Webinar: Mastering the New Tax Rules",
-      description: "Learn from top investors"
+      description: "Tips for 2026"
     }, {
       image: "/images/Hard Cover Book (2).png",
       title: "5 Skills to learn and earn as a student",
-      description: "Your guide to smart investing"
+      description: "Learn Skill earn income"
     },
 
     {
       image: "/images/Hard Cover Book (1).png",
       title: "Investment Made Simple",
-      description: "Learn the fundamentals of investing"
+      description: "Start from 10k naira and build wealth"
     },
     {
       image: "/images/Hard Cover Book.png",
       title: "Webinar: Mastering the New Tax Rules",
-      description: "Learn from top investors"
+      description: "Tips for 2026"
     }
     // {
     //   image: "https://api.builder.io/api/v1/image/assets/TEMP/44c5b6397f776ccbc607f1cdeb50cc3e000b6bcb?width=634",
