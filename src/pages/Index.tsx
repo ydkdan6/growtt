@@ -136,7 +136,7 @@ const handleWaitlistSubscribe = () => {
             {/* Mobile Menu Button */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white p-2 absolute left-[349px] top-4"
+              className="md:hidden text-white p-2 absolute left-[355px] top-4"
             >
               {mobileMenuOpen ? <X className="w-6 h-6 mr-8" /> : <Menu className="w-6 h-6 mr-8" />}
             </button>
