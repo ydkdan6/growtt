@@ -179,7 +179,7 @@ const handleWaitlistSubscribe = () => {
             {/* Mobile Menu Button */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white p-2 absolute left-[355px] top-4"
+              className="md:hidden text-white p-2 z-[60]"
             >
               {mobileMenuOpen ? <X className="w-6 h-6 mr-8" /> : <Menu className="w-6 h-6 mr-8" />}
             </button>
@@ -187,22 +187,37 @@ const handleWaitlistSubscribe = () => {
 
           {/* Mobile Menu */}
           <AnimatePresence>
-            {mobileMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="md:hidden mt-4 pb-4 text-center"
-              >
-                <div className="flex flex-col gap-4">
-                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Home</a>
-                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">About Us</a>
-                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Services</a>
-                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Faq</a>
+        {mobileMenuOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 z-[55] md:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            
+            {/* Sidebar */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="fixed top-0 right-0 h-full w-64 bg-growtt-dark-teal z-[60] md:hidden shadow-2xl"
+            >
+              <div className="flex flex-col h-full p-6 pt-20">
+                <div className="flex flex-col gap-6">
+                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2 text-lg">Home</a>
+                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2 text-lg">About Us</a>
+                  <button onClick={() => { setShowServicesModal(true); setMobileMenuOpen(false); }} className="text-white/90 hover:text-white transition-colors py-2 text-lg text-left">Services</button>
+                  <button onClick={() => { setShowFAQModal(true); setMobileMenuOpen(false); }} className="text-white/90 hover:text-white transition-colors py-2 text-lg text-left">FAQ</button>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
         </div>
       </motion.nav>
 
