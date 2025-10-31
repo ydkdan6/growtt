@@ -118,6 +118,7 @@ const handleWaitlistSubscribe = () => {
                 <a href="#" className="hover:text-white transition-colors">Home</a>
                 <a href="#" className="hover:text-white transition-colors">About Us</a>
                 <a href="#" className="hover:text-white transition-colors">Services</a>
+                  <a onClick={() => setShowFAQModal(true)} href="#" className="text-white/90 hover:text-white transition-colors py-2">Faq</a>
               </div>
               <div className="flex items-center gap-3">
                 <button 
@@ -155,7 +156,9 @@ const handleWaitlistSubscribe = () => {
   <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Home</a>
   <a href="#" className="text-white/90 hover:text-white transition-colors py-2">About Us</a>
   <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Services</a>
-  <button 
+  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Faq</a>
+
+  {/* <button 
     onClick={() => setShowNewsletterModal(true)}
     className="w-[170px] px-4 py-2 text-sm text-white border border-white/20 rounded-md hover:bg-white/10 transition-colors">
     Subscribe
@@ -164,7 +167,7 @@ const handleWaitlistSubscribe = () => {
     onClick={() => setShowWaitlistModal(true)}
     className="w-[170px] px-4 py-2 text-sm bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
     Join Waitlist
-  </button>
+  </button> */}
 </div>
               </motion.div>
             )}
@@ -173,22 +176,22 @@ const handleWaitlistSubscribe = () => {
       </motion.nav>
 
       {/* Hero Section */}
-      <section className="relative bg-growtt-dark-teal text-white pt-24 pb-20 px-4 sm:px-6 lg:px-16 overflow-hidden">
+      <section className="relative bg-growtt-dark-teal text-white pt-[46px] pb-20 px-4 sm:px-6 lg:px-16 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div {...fadeInUp} className="space-y-6 z-10">
+            <motion.div {...fadeInUp} className="space-y-6 z-10 mt-12 md:mt-0">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal leading-tight">
                 <img 
                     src="/images/logo.png" 
                     alt="Investor" 
-                    className="block w-[408px] h-[125px] object-cover md:scale-x-100"
+                    className="block w-[408px] h-[125px] object-cover md:scale-x-100 md:block hidden"
                   />
               </h1>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light">
                 Invest with <span className="text-growtt-orange">Knowledge</span>
-                <br />not Hype
+                <br/>not Hype
               </h2>
-              <p className="text-lg text-white/80 max-w-xl">
+              <p className="text-lg text-white/80 max-w-xl text-center md:block">
                 Unlock smarter investment opportunities with data-driven insights. Explore alternative portfolios, Bitcoin, Ethereum and build a more informed strategy today.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -249,64 +252,94 @@ const handleWaitlistSubscribe = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-16 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <h3 className="text-sm font-bold text-gray-600 uppercase tracking-wide mb-4">How It Works</h3>
-            <h2 className="text-4xl sm:text-5xl font-light text-gray-900">
-              Investing in Three Simple Steps
-            </h2>
-          </motion.div>
+      <section className="py-20 px-4 sm:px-6 lg:px-16 bg-growtt-dark-teal">
+        <div className="max-w-7xl mx-auto md:flex">
+          <div className="mt-[120px]">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="w-[400px] mb-12"
+            >
+              <h3 className="text-sm font-bold text-white uppercase tracking-wide mb-4">How It Works</h3>
+              <h2 className="text-4xl sm:text-5xl font-light text-white ">
+                Investing in Three Simple Steps
+              </h2>
+            </motion.div>
+
+            <div className="flex gap-4 mb-8">
+              <button
+                onClick={() => {
+                  const container = document.querySelector('.card');
+                  container?.scrollBy({ left: -450, behavior: 'smooth' });
+                }}
+                className="w-12 h-12 rounded bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={() => {
+                  const container = document.querySelector('.card');
+                  container?.scrollBy({ left: 450, behavior: 'smooth' });
+                }}
+                className="w-12 h-12 rounded bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
 
           <motion.div 
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 gap-4 md:gap-0 md:grid-cols-1 md:w-full card md:overflow-x-auto md:overflow-y-hidden scrollbar-hide"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {[
-              {
-                title: "Explore Opportunities",
-                description: "Discover a wide range of investment options tailored to your goals",
-                gradient: "from-orange-200 to-yellow-200",
-                image: "/images/i1.png"
-              },
-              {
-                title: "Build Your Portfolio",
-                description: "Customize your portfolio with our intuitive platform",
-                gradient: "from-yellow-200 to-orange-200",
-                image: "/images/i2.png"
-              },
-              {
-                title: "Watch Your Investment Grow",
-                description: "Monitor performance and grow your wealth",
-                gradient: "from-orange-200 to-yellow-100",
-                image: "/images/i1.png"
-              }
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                className={`bg-gradient-to-br ${step.gradient} rounded-2xl p-8 flex flex-col justify-between min-h-[400px]`}
-              >
-                <div className="flex-1 flex items-center justify-center mb-6">
-                  <div className="w-64 h-64 bg-white/50 rounded-2xl flex items-center justify-center">
-                    <img src={step.image} alt="" className="w-64 h-64 object-contain" />
+            <div className="flex flex-col gap-4 md:flex-row md:gap-4">
+              {[
+                {
+                  title: "Explore Opportunities",
+                  description: "Discover a wide range of investment options tailored to your goals",
+                  gradient: "from-orange-200 to-yellow-200",
+                  image: "/images/i1.png"
+                },
+                {
+                  title: "Build Your Portfolio",
+                  description: "Customize your portfolio with our intuitive platform",
+                  gradient: "from-yellow-200 to-orange-200",
+                  image: "/images/i2.png"
+                },
+                {
+                  title: "Watch Your Investment Grow",
+                  description: "Monitor performance and grow your wealth",
+                  gradient: "from-orange-200 to-yellow-100",
+                  image: "/images/i4.png"
+                }
+              ].map((step, index) => (
+                <motion.div
+                  key={index}
+                  variants={fadeInUp}
+                  whileHover={{ y: -10 }}
+                  className={`bg-gradient-to-br ${step.gradient} rounded-2xl p-8 flex flex-col justify-between min-h-[500px] md:flex-shrink-0 md:w-[450px]`}
+                >
+                  <div className="flex-1 flex items-center justify-center mb-6">
+                    {/* <div className="w-64 h-64 bg-white/50 rounded-2xl flex items-center justify-center hidden"> */}
+                      <img src={step.image} alt="" className="w-64 h-64 object-contain md:block hidden" />
+                    {/* </div> */}
                   </div>
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h4>
-                  <p className="text-gray-700">{step.description}</p>
-                </div>
-              </motion.div>
-            ))}
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h4>
+                    <p className="text-gray-700">{step.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
@@ -368,6 +401,12 @@ const handleWaitlistSubscribe = () => {
         </motion.div>
       ))}
     </motion.div>
+    <div className='absolute top-[600px] right-0 w-16 h-16'>
+      <img src='/images/Vector.png' alt='vector' />
+    </div>
+    <div className='absolute top-[1210px] left-14 w-16 h-16'>
+      <img src='/images/Vector.png' alt='vector' />
+    </div>
   </div>
 </section>
 
