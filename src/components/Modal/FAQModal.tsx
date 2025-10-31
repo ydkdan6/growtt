@@ -6,9 +6,16 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
-import { GrowttLogo } from "../logo";
 import { Plus } from "lucide-react";
 import { cn } from "../../lib/utils";
+
+const GrowttLogo = () => (
+  <svg width="80" height="24" viewBox="0 0 80 24" fill="none">
+    <text x="0" y="18" fill="white" fontSize="18" fontWeight="bold" fontFamily="Gill Sans MT, sans-serif">
+      Growtt
+    </text>
+  </svg>
+);
 
 interface FAQModalProps {
   open: boolean;
@@ -38,8 +45,8 @@ export function FAQModal({ open, onOpenChange }: FAQModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="overflow-x-hidden ...existing classes... custom-scrollbar max-w-4xl w-[calc(100vw-2rem)] sm:w-[90vw] md:w-full max-h-[90vh] p-0 overflow-y-auto border-[8px] sm:border-[12px] border-[#00A4A4] rounded-[24px] sm:rounded-[32px] bg-white !m-4 sm:!m-auto mr-6 md:mr-0">
-        <div className="relative min-h-[10px] p-4 sm:p-6 md:p-8 lg:p-12">
+      <DialogContent className="rounded-2">
+        <div className="relative min-h-[10px] p-3 sm:p-6 md:p-8 lg:p-12 overflow-y-auto scrollbar-hide">
           {/* Logo Badge */}
           <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-[#00A4A4] rounded-b-xl sm:rounded-b-2xl px-3 py-2 sm:px-4 sm:py-3 z-20">
             <GrowttLogo />
@@ -99,7 +106,7 @@ export function FAQModal({ open, onOpenChange }: FAQModalProps) {
             </div>
 
             {/* Footer */}
-            <div className="mt-8 sm:mt-12 text-center px-2 pb-2">
+            <div className="mt-8 sm:mt-[19px] text-center px-2 pb-2">
               <p className="text-[#008080]/60 font-['Gill_Sans_MT',sans-serif] text-sm sm:text-base md:text-lg inline">
                 You still have questions?{" "}
               </p>
@@ -114,5 +121,21 @@ export function FAQModal({ open, onOpenChange }: FAQModalProps) {
         </div>
       </DialogContent>
     </Dialog>
+  );
+}
+
+export default function App() {
+  const [open, setOpen] = useState(true);
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-8">
+      <button
+        onClick={() => setOpen(true)}
+        className="px-6 py-3 bg-[#00A4A4] text-white rounded-lg font-['Gill_Sans_MT',sans-serif] hover:bg-[#008080] transition-colors"
+      >
+        Open FAQ
+      </button>
+      <FAQModal open={open} onOpenChange={setOpen} />
+    </div>
   );
 }

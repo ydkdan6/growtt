@@ -45,7 +45,7 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="...existing classes... custom-scrollbar max-w-4xl w-[95vw] sm:w-[90vw] md:w-full max-h-[90vh] p-0 m-2 overflow-y-auto overflow-x-hidden border-[8px] sm:border-[12px] border-[#00A4A4] rounded-[24px] mr-6 md:mr-0 sm:rounded-[32px] bg-white">
+      <DialogContent className="...existing classes... scrollbar-hide max-w-4xl w-[95vw] sm:w-[90vw] md:w-full max-h-[90vh] p-0 m-2 overflow-y-auto overflow-x-hidden border-[8px] sm:border-[12px] border-[#00A4A4] rounded-[24px] mr-6 md:mr-0 sm:rounded-[32px] bg-white">
         <div className="relative min-h-[10px] p-4 sm:p-6 md:p-8 lg:p-12">
           {/* Logo Badge */}
           <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-[#00A4A4] rounded-b-xl sm:rounded-b-2xl px-3 py-2 sm:px-4 sm:py-3 z-20">

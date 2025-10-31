@@ -27,7 +27,7 @@ export function WaitlistModal({ open, onOpenChange, onSubscribe }: WaitlistModal
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="my-[50px] max-w-2xl p-0 mt-2 mb-2 overflow-hidden border-[12px] border-[#00A4A4] rounded-[32px] bg-white">
+      <DialogContent className="my-[50px] max-w-2xl p-0 mt-2 mb-2 overflow-y-auto scrollbar-hide border-[12px] border-[#00A4A4] rounded-[32px] bg-white">
         <div className="relative min-h-[10px] p-12">
           {/* Logo Badge */}
           <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-[#00A4A4] rounded-b-2xl px-4 py-3">

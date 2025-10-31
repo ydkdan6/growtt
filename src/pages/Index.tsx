@@ -204,10 +204,10 @@ const handleWaitlistSubscribe = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 h-full w-64 bg-growtt-dark-teal z-[60] md:hidden shadow-2xl"
+              className="fixed top-0 right-0 h-full w-64 bg-growtt-dark-teal md:hidden shadow-2xl"
             >
-              <div className="flex flex-col h-full p-6 pt-20">
-                <div className="flex flex-col gap-6">
+              <div className="flex flex-col h-full p-6 pt-20 bg-growtt-dark-teal">
+                <div className="flex flex-col gap-6 bg-growtt-dark-teal w-full p-8 justify-center">
                   <a href="#" className="text-white/90 hover:text-white transition-colors py-2 text-lg">Home</a>
                   <a href="#" className="text-white/90 hover:text-white transition-colors py-2 text-lg">About Us</a>
                   <button onClick={() => { setShowServicesModal(true); setMobileMenuOpen(false); }} className="text-white/90 hover:text-white transition-colors py-2 text-lg text-left">Services</button>
@@ -233,10 +233,10 @@ const handleWaitlistSubscribe = () => {
                     className="block w-[408px] h-[125px] object-cover md:scale-x-100 md:block hidden"
                   />
               </h1>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light">
                 Invest with <span className="text-growtt-orange">Knowledge</span>
                 <br/>not Hype
-              </h2>
+              </h1>
               <p className="text-lg text-white/80 max-w-xl text-center md:text-left">
                 Unlock smarter investment opportunities with data-driven insights. Explore alternative portfolios, Bitcoin, Ethereum and build a more informed strategy today.
               </p>
@@ -258,19 +258,20 @@ const handleWaitlistSubscribe = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative flex items-center justify-center"
+              className="relative flex items-center justify-center mt-8 lg:mt-0"
             >
-              <div className="relative w-full aspect-square flex jsutify-center items-center">
-                <div className="w-full h-[484px] absolute inset-8 overflow-hidden flex justify-center items-center">
+              <div className="relative w-full max-w-[500px] mx-auto">
+                <div className="w-full aspect-square overflow-hidden flex justify-center items-center">
                   <motion.div 
                     animate={{ y: [0, 10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="w-full h-full"
+                    className="w-full"
                   >
                     <img 
                       src="/images/hero-images.png" 
-                      alt="side image" 
-                      className="w-full h-full object-cover pr-6"
+                      alt="Investment illustration" 
+                      loading="lazy"
+                      className="w-full h-auto object-contain"
                     />
                   </motion.div>
                 </div>
@@ -349,7 +350,7 @@ const handleWaitlistSubscribe = () => {
                     <img src={step.image} alt="" className="w-64 h-64 object-contain md:block hidden" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h4>
+                    <h4 className="text-2xl md:text-xl font-semibold text-gray-900 mb-10 md:mb-2">{step.title}</h4>
                     <p className="text-gray-700">{step.description}</p>
                   </div>
                 </motion.div>
