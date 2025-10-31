@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Facebook, Instagram, Twitter, Linkedin, Youtube, Menu, X, TrendingUp, LineChart, Lock } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from 'react';
 import { GrowttLogo } from '../components/logo';
 import { FAQModal } from "../components/Modal/FAQModal";
 import { NewsletterModal } from "../components/Modal/Newsletter";
@@ -27,6 +27,68 @@ export default function Index() {
   const [showWaitlistModal, setShowWaitlistModal] = useState(false);
   const [showFAQModal, setShowFAQModal] = useState(false);
   const [showNewsletterModal, setShowNewsletterModal] = useState(false);
+
+  const ScrollButtons = () => {
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  useEffect(() => {
+    const container = document.querySelector('.card') as HTMLElement;
+    
+    const updateButtonStates = () => {
+      if (container) {
+        setCanScrollLeft(container.scrollLeft > 1);
+        setCanScrollRight(
+          container.scrollLeft < container.scrollWidth - container.clientWidth - 1
+        );
+      }
+    };
+
+    if (container) {
+      container.addEventListener('scroll', updateButtonStates);
+      updateButtonStates(); // Initial check
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('scroll', updateButtonStates);
+      }
+    };
+  }, []);
+
+  const scrollLeft = () => {
+    const container = document.querySelector('.card') as HTMLElement;
+    if (container) {
+      container.scrollBy({ left: -450, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    const container = document.querySelector('.card') as HTMLElement;
+    if (container) {
+      container.scrollBy({ left: 450, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className="md:gap-8 md:mb-8 md:flex hidden">
+      <button
+        onClick={scrollLeft}
+        disabled={!canScrollLeft}
+        className="w-10 h-10 rounded bg-growtt-dark-teal border-2 border-gray-400 hover:bg-white/30 flex items-center justify-center text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-growtt-dark-teal"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-icon lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      </button>
+      <button
+        onClick={scrollRight}
+        disabled={!canScrollRight}
+        className="w-10 h-10 rounded bg-growtt-dark-teal border-2 border-gray-200 hover:bg-white/30 flex items-center justify-center text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-growtt-dark-teal"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  );
+};
 
   const handleNewsletterSubscribe = () => {
   setShowNewsletterModal(false);
@@ -269,30 +331,7 @@ const handleWaitlistSubscribe = () => {
               </h2>
             </motion.div>
 
-            <div className="flex gap-8 mb-8">
-              <button
-                onClick={() => {
-                  const container = document.querySelector('.card');
-                  container?.scrollBy({ left: -450, behavior: 'smooth' });
-                }}
-                className="w-10 h-10 rounded bg-growtt-dark-teal border-2 border-gray-400 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={() => {
-                  const container = document.querySelector('.card');
-                  container?.scrollBy({ left: 450, behavior: 'smooth' });
-                }}
-                className="w-10 h-10 rounded bg-growtt-dark-teal border-2 border-gray-200 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
+            <ScrollButtons />
           </div>
 
           <motion.div 
@@ -331,9 +370,7 @@ const handleWaitlistSubscribe = () => {
                   className={`bg-gradient-to-br ${step.gradient} rounded-2xl p-8 flex flex-col justify-between min-h-[500px] md:flex-shrink-0 md:w-[290px]`}
                 >
                   <div className="flex-1 flex items-center justify-center mb-6">
-                    {/* <div className="w-64 h-64 bg-white/50 rounded-2xl flex items-center justify-center hidden"> */}
-                      <img src={step.image} alt="" className="w-64 h-64 object-contain md:block hidden" />
-                    {/* </div> */}
+                    <img src={step.image} alt="" className="w-64 h-64 object-contain md:block hidden" />
                   </div>
                   <div>
                     <h4 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h4>
