@@ -12,8 +12,10 @@ import {
   TrendingUp,
   LineChart,
   Lock,
+  ChevronDown,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { GrowttLogo } from "../components/logo";
 import { FAQModal } from "../components/Modal/FAQModal";
 import { NewsletterModal } from "../components/Modal/Newsletter";
@@ -207,15 +209,18 @@ export default function Index() {
                 <a href="#" className="hover:text-white transition-colors">
                   Home
                 </a>
-                <a href="#" className="hover:text-white transition-colors">
+                <Link to='/about' className="hover:text-white transition-colors">
                   About Us
-                </a>
-                <button
-                  onClick={() => setShowServicesModal(true)}
-                  className="hover:text-white transition-colors"
-                >
-                  Services
-                </button>
+                </Link>
+                <button 
+          onClick={() => {
+              setShowServicesModal(true);
+              setMobileMenuOpen(false);
+            }}
+          className="hidden sm:flex items-center gap-2 text-white/60 text-sm md:text-base hover:text-white transition-colors">
+              Services
+              <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
+            </button>
               </div>
               <div className="flex items-center gap-3">
                 <button
@@ -284,18 +289,18 @@ export default function Index() {
           <a href="#" className="hover:text-white transition-colors">
             Home
           </a>
-          <a href="#" className="hover:text-white transition-colors">
-            About Us
-          </a>
-          <button
-            onClick={() => {
+          <Link to='/about' className="hover:text-white transition-colors">
+                  About Us
+                </Link>
+          <button 
+          onClick={() => {
               setShowServicesModal(true);
               setMobileMenuOpen(false);
             }}
-            className="hover:text-white transition-colors"
-          >
-            Services
-          </button>
+          className="hidden sm:flex items-center gap-2 text-white/60 text-sm md:text-base hover:text-white transition-colors">
+              Services
+              <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
+            </button>
           <button
             onClick={() => {
               setShowFAQModal(true);
