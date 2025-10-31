@@ -123,12 +123,12 @@ const handleWaitlistSubscribe = () => {
               <div className="flex items-center gap-3">
                 <button 
                 onClick={() => setShowFAQModal(true)} 
-                className="px-4 py-2 text-lg text-white border border-growtt-orange rounded-md hover:bg-white/10 transition-colors">
+                className="px-4 py-1 text-[15px] text-white border border-growtt-orange rounded-md hover:bg-white/10 transition-colors">
                   FAQs
                 </button>
                 <button 
                 // onClick={() => setShowWaitlistModal(true)}
-                className="px-4 py-2 text-lg bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
+                className="px-4 py-1 text-[15px] bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
                   Explore
                 </button>
               </div>
@@ -150,7 +150,7 @@ const handleWaitlistSubscribe = () => {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="md:hidden mt-4 pb-4"
+                className="md:hidden mt-4 pb-4 text-center"
               >
                 <div className="flex flex-col gap-4">
   <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Home</a>
@@ -202,10 +202,10 @@ const handleWaitlistSubscribe = () => {
 </button>
                 <button 
                 onClick={() => setShowWaitlistModal(true)}
-                className="px-6 py-3 border border-white/20 text-white rounded-md hover:bg-white/10 transition-colors flex items-center gap-2">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                className="px-6 py-3 border border-growtt-orange text-white rounded-md hover:bg-white/10 transition-colors flex items-center gap-2">
+                  {/* <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 5v14l11-7z"/>
-                  </svg>
+                  </svg> */}
                   Join Waitlist
                 </button>
               </div>
@@ -269,13 +269,13 @@ const handleWaitlistSubscribe = () => {
               </h2>
             </motion.div>
 
-            <div className="flex gap-4 mb-8">
+            <div className="flex gap-8 mb-8">
               <button
                 onClick={() => {
                   const container = document.querySelector('.card');
                   container?.scrollBy({ left: -450, behavior: 'smooth' });
                 }}
-                className="w-12 h-12 rounded bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+                className="w-10 h-10 rounded bg-growtt-dark-teal border-2 border-gray-400 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -286,7 +286,7 @@ const handleWaitlistSubscribe = () => {
                   const container = document.querySelector('.card');
                   container?.scrollBy({ left: 450, behavior: 'smooth' });
                 }}
-                className="w-12 h-12 rounded bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
+                className="w-10 h-10 rounded bg-growtt-dark-teal border-2 border-gray-200 hover:bg-white/30 flex items-center justify-center text-white transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -328,7 +328,7 @@ const handleWaitlistSubscribe = () => {
                   key={index}
                   variants={fadeInUp}
                   whileHover={{ y: -10 }}
-                  className={`bg-gradient-to-br ${step.gradient} rounded-2xl p-8 flex flex-col justify-between min-h-[500px] md:flex-shrink-0 md:w-[450px]`}
+                  className={`bg-gradient-to-br ${step.gradient} rounded-2xl p-8 flex flex-col justify-between min-h-[500px] md:flex-shrink-0 md:w-[290px]`}
                 >
                   <div className="flex-1 flex items-center justify-center mb-6">
                     {/* <div className="w-64 h-64 bg-white/50 rounded-2xl flex items-center justify-center hidden"> */}
@@ -403,10 +403,10 @@ const handleWaitlistSubscribe = () => {
         </motion.div>
       ))}
     </motion.div>
-    <div className='absolute top-[600px] right-0 w-16 h-16'>
+    <div className='absolute top-[600px] right-0 w-16 h-16 hidden md:block'>
       <img src='/images/Vector.png' alt='vector' />
     </div>
-    <div className='absolute top-[1210px] left-14 w-16 h-16'>
+    <div className='absolute top-[1210px] left-14 w-16 h-16 hidden md:block'>
       <img src='/images/Vector.png' alt='vector' />
     </div>
   </div>
