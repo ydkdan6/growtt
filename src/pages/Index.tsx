@@ -143,7 +143,7 @@ const handleWaitlistSubscribe = () => {
   const visibleModules = learningModules.slice(currentLearningIndex, currentLearningIndex + 4);
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-white overflow-x-hidden w-full">
       {/* Navigation */}
       <motion.nav 
         initial={{ y: -100 }}
@@ -179,9 +179,9 @@ const handleWaitlistSubscribe = () => {
             {/* Mobile Menu Button */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white p-2 z-[60]"
+              className="md:hidden text-white p-2 z-[60] "
             >
-              {mobileMenuOpen ? <X className="w-6 h-6 mr-8" /> : <Menu className="w-6 h-6 mr-8" />}
+              {mobileMenuOpen ? <X className="w-6 h-6 mr-4" /> : <Menu className="w-6 h-6 mr-4" />}
             </button>
           </div>
 
@@ -233,7 +233,7 @@ const handleWaitlistSubscribe = () => {
                     className="block w-[408px] h-[125px] object-cover md:scale-x-100 md:block hidden"
                   />
               </h1>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light">
+              <h1 className="text-[41px] sm:text-4xl lg:text-5xl font-light">
                 Invest with <span className="text-growtt-orange">Knowledge</span>
                 <br/>not Hype
               </h1>
