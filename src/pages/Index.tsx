@@ -250,64 +250,74 @@ export default function Index() {
           </div>
 
           {/* Mobile Menu */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
-              <>
-                {/* Overlay */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="fixed inset-0 bg-black/50 z-[55] md:hidden"
-                  onClick={() => setMobileMenuOpen(false)}
-                />
+<AnimatePresence>
+  {mobileMenuOpen && (
+    <>
+      {/* Overlay */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden"
+        onClick={() => setMobileMenuOpen(false)}
+      />
 
-                {/* Sidebar */}
-                <motion.div
-                  initial={{ x: "100%" }}
-                  animate={{ x: 0 }}
-                  exit={{ x: "100%" }}
-                  transition={{ type: "tween", duration: 0.3 }}
-                  className="fixed top-0 right-0 h-full w-64 bg-growtt-dark-teal md:hidden shadow-2xl"
-                >
-                  <div className="flex flex-col h-full p-6 pt-20 bg-growtt-dark-teal">
-                    <div className="flex flex-col gap-6 bg-growtt-dark-teal w-full p-8 justify-center">
-                      <a
-                        href="#"
-                        className="text-white/90 hover:text-white transition-colors py-2 text-lg"
-                      >
-                        Home
-                      </a>
-                      <a
-                        href="#"
-                        className="text-white/90 hover:text-white transition-colors py-2 text-lg"
-                      >
-                        About Us
-                      </a>
-                      <button
-                        onClick={() => {
-                          setShowServicesModal(true);
-                          setMobileMenuOpen(false);
-                        }}
-                        className="text-white/90 hover:text-white transition-colors py-2 text-lg text-left"
-                      >
-                        Services
-                      </button>
-                      <button
-                        onClick={() => {
-                          setShowFAQModal(true);
-                          setMobileMenuOpen(false);
-                        }}
-                        className="text-white/90 hover:text-white transition-colors py-2 text-lg text-left"
-                      >
-                        FAQ
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
-              </>
-            )}
-          </AnimatePresence>
+      {/* Sidebar / Full-screen Menu */}
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className="fixed top-0 right-0 h-screen w-screen bg-gradient-to-b from-[#003B36] to-[#022C22] md:hidden z-[60] flex flex-col justify-center items-center text-center"
+      >
+        {/* Close Button */}
+        <button
+          onClick={() => setMobileMenuOpen(false)}
+          className="absolute top-5 right-6 text-white/80 hover:text-white transition"
+        >
+          ✕
+        </button>
+
+        {/* Navigation Links */}
+        <div className="flex flex-col gap-8 text-white/90 text-2xl font-medium">
+          <a href="#" className="hover:text-white transition-colors">
+            Home
+          </a>
+          <a href="#" className="hover:text-white transition-colors">
+            About Us
+          </a>
+          <button
+            onClick={() => {
+              setShowServicesModal(true);
+              setMobileMenuOpen(false);
+            }}
+            className="hover:text-white transition-colors"
+          >
+            Services
+          </button>
+          <button
+            onClick={() => {
+              setShowFAQModal(true);
+              setMobileMenuOpen(false);
+            }}
+            className="hover:text-white transition-colors"
+          >
+            FAQ
+          </button>
+        </div>
+
+        {/* Footer / Social Icons (optional)
+        <div className="absolute bottom-10 flex gap-6 text-white/70 text-xl">
+          <a href="#" className="hover:text-white transition-colors">🌐</a>
+          <a href="#" className="hover:text-white transition-colors">📞</a>
+          <a href="#" className="hover:text-white transition-colors">✉️</a>
+        </div> */}
+      </motion.div>
+    </>
+  )}
+</AnimatePresence>
+
         </div>
       </motion.nav>
 
