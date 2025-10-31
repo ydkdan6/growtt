@@ -557,7 +557,7 @@ const handleWaitlistSubscribe = () => {
               ))}
             </div>
             <p className="text-2xl text-gray-900 italic">
-              "This platform transformed my investment strategy. I found opportunities I never knew existed!"
+              "These Growtt emails are gems! Simple tips that actually make sense!"
             </p>
             <div className="flex items-center justify-center gap-6">
               <div className="w-14 h-14 bg-gray-300 rounded-full"></div>
