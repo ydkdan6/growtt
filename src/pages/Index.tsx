@@ -260,8 +260,8 @@ const handleWaitlistSubscribe = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative flex items-center justify-center"
             >
-              <div className="relative w-full aspect-square">
-                <div className="w-full h-[484px] absolute inset-8 overflow-hidden">
+              <div className="relative w-full aspect-square flex jsutify-center items-center">
+                <div className="w-full h-[484px] absolute inset-8 overflow-hidden flex justify-center items-center">
                   <motion.div 
                     animate={{ y: [0, 10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
@@ -269,7 +269,7 @@ const handleWaitlistSubscribe = () => {
                   >
                     <img 
                       src="/images/hero-images.png" 
-                      alt="Investor" 
+                      alt="side image" 
                       className="w-full h-full object-cover pr-6"
                     />
                   </motion.div>
