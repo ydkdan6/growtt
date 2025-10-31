@@ -38,7 +38,7 @@ export function FAQModal({ open, onOpenChange }: FAQModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="overflow-x-hidden ...existing classes... custom-scrollbar max-w-4xl w-[calc(100vw-2rem)] sm:w-[90vw] md:w-full max-h-[90vh] p-0 overflow-y-auto border-[8px] sm:border-[12px] border-[#00A4A4] rounded-[24px] sm:rounded-[32px] bg-white !m-4 sm:!m-auto">
+      <DialogContent className="overflow-x-hidden ...existing classes... custom-scrollbar max-w-4xl w-[calc(100vw-2rem)] sm:w-[90vw] md:w-full max-h-[90vh] p-0 overflow-y-auto border-[8px] sm:border-[12px] border-[#00A4A4] rounded-[24px] sm:rounded-[32px] bg-white !m-4 sm:!m-auto mr-2 md:mr-0">
         <div className="relative min-h-[10px] p-4 sm:p-6 md:p-8 lg:p-12">
           {/* Logo Badge */}
           <div className="absolute top-2 left-1/2 -translate-x-1/2 bg-[#00A4A4] rounded-b-xl sm:rounded-b-2xl px-3 py-2 sm:px-4 sm:py-3 z-20">
