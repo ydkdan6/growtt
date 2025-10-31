@@ -238,8 +238,7 @@ const handleWaitlistSubscribe = () => {
                 <br/>not Hype
               </h1>
               <p className="text-lg text-white/80 max-w-xl text-center md:text-left">
-                Unlock smarter investment opportunities with data-driven insights. Explore alternative portfolios, Bitcoin, Ethereum and build a more informed strategy today.
-              </p>
+Stay ahead of the curve with the insights from Growtt. Subscribe to our newsletter for investment tips, product updates and exclusive pre-launch opportunities.           </p>
               <div className="flex flex-wrap gap-4">
                 <button 
                   onClick={() => setShowNewsletterModal(true)}
