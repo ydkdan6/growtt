@@ -27,6 +27,7 @@ export default function Index() {
   const [showWaitlistModal, setShowWaitlistModal] = useState(false);
   const [showFAQModal, setShowFAQModal] = useState(false);
   const [showNewsletterModal, setShowNewsletterModal] = useState(false);
+  const [showServicesModal, setShowServicesModal] = useState(false);
 
   const ScrollButtons = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -137,21 +138,6 @@ const handleWaitlistSubscribe = () => {
       description: "Tips for 2026",
       price: "₦4,000"
     }
-    // {
-    //   image: "https://api.builder.io/api/v1/image/assets/TEMP/44c5b6397f776ccbc607f1cdeb50cc3e000b6bcb?width=634",
-    //   title: "Advanced Investment Strategies",
-    //   description: "Strategies for experienced investors"
-    // },
-    // {
-    //   image: "https://api.builder.io/api/v1/image/assets/TEMP/566e0f3b8dea69365134c205f66df4b18bcb68cb?width=634",
-    //   title: "Retirement Planning",
-    //   description: "Plan for your financial future"
-    // },
-    // {
-    //   image: "https://api.builder.io/api/v1/image/assets/TEMP/4660a904f1aefbc073cb3ced504bda46e764d293?width=634",
-    //   title: "Tax Implications of Investments",
-    //   description: "Understand tax rules for investments"
-    // }
   ];
 
   const visibleModules = learningModules.slice(currentLearningIndex, currentLearningIndex + 4);
@@ -168,19 +154,13 @@ const handleWaitlistSubscribe = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-4">
           <div className="flex items-center justify-between">
             <GrowttLogo />
-            {/* <div className="hidden md:flex md:items-center gap-6 text-lg text-white/90">
-                <a href="#" className="hover:text-white transition-colors">Home</a>
-                <a href="#" className="hover:text-white transition-colors">About Us</a>
-                <a href="#" className="hover:text-white transition-colors">Services</a>
-              </div> */}
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex md:justify-start items-center gap-8">
               <div className="flex items-center gap-6 text-sm text-white/90">
                 <a href="#" className="hover:text-white transition-colors">Home</a>
                 <a href="#" className="hover:text-white transition-colors">About Us</a>
-                <a href="#" className="hover:text-white transition-colors">Services</a>
-                  {/* <a onClick={() => setShowFAQModal(true)} href="#" className="text-white/90 hover:text-white transition-colors py-2">Faq</a> */}
+                <button onClick={() => setShowServicesModal(true)} className="hover:text-white transition-colors">Services</button>
               </div>
               <div className="flex items-center gap-3">
                 <button 
@@ -189,9 +169,9 @@ const handleWaitlistSubscribe = () => {
                   FAQs
                 </button>
                 <button 
-                // onClick={() => setShowWaitlistModal(true)}
+                // id="explore"
                 className="px-4 py-1 text-[15px] bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
-                  Explore
+                  <a href="#explore" className="decoration-none"> Explore </a>
                 </button>
               </div>
             </div>
@@ -215,22 +195,11 @@ const handleWaitlistSubscribe = () => {
                 className="md:hidden mt-4 pb-4 text-center"
               >
                 <div className="flex flex-col gap-4">
-  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Home</a>
-  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">About Us</a>
-  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Services</a>
-  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Faq</a>
-
-  {/* <button 
-    onClick={() => setShowNewsletterModal(true)}
-    className="w-[170px] px-4 py-2 text-sm text-white border border-white/20 rounded-md hover:bg-white/10 transition-colors">
-    Subscribe
-  </button>
-  <button 
-    onClick={() => setShowWaitlistModal(true)}
-    className="w-[170px] px-4 py-2 text-sm bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
-    Join Waitlist
-  </button> */}
-</div>
+                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Home</a>
+                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">About Us</a>
+                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Services</a>
+                  <a href="#" className="text-white/90 hover:text-white transition-colors py-2">Faq</a>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -253,21 +222,18 @@ const handleWaitlistSubscribe = () => {
                 Invest with <span className="text-growtt-orange">Knowledge</span>
                 <br/>not Hype
               </h2>
-              <p className="text-lg text-white/80 max-w-xl text-center md:block">
+              <p className="text-lg text-white/80 max-w-xl text-center md:text-left">
                 Unlock smarter investment opportunities with data-driven insights. Explore alternative portfolios, Bitcoin, Ethereum and build a more informed strategy today.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button 
-  onClick={() => setShowNewsletterModal(true)}
-  className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors flex items-center gap-2">
- Subscribe Now
-</button>
+                  onClick={() => setShowNewsletterModal(true)}
+                  className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors flex items-center gap-2">
+                  Subscribe Now
+                </button>
                 <button 
                 onClick={() => setShowWaitlistModal(true)}
                 className="px-6 py-3 border border-growtt-orange text-white rounded-md hover:bg-white/10 transition-colors flex items-center gap-2">
-                  {/* <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg> */}
                   Join Waitlist
                 </button>
               </div>
@@ -279,25 +245,20 @@ const handleWaitlistSubscribe = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative flex items-center justify-center"
             >
-              {/* Gradient Background */}
               <div className="relative w-full aspect-square">
-                {/* <div className="absolute inset-0 bg-gradient-to-br from-growtt-orange via-yellow-400 to-growtt-orange rounded-full"></div> */}
                 <div className="w-full h-[484px] absolute inset-8 overflow-hidden">
                   <motion.div 
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-full h-full"
-          >
-                  <img 
-                    src="/images/hero-images.png" 
-                    alt="Investor" 
-                    className="w-full h-full object-cover pr-6"
-                  />
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="w-full h-full"
+                  >
+                    <img 
+                      src="/images/hero-images.png" 
+                      alt="Investor" 
+                      className="w-full h-full object-cover pr-6"
+                    />
                   </motion.div>
                 </div>
-                {/* Decorative circles */}
-                {/* <div className="absolute -top-4 -right-4 w-24 h-24 bg-growtt-teal rounded-full opacity-30"></div> */}
-                {/* <div className="absolute -bottom-8 -left-8 w-32 h-32 border-4 border-growtt-teal rounded-full opacity-40"></div> */}
               </div>
             </motion.div>
           </div>
@@ -384,71 +345,69 @@ const handleWaitlistSubscribe = () => {
       </section>
 
       {/* Diverse Investment Opportunities */}
-      <section className="min-h-screen flex flex-col justify-center items-center py-20 px-4 sm:px-6 lg:px-16 bg-gray-50">
-  <div className="max-w-7xl w-full text-center flex flex-col items-center">
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-    >
-      <p className="text-growtt-teal font-bold text-sm uppercase tracking-wide mb-4">
-        Invest in Variety
-      </p>
-      <h2 className="text-4xl sm:text-5xl font-light text-gray-900 mb-6">
-        Explore Diverse Investment Opportunities
-      </h2>
+      <section id="explore" className="min-h-screen flex flex-col justify-center items-center py-20 px-4 sm:px-6 lg:px-16 bg-gray-50">
+        <div className="max-w-7xl w-full text-center flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-growtt-teal font-bold text-sm uppercase tracking-wide mb-4">
+              Invest in Variety
+            </p>
+            <h2 className="text-4xl sm:text-5xl font-light text-gray-900 mb-6">
+              Explore Diverse Investment Opportunities
+            </h2>
 
-      {/* 👇 Centered GrowttLogo */}
-      <div className="flex justify-center mb-12">
-        <GrowttLogo /> 
-      </div>
-    </motion.div>
+            <div className="flex justify-center mb-12">
+              <GrowttLogo /> 
+            </div>
+          </motion.div>
 
-    <motion.div
-      variants={staggerContainer}
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true }}
-      className="grid md:grid-cols-3 gap-6 text-center"
-    >
-      {[
-        {
-          icon: TrendingUp,
-          text: "Public Market Investments",
-          color: "text-growtt-teal",
-        },
-        {
-          icon: LineChart,
-          text: "Alternative Bonds / Special Purpose Funds",
-          color: "text-growtt-teal",
-        },
-        {
-          icon: Lock,
-          text: "Private Market Investments",
-          color: "text-growtt-teal",
-        },
-      ].map((item, index) => (
-        <motion.div
-          key={index}
-          variants={fadeInUp}
-          className="shadow-xl flex flex-col items-center justify-center gap-4 p-2 bg-white rounded-lg hover:shadow-lg transition-shadow"
-        >
-          <div className="flex items-center gap-6">
-          <item.icon className={`w-8 h-8 ${item.color}`} />
-          <p className="text-gray-900 font-medium">{item.text}</p>
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-6 text-center"
+          >
+            {[
+              {
+                icon: TrendingUp,
+                text: "Public Market Investments",
+                color: "text-growtt-teal",
+              },
+              {
+                icon: LineChart,
+                text: "Alternative Bonds / Special Purpose Funds",
+                color: "text-growtt-teal",
+              },
+              {
+                icon: Lock,
+                text: "Private Market Investments",
+                color: "text-growtt-teal",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="shadow-xl flex flex-col items-center justify-center gap-4 p-2 bg-white rounded-lg hover:shadow-lg transition-shadow"
+              >
+                <div className="flex items-center gap-6">
+                  <item.icon className={`w-8 h-8 ${item.color}`} />
+                  <p className="text-gray-900 font-medium">{item.text}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+          <div className='absolute top-[600px] right-0 w-16 h-16 hidden md:block'>
+            <img src='/images/Vector.png' alt='vector' />
           </div>
-        </motion.div>
-      ))}
-    </motion.div>
-    <div className='absolute top-[600px] right-0 w-16 h-16 hidden md:block'>
-      <img src='/images/Vector.png' alt='vector' />
-    </div>
-    <div className='absolute top-[1210px] left-14 w-16 h-16 hidden md:block'>
-      <img src='/images/Vector.png' alt='vector' />
-    </div>
-  </div>
-</section>
-
+          <div className='absolute top-[1210px] left-14 w-16 h-16 hidden md:block'>
+            <img src='/images/Vector.png' alt='vector' />
+          </div>
+        </div>
+      </section>
 
       {/* Investment Discovery Platform */}
       <section className="py-20 px-4 sm:px-6 lg:px-16 bg-white">
@@ -496,55 +455,6 @@ const handleWaitlistSubscribe = () => {
           </div>
         </div>
       </section>
-
-      {/* Seeds Your Currency Section */}
-      {/* <section className="py-20 px-4 sm:px-6 lg:px-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl sm:text-5xl font-light text-gray-900 mb-4">
-              Seeds Your Currency for Smarter{" "}
-              <span className="text-growtt-orange">Growth</span>
-            </h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto mb-12">
-              Introducing Seeds, a new way to invest in crypto-flexible asset with curated risk-return and platform fees. Ready to amplify your investment journey without compromise.
-            </p>
-          </motion.div>
-
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {[
-              { image: "https://api.builder.io/api/v1/image/assets/TEMP/94e0dfbdae445615659f0dc47d0d532cdcb6618e?width=400", title: "Altcoin Discovery", desc: "Explore emerging cryptocurrencies" },
-              { image: "https://api.builder.io/api/v1/image/assets/TEMP/94e0dfbdae445615659f0dc47d0d532cdcb6618e?width=400", title: "Bitcoin Funds", desc: "Invest in Bitcoin with confidence" },
-              { image: "https://api.builder.io/api/v1/image/assets/TEMP/94e0dfbdae445615659f0dc47d0d532cdcb6618e?width=400", title: "Ethereum Staking", desc: "Earn rewards through staking" },
-              { image: "https://api.builder.io/api/v1/image/assets/TEMP/94e0dfbdae445615659f0dc47d0d532cdcb6618e?width=400", title: "DeFi Opportunities", desc: "Access decentralized finance" }
-            ].map((card, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="h-48 bg-gradient-to-br from-gray-200 to-gray-300">
-                  <img src={card.image} alt="" className="w-full h-full object-cover" />
-                </div>
-                <div className="p-6">
-                  <h4 className="font-semibold text-gray-900 mb-2">{card.title}</h4>
-                  <p className="text-gray-600 text-sm">{card.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section> */}
 
       {/* Premium Learning Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-16 bg-growtt-gray">
@@ -722,7 +632,8 @@ const handleWaitlistSubscribe = () => {
           </div>
         </div>
       </footer>
-    {/* Modals */}
+
+      {/* Modals */}
       <NewsletterModal 
         open={showNewsletterModal} 
         onOpenChange={setShowNewsletterModal}
@@ -736,6 +647,30 @@ const handleWaitlistSubscribe = () => {
         open={showFAQModal} 
         onOpenChange={setShowFAQModal}
       />
+      
+      {/* Services Coming Soon Modal */}
+      <AnimatePresence>
+        {showServicesModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/50"
+            onClick={() => setShowServicesModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-lg p-8 shadow-xl max-w-sm mx-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="text-2xl font-semibold text-gray-900 text-center mb-4">Coming Soon</h3>
+              <p className="text-gray-600 text-center">Our services page will be available soon. Stay tuned!</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
