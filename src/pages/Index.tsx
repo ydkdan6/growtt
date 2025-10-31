@@ -143,7 +143,7 @@ const handleWaitlistSubscribe = () => {
   const visibleModules = learningModules.slice(currentLearningIndex, currentLearningIndex + 4);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Navigation */}
       <motion.nav 
         initial={{ y: -100 }}
