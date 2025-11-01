@@ -292,15 +292,17 @@ export default function Index() {
           <Link to='/about' className="hover:text-white transition-colors">
                   About Us
                 </Link>
+<div className="flex gap-2">
           <button 
           onClick={() => {
               setShowServicesModal(true);
               setMobileMenuOpen(false);
             }}
-          className="hidden sm:flex items-center gap-2 text-white/60 text-sm md:text-base hover:text-white transition-colors">
+          className="hover:text-white transition-colors">
               Services
               <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
             </button>
+</div>
           <button
             onClick={() => {
               setShowFAQModal(true);
