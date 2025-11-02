@@ -150,38 +150,19 @@ export default function Index() {
       image: "/images/Hard Cover Book (1).png",
       title: "Investment Made Simple",
       description: "Start from 10k naira and build wealth",
-      price: "₦4,000",
+      price: "₦2,000",
     },
     {
       image: "/images/Hard Cover Book (2).png",
       title: "5 Skills to learn and earn as a student",
       description: "Learn Skill earn income",
-      price: "₦4,000",
+      price: "₦2,000",
     },
     {
       image: "/images/Hard Cover Book.png",
       title: "Webinar: Mastering the New Tax Rules",
       description: "Tips for 2026",
-      price: "₦4,000",
-    },
-    {
-      image: "/images/Hard Cover Book (2).png",
-      title: "5 Skills to learn and earn as a student",
-      description: "Learn Skill earn income",
-      price: "₦4,000",
-    },
-
-    {
-      image: "/images/Hard Cover Book (1).png",
-      title: "Investment Made Simple",
-      description: "Start from 10k naira and build wealth",
-      price: "₦4,000",
-    },
-    {
-      image: "/images/Hard Cover Book.png",
-      title: "Webinar: Mastering the New Tax Rules",
-      description: "Tips for 2026",
-      price: "₦4,000",
+      price: "₦2,000",
     },
   ];
 
@@ -633,14 +614,14 @@ export default function Index() {
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
-              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 flex justify-center items-center md:ml-[260px]"
             >
               {visibleModules.map((module, index) => (
                 <motion.div
                   key={index}
                   variants={fadeInUp}
                   whileHover={{ y: -10 }}
-                  className="space-y-4"
+                  className="space-y-4 "
                 >
                   <div className="aspect-square rounded-xl overflow-hidden">
                     <img

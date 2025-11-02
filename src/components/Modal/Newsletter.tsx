@@ -81,11 +81,11 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
               {/* Interest Selection */}
               <div className="space-y-4 sm:space-y-6">
                 <p className="text-center text-[#008080]/60 font-['Gill_Sans_MT',sans-serif] text-sm sm:text-base md:text-lg px-2">
-                  Which Financial Market interest you the most? (Select one or more)
+                  Which Financial Market interest you the most?
                 </p>
-                <div className="space-y-3 sm:space-y-4">
+                {/* <div className="space-y-3 sm:space-y-4"> */}
                   {/* Mobile: Single column, Desktop: Two rows */}
-                  <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4">
+                  {/* <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4">
                     {interests.slice(0, 4).map((interest) => (
                       <button
                         key={interest}
@@ -101,8 +101,8 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
                         {interest}
                       </button>
                     ))}
-                  </div>
-                  <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4">
+                  </div> */}
+                  {/* <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4">
                     {interests.slice(4).map((interest) => (
                       <button
                         key={interest}
@@ -118,8 +118,28 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
                         {interest}
                       </button>
                     ))}
-                  </div>
-                </div>
+                  </div> */}
+                {/* </div> */}
+              </div>
+
+              {/* Asset Classes Input */}
+              <div className="relative pb-2">
+                <input
+                  type="text"
+                  placeholder="Enter your Asset Class..."
+                  value=''
+                  // onChange={(e) => setEmail(e.target.value)}
+                  className="w-full h-11 sm:h-12 px-3 sm:px-4 pr-28 sm:pr-48 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-sm sm:text-base placeholder:text-[#030712]/60 focus:outline-none focus:border-[#00A4A4]"
+                  required
+                />
+                {/* <button
+                  type="submit"
+                  className="absolute right-1 top-1 h-9 sm:h-10 px-3 sm:px-5 bg-[#FF9801] hover:bg-[#FF9801]/90 text-white rounded-lg font-['Gill_Sans_MT',sans-serif] flex items-center gap-1 sm:gap-3 transition-colors text-xs sm:text-base"
+                >
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="hidden sm:inline">Subscribe Now</span>
+                  <span className="sm:hidden">Subscribe</span>
+                </button> */}
               </div>
 
               {/* Email Input */}
