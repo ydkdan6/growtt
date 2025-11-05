@@ -198,26 +198,26 @@ export default function About() {
       </section>
 
       {/* Who We Are */}
-      <section className="px-4 md:px-10 lg:px-20 mt-12 md:mt-16">
-        <h2 className="text-gray-900 text-xl md:text-2xl font-bold mb-6 md:mb-8" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif' }}>
+      <section className="px-4 md:px-10 lg:px-20 mt-16 md:mt-24 mb-12 md:mb-16">
+        <h2 className="text-gray-900 text-xl md:text-2xl font-bold mb-6 md:mb-4" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif' }}>
           Who We Are
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 justify-items-center">
+        <div className="px-4 md:ml-[197px] lg:px-20 mt-16 md:mt-24 mb-12 md:mb-16 flex flex-row items-center text-center">
           <TeamMember
-            image="https://api.builder.io/api/v1/image/assets/TEMP/2d5d3c7cf81fbaa3e1ca9b1d80737a365229bbd9?width=538"
+            image="/images/founder.png"
             name="Ukut Ifiok"
             role="CEO"
           />
           <TeamMember
-            image="https://api.builder.io/api/v1/image/assets/TEMP/202353faf5e94ae67105ef25a099f90e34ca069f?width=538"
+            image="/images/cto.png"
             name="JP"
             role="CTO"
           />
-          <TeamMember
+          {/* <TeamMember
             image="https://api.builder.io/api/v1/image/assets/TEMP/cdad65e997a6117f5fc30c4630c66804250ce75f?width=538"
             name="Emily Rodriguez"
             role="Head of Product"
-          />
+          /> */}
         </div>
       </section>
 
