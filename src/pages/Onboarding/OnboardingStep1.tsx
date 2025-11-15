@@ -38,12 +38,12 @@ export default function OnboardingStep1() {
               </h2>
             </div>
 
-            <div className="flex flex-col-2 gap-3">
+            <div className="flex flex-col md:flex-col-2 gap-3">
               {options.map((option) => (
                 <button
                   key={option}
                   onClick={() => setSelected(option)}
-                  className={`w-full h-14 px-4 rounded-lg border-2 transition-all ${
+                  className={`w-full h-10 md:h-14 px-4 rounded-lg border-2 transition-all ${
                     selected === option
                       ? "border-[#008080] bg-[#F0F0F0]"
                       : "border-[rgba(3,7,18,0.2)] hover:border-[#008080]"
