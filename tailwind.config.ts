@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./src/**/*.{ts,tsx}"],
+  content: ["./client/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -57,6 +57,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        brand: {
+          teal: "#008080",
+          orange: "#FF9800",
+          light: "#F5F5F5",
+          dark: "#030712",
+        },
         growtt: {
           teal: "#008080",
           "dark-teal": "#033",
@@ -69,6 +75,9 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ["Gill Sans MT", "-apple-system", "Roboto", "Helvetica", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
