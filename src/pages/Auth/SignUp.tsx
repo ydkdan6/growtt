@@ -90,11 +90,11 @@ export default function SignUp() {
               I have read, understood, and agree to and all other terms, disclosures and disclaimers applicable to me as referenced in the Customer Agreement.
             </p>
           </div>
-        </form>
 
-        <AuthButton variant="primary" fullWidth className="mb-12 text-white" type="submit">
-          Continue
-        </AuthButton>
+          <AuthButton variant="primary" fullWidth className="mb-12 text-white" type="submit">
+            Continue
+          </AuthButton>
+        </form>
 
         <div className="mt-auto text-center">
           <p className="text-[rgba(13,3,0,0.6)] text-base leading-[150%]">
