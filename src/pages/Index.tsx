@@ -15,7 +15,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GrowttLogo } from "../components/logo";
 import { FAQModal } from "../components/Modal/FAQModal";
 import { NewsletterModal } from "../components/Modal/Newsletter";
@@ -43,6 +43,12 @@ export default function Index() {
   const [showFAQModal, setShowFAQModal] = useState(false);
   const [showNewsletterModal, setShowNewsletterModal] = useState(false);
   const [showServicesModal, setShowServicesModal] = useState(false);
+  const navigate = useNavigate();
+
+  //Dummy for now
+  const handleLogin = () => {
+    navigate('/login');
+  }
 
   const ScrollButtons = () => {
     const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -569,7 +575,7 @@ export default function Index() {
                   </p>
                 </div>
               </div>
-              <button className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
+              <button onClick={handleLogin} className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
                 Learn More
               </button>
             </motion.div>
