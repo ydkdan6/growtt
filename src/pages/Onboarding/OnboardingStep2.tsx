@@ -7,11 +7,11 @@ export default function OnboardingStep2() {
   const [selected, setSelected] = useState<string | null>(null);
 
   const options = [
-    "Emergency fund",
-    "Business Venture",
-    "Family Expenses",
-    "Land/House",
-    "Wedding/Travel"
+    "Preserve Capital",
+    "Passive Income",
+    "Major Assets Purchase",
+    "Business Growth",
+    "Diversity Beyond Savings"
   ];
 
   const handleNext = () => {
@@ -39,7 +39,7 @@ export default function OnboardingStep2() {
 
             <div className="text-center">
               <h2 className="text-2xl md:text-[28px] font-bold text-[#0D1C1C] leading-tight mb-6">
-                What is your most important short-term financial goal?
+                What is your primary investment goal for the next 3-5 years?
               </h2>
             </div>
 

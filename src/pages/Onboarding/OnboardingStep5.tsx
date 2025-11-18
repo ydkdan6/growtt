@@ -7,16 +7,15 @@ export default function OnboardingStep5() {
   const [selected, setSelected] = useState<string | null>(null);
 
   const options = [
-    "Preserve capital",
-    "Passive Income",
-    "Major Asset Purchase",
-    "Business Growth",
-    "Diversify Beyond Savings"
+    "100k - 500k",
+    "500k - 2M",
+    "2M - 5M",
+    "5M+"
   ];
 
   const handleNext = () => {
     if (selected) {
-      navigate("/onboarding/complete");
+      navigate("/onboarding/step6");
     }
   };
 
@@ -39,7 +38,7 @@ export default function OnboardingStep5() {
 
             <div className="text-center">
               <h2 className="text-2xl md:text-[28px] font-bold text-[#0D1C1C] leading-tight mb-6">
-                What is your primary investment goal for the next 3–5 years?
+                What is your intended initial investment amount?
               </h2>
             </div>
 

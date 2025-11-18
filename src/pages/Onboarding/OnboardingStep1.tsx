@@ -28,7 +28,7 @@ export default function OnboardingStep1() {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
               <div className="h-2 bg-[#D1E8E8] rounded-full overflow-hidden">
-                <div className="h-full w-1/5 bg-[#1AE5CF] rounded-full"></div>
+                <div className="h-full w-[60px] bg-[#1AE5CF] rounded-full"></div>
               </div>
             </div>
 

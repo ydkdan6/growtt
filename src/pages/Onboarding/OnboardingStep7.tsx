@@ -2,30 +2,28 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppHeader from "../../components/AppHeader";
 
-export default function OnboardingStep3() {
+export default function OnboardingStep7() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string | null>(null);
 
   const options = [
-    "Capital Growth",
-    "Dividend Income",
-    "Value Investing",
-    "Tactical Allocation",
-    "Hedging with Dollar/Commodities"
+    "50k - 200k",
+    "200k - 500k",
+    "500k+"
   ];
 
   const handleNext = () => {
     if (selected) {
-      navigate("/onboarding/step4");
+      navigate("/onboarding/step8");
     }
   };
 
   const handleBack = () => {
-    navigate("/onboarding/step2");
+    navigate("/onboarding/step6");
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#FFE1B4] to-[#FFF]">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#FFE2B9] to-[#FFF]">
       <AppHeader />
 
       <main className="flex-1 flex items-center justify-center px-4 py-8">
@@ -33,13 +31,13 @@ export default function OnboardingStep3() {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">
               <div className="h-2 bg-[#D1E8E8] rounded-full overflow-hidden">
-                <div className="h-full w-3/5 bg-[#1AE5CF] rounded-full"></div>
+                <div className="h-full w-full bg-[#1AE5CF] rounded-full"></div>
               </div>
             </div>
 
             <div className="text-center">
               <h2 className="text-2xl md:text-[28px] font-bold text-[#0D1C1C] leading-tight mb-6">
-                What is your core investment strategy?
+                What amount are you thinking of starting your investment journey with?
               </h2>
             </div>
 

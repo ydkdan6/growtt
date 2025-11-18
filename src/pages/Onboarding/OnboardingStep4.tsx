@@ -7,11 +7,9 @@ export default function OnboardingStep4() {
   const [selected, setSelected] = useState<string | null>(null);
 
   const options = [
-    "<25",
-    "25–34",
-    "35–44",
-    "45–54",
-    "55+"
+    "Withdraw",
+    "Wait",
+    "Invest More"
   ];
 
   const handleNext = () => {
@@ -39,7 +37,7 @@ export default function OnboardingStep4() {
 
             <div className="text-center">
               <h2 className="text-2xl md:text-[28px] font-bold text-[#0D1C1C] leading-tight mb-6">
-                What is your age group?
+                If you invested 100,000 and it dropped to 900,000 in a monnth, what would you do?
               </h2>
             </div>
 

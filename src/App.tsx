@@ -17,6 +17,14 @@ import OnboardingStep2 from "./pages/Onboarding/OnboardingStep2";
 import OnboardingStep3 from "./pages/Onboarding/OnboardingStep3";
 import OnboardingStep4 from "./pages/Onboarding/OnboardingStep4";
 import OnboardingStep5 from "./pages/Onboarding/OnboardingStep5";
+import OnboardingStep6 from "./pages/Onboarding/OnboardingStep6";
+import OnboardingStep7 from "./pages/Onboarding/OnboardingStep7";
+import OnboardingStep8 from "./pages/Onboarding/OnboardingStep8";
+import OnboardingStep9 from "./pages/Onboarding/OnboardingStep9";
+import OnboardingStep10 from "./pages/Onboarding/OnboardingStep10";
+import OnboardingStep11 from "./pages/Onboarding/OnboardingStep11";
+import OnboardingStep12 from "./pages/Onboarding/OnboardingStep12";
+import OnboardingStep13 from "./pages/Onboarding/OnboardingStep13";
 import OnboardingInitial from "./pages/Onboarding/Onboarding";
 
 
@@ -39,6 +47,14 @@ const App = () => (
           <Route path="/Onboarding/step3" element={<OnboardingStep3 />} />
           <Route path="/Onboarding/step4" element={<OnboardingStep4 />} />
           <Route path="/Onboarding/step5" element={<OnboardingStep5 />} />
+          <Route path="/Onboarding/step6" element={<OnboardingStep6 />} />
+          <Route path="/Onboarding/step7" element={<OnboardingStep7 />} />
+          <Route path="/Onboarding/step8" element={<OnboardingStep8 />} />
+          <Route path="/Onboarding/step9" element={<OnboardingStep9 />} />
+          <Route path="/Onboarding/step10" element={<OnboardingStep10 />} />
+          <Route path="/Onboarding/step11" element={<OnboardingStep11 />} />
+          <Route path="/Onboarding/step12" element={<OnboardingStep12 />} />
+          <Route path="/Onboarding/step13" element={<OnboardingStep13 />} />
           <Route path="/about" element={<About />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
