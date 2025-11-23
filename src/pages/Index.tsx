@@ -39,10 +39,12 @@ export default function Index() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentLearningIndex, setCurrentLearningIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+  const [showWaitlistModal, setShowWaitlistModal] = useState(true);
   const [showFAQModal, setShowFAQModal] = useState(false);
   const [showNewsletterModal, setShowNewsletterModal] = useState(false);
   const [showServicesModal, setShowServicesModal] = useState(false);
+  const [showEbookModal, setShowEbookModal] = useState(false);
+const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
   const navigate = useNavigate();
 
   //Dummy for now
@@ -57,7 +59,7 @@ export default function Index() {
     useEffect(() => {
       const container = document.querySelector(".card") as HTMLElement;
 
-      const updateButtonStates = () => {
+       const updateButtonStates = () => {
         if (container) {
           setCanScrollLeft(container.scrollLeft > 1);
           setCanScrollRight(
@@ -152,25 +154,37 @@ export default function Index() {
   };
 
   const learningModules = [
-    {
-      image: "/images/Hard Cover Book (1).png",
-      title: "Investment Made Simple",
-      description: "Start from 10k naira and build wealth",
-      price: "₦2,000",
-    },
-    {
-      image: "/images/Hard Cover Book (2).png",
-      title: "5 Skills to learn and earn as a student",
-      description: "Learn Skill earn income",
-      price: "₦2,000",
-    },
-    {
-      image: "/images/Hard Cover Book.png",
-      title: "Webinar: Mastering the New Tax Rules",
-      description: "Tips for 2026",
-      price: "₦2,000",
-    },
-  ];
+  {
+    image: "/images/Hard Cover Book (1).png",
+    title: "Investment Made Simple",
+    description: "Start from 10k naira and build wealth",
+    price: "₦2,000",
+    fullTitle: "Investing Made Simple: How to Start from ₦10,000 and Build Wealth",
+    fullDescription: "A beginner's roadmap to making your money work for you — the Growtt way",
+    details: `This guide demystifies the world of investing in Nigeria. It teaches you the fundamentals of wealth-building, showing how to start small, manage risks, and grow your money over time — even on a student or entry-level budget. Readers will learn about different investment options (from treasury bills to mutual funds, stocks, and real estate), how to build their first investment portfolio, and the power of compounding that turns small monthly deposits into big results.`,
+    idealFor: "Beginners who want to escape the just saving trap and start building long-term wealth with confidence and strategy."
+  },
+  {
+    image: "/images/Hard Cover Book (2).png",
+    title: "5 Skills to learn and earn as a student",
+    description: "Learn Skill earn income",
+    price: "₦2,000",
+    fullTitle: "5 In-Demand Skills You Can Learn and Monetize as a Student",
+    fullDescription: "Your practical guide to earning income while studying",
+    details: `This ebook reveals five high-demand, beginner-friendly skills that students can learn and start earning from within months. From freelance writing and graphic design to social media management, video editing, and web development basics — each skill is broken down with learning resources, real income potential, and tips on getting your first clients. Perfect for students looking to build financial independence without waiting for graduation.`,
+    idealFor: "Students and young professionals who want to develop marketable skills and start earning income on their own terms."
+  },
+  {
+    image: "/images/Hard Cover Book.png",
+    title: "Webinar: Mastering the New Tax Rules",
+    description: "Tips for 2026",
+    price: "₦2,000",
+    fullTitle: "What the New Tax Policy Means for You and I",
+    fullDescription: "Understand how Nigeria's 2025 tax reforms affect your money, business, and future.",
+    details: `This e-book simplifies Nigeria's new tax regime into plain, practical language for both individuals and businesses. You'll discover how taxes are now calculated, what has changed under the new Tax Administration Act (NTAA 2025), and how to legally reduce your tax burden through smart planning. It breaks down real examples — from employee salaries to SME revenues — helping readers understand their obligations and opportunities under the new policy. By the end, you'll know how to stay compliant, save money, and make smarter financial decisions in 2025 and beyond.`,
+    idealFor: "Entrepreneurs, salary earners, freelancers, and business owners who want clarity on Nigeria's evolving tax landscape."
+  },
+];
 
   const visibleModules = learningModules.slice(
     currentLearningIndex,
@@ -236,7 +250,7 @@ export default function Index() {
               {mobileMenuOpen ? (
                 <X className="w-6 h-6 mr-4" />
               ) : (
-                <Menu className="w-6 h-6 mr-4" />
+                <Menu className="w-6 h-6 mr-[4px]" />
               )}
             </button>
           </div>
@@ -292,12 +306,12 @@ export default function Index() {
 </div>
           <button
             onClick={() => {
-              setShowFAQModal(true);
+              setShowWaitlistModal(true)
               setMobileMenuOpen(false);
             }}
             className="hover:text-white transition-colors"
           >
-            FAQ
+            Join Waitlist
           </button>
         </div>
 
@@ -324,6 +338,7 @@ export default function Index() {
                 <img
                   src="/images/logo.png"
                   alt="Investor"
+                  loading="lazy"
                   className="block w-[408px] h-[125px] object-cover md:scale-x-100 md:block hidden"
                 />
               </h1>
@@ -338,7 +353,25 @@ export default function Index() {
                 to our newsletter for investment tips, product updates and
                 exclusive pre-launch opportunities.{" "}
               </p>
-              <div className="flex flex-wrap gap-4">
+              
+              {/* Desktop CTAs */}
+              <div className="hidden md:flex flex-wrap gap-4">
+                <button
+                  onClick={() => setShowNewsletterModal(true)}
+                  className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors flex items-center gap-2"
+                >
+                  Explore
+                </button>
+                <button
+                  onClick={() => setShowWaitlistModal(true)}
+                  className="px-6 py-3 border border-growtt-orange text-white rounded-md hover:bg-white/10 transition-colors flex items-center gap-2"
+                >
+                  Coming Soon
+                </button>
+              </div>
+
+              {/* Mobile CTAs */}
+              <div className="flex md:hidden justify-center flex-wrap gap-4">
                 <button
                   onClick={() => setShowNewsletterModal(true)}
                   className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors flex items-center gap-2"
@@ -424,24 +457,24 @@ export default function Index() {
             <div className="flex flex-col gap-4 md:flex-row md:gap-4">
               {[
                 {
-                  title: "Explore Opportunities",
+                  title: "Learn",
                   description:
-                    "Discover a wide range of investment options tailored to your goals",
+                    "Starts by building knowledge through expert-led content, courses, and insights designed to help you think like an investor..",
                   gradient: "from-orange-200 to-yellow-200",
-                  image: "/images/i1.png",
+                  image: "/images/cuate.png",
                 },
                 {
-                  title: "Build Your Portfolio",
+                  title: "Plant Your Seeds",
                   description:
-                    "Customize your portfolio with our intuitive platform",
+                    "As you learn and explore, you'll earn and use seeds your learning credits that unlock more access across the platform. The more you engage, the more your growth compounds.",
                   gradient: "from-yellow-200 to-orange-200",
-                  image: "/images/i2.png",
+                  image: "/images/cuate02.png",
                 },
                 {
                   title: "Watch Your Investment Grow",
                   description: "Monitor performance and grow your wealth",
                   gradient: "from-orange-200 to-yellow-100",
-                  image: "/images/i4.png",
+                  image: "/images/rafiki.png",
                 },
               ].map((step, index) => (
                 <motion.div
@@ -453,6 +486,7 @@ export default function Index() {
                   <div className="flex-1 flex items-center justify-center mb-6">
                     <img
                       src={step.image}
+                      loading="lazy"
                       alt=""
                       className="w-64 h-64 object-contain md:block hidden"
                     />
@@ -530,10 +564,10 @@ export default function Index() {
             ))}
           </motion.div>
           <div className="absolute top-[600px] right-0 w-16 h-16 hidden md:block">
-            <img src="/images/Vector.png" alt="vector" />
+            <img src="/images/Vector.png" alt="vector" loading="lazy" />
           </div>
           <div className="absolute top-[1210px] left-14 w-16 h-16 hidden md:block">
-            <img src="/images/Vector.png" alt="vector" />
+            <img src="/images/Vector.png" alt="vector" loading="lazy" />
           </div>
         </div>
       </section>
@@ -589,6 +623,7 @@ export default function Index() {
               <img
                 src="/images/unlock-image.png"
                 alt="Investment Platform"
+                loading="lazy"
                 className="w-[408px] h-auto rounded-2xl shadow-2xl md:ml-12"
               />
             </motion.div>
@@ -633,20 +668,30 @@ export default function Index() {
                     <img
                       src={module.image}
                       alt={module.title}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="text-center">
-                    <h4 className="text-xl font-normal text-gray-900 mb-2">
-                      {module.title}
-                    </h4>
-                    <p className="text-gray-600 text-sm">
-                      {module.description}
-                    </p>
-                    <h4 className="text-[18px] font-normal text-gray-900 mb-2">
-                      {module.price}
-                    </h4>
-                  </div>
+  <h4 className="text-xl font-normal text-gray-900 mb-2">
+    {module.title}
+  </h4>
+  <p className="text-gray-600 text-sm">
+    {module.description}
+  </p>
+  <h4 className="text-[18px] font-normal text-gray-900 mb-2">
+    {module.price}
+  </h4>
+  <button
+    onClick={() => {
+      setSelectedEbook(index + currentLearningIndex);
+      setShowEbookModal(true);
+    }}
+    className="mt-4 px-6 py-2 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors"
+  >
+    Preview Now
+  </button>
+</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -702,13 +747,12 @@ export default function Index() {
               ))}
             </div>
             <p className="text-2xl text-gray-900 italic">
-              "These Growtt emails are gems! Simple tips that actually make
-              sense!"
+              Never thought i'd ever get to experience straightto the point access on new investment opportunities. Growtt solved that.
             </p>
             <div className="flex items-center justify-center gap-6">
               <div className="w-14 h-14 bg-gray-300 rounded-full"></div>
               <div className="text-left">
-                <p className="font-bold text-gray-900">John Doe</p>
+                <p className="font-bold text-gray-900">Joy</p>
                 <p className="text-gray-600">Investor, TechCorp</p>
               </div>
               <div className="w-px h-16 bg-gray-300"></div>
@@ -896,6 +940,75 @@ export default function Index() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Ebook Preview Modal */}
+<AnimatePresence>
+  {showEbookModal && selectedEbook !== null && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/50 p-4"
+      onClick={() => {
+        setShowEbookModal(false);
+        setSelectedEbook(null);
+      }}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto scrollbar-hide"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+          <h3 className="text-2xl font-semibold text-gray-900">Preview</h3>
+          <button
+            onClick={() => {
+              setShowEbookModal(false);
+              setSelectedEbook(null);
+            }}
+            className="text-gray-400 hover:text-gray-600 transition"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+        
+        <div className="p-8">
+          <h4 className="text-3xl font-semibold text-gray-900 mb-4">
+            Description
+          </h4>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            {learningModules[selectedEbook].fullTitle}
+          </h2>
+          
+          <p className="text-lg font-semibold text-gray-800 mb-4">
+            {learningModules[selectedEbook].fullDescription}
+          </p>
+          
+          <p className="text-gray-700 mb-6 leading-relaxed">
+            {learningModules[selectedEbook].details}
+          </p>
+          
+          <p className="text-gray-700 italic mb-8">
+            <span className="font-semibold">Ideal for: </span>
+            {learningModules[selectedEbook].idealFor}
+          </p>
+          
+          <button 
+            onClick={() => {
+              setShowEbookModal(false);
+              setSelectedEbook(null);
+            }}
+            className="w-full px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors font-medium"
+          >
+            Get eBook
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
     </div>
   );
 }

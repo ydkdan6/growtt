@@ -27,6 +27,7 @@ const interests = [
 
 export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
   const [email, setEmail] = useState("");
+  const [focus, setFocus] = useState("");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
   const toggleInterest = (interest: string) => {
@@ -63,14 +64,14 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
           <div className="relative z-10 flex flex-col items-center justify-center min-h-[0px] pt-12 sm:pt-16 pb-4 sm:pb-0">
             {/* Heading */}
             <DialogHeader className="text-center space-y-2 sm:space-y-4 mb-6 sm:mb-8 px-2">
-              <p className="text-[#008080] text-sm sm:text-base md:text-lg font-['Gill_Sans_MT',sans-serif]">
+              <p className="text-center text-[#008080] text-sm sm:text-base md:text-lg font-['Gill_Sans_MT',sans-serif]">
                 Hello there! We are still
               </p>
               <DialogTitle className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-['Gill_Sans_MT',sans-serif] leading-tight">
                 <span className="text-[#008080]">Cooking our </span>
                 <span className="text-[#FF9801]">Website</span>
               </DialogTitle>
-              <DialogDescription className="text-sm sm:text-base md:text-lg text-[#008080]/60 font-['Gill_Sans_MT',sans-serif] max-w-2xl mx-auto px-2">
+              <DialogDescription className="text-center text-sm sm:text-base md:text-lg text-[#008080]/60 font-['Gill_Sans_MT',sans-serif] max-w-2xl mx-auto px-2">
                 We are going to launch very soon. For now Subscribe to our Newsletter to get the
                 latest Financial Market Updates.
               </DialogDescription>
@@ -81,7 +82,7 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
               {/* Interest Selection */}
               <div className="space-y-4 sm:space-y-6">
                 <p className="text-center text-[#008080]/60 font-['Gill_Sans_MT',sans-serif] text-sm sm:text-base md:text-lg px-2">
-                  Which Financial Market interest you the most?
+                  What is your industry focus?
                 </p>
                 {/* <div className="space-y-3 sm:space-y-4"> */}
                   {/* Mobile: Single column, Desktop: Two rows */}
@@ -126,8 +127,9 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
               <div className="relative pb-2">
                 <input
                   type="text"
-                  placeholder="Enter your Asset Class..."
-                  value=''
+                  placeholder="Example: Oil & Gas"
+                  value={focus}
+                  onChange={(e) => setFocus(e.target.value)}
                   // onChange={(e) => setEmail(e.target.value)}
                   className="w-full h-11 sm:h-12 px-3 sm:px-4 pr-28 sm:pr-48 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-sm sm:text-base placeholder:text-[#030712]/60 focus:outline-none focus:border-[#00A4A4]"
                   required
@@ -144,17 +146,20 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
 
               {/* Email Input */}
               <div className="relative pb-2">
+                <p className="text-center text-[#008080]/60 font-['Gill_Sans_MT',sans-serif] text-sm sm:text-base md:text-lg px-2">
+                  Enter your email here
+                </p>
                 <input
                   type="email"
                   placeholder="Enter your email..."
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full h-11 sm:h-12 px-3 sm:px-4 pr-28 sm:pr-48 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-sm sm:text-base placeholder:text-[#030712]/60 focus:outline-none focus:border-[#00A4A4]"
+                  className="mt-4 w-full h-11 sm:h-12 px-3 sm:px-4 pr-28 sm:pr-48 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-sm sm:text-base placeholder:text-[#030712]/60 focus:outline-none focus:border-[#00A4A4]"
                   required
                 />
                 <button
                   type="submit"
-                  className="absolute right-1 top-1 h-9 sm:h-10 px-3 sm:px-5 bg-[#FF9801] hover:bg-[#FF9801]/90 text-white rounded-lg font-['Gill_Sans_MT',sans-serif] flex items-center gap-1 sm:gap-3 transition-colors text-xs sm:text-base"
+                  className="absolute right-1 top-12 h-9 sm:h-10 px-3 sm:px-5 bg-[#FF9801] hover:bg-[#FF9801]/90 text-white rounded-lg font-['Gill_Sans_MT',sans-serif] flex items-center gap-1 sm:gap-3 transition-colors text-xs sm:text-base"
                 >
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span className="hidden sm:inline">Subscribe Now</span>
