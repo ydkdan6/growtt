@@ -15,6 +15,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { SeedsSection } from "../components/SeedSection";
 import { Link, useNavigate } from "react-router-dom";
 import { GrowttLogo } from "../components/logo";
 import { FAQModal } from "../components/Modal/FAQModal";
@@ -39,9 +40,9 @@ export default function Index() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentLearningIndex, setCurrentLearningIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [showNewsletterModal, setShowNewsletterModal] = useState(true);
   const [showWaitlistModal, setShowWaitlistModal] = useState(true);
   const [showFAQModal, setShowFAQModal] = useState(false);
-  const [showNewsletterModal, setShowNewsletterModal] = useState(false);
   const [showServicesModal, setShowServicesModal] = useState(false);
   const [showEbookModal, setShowEbookModal] = useState(false);
 const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
@@ -202,7 +203,12 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-4">
           <div className="flex items-center justify-between">
-            <GrowttLogo />
+            <img
+                  src="/images/logo.png"
+                  alt="Investor"
+                  loading="lazy"
+                  className="block w-[140px] h-[40px] object-cover md:scale-x-40 md:block hidden"
+                />
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex md:justify-start items-center gap-8">
@@ -481,7 +487,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                   key={index}
                   variants={fadeInUp}
                   whileHover={{ y: -10 }}
-                  className={`bg-gradient-to-br ${step.gradient} rounded-2xl p-8 flex flex-col justify-between min-h-[500px] md:flex-shrink-0 md:w-[290px]`}
+                  className={`bg-gradient-to-br ${step.gradient} md:text-center rounded-2xl p-14 flex flex-col justify-between min-h-[500px] md:flex-shrink-0 md:w-[290px]`}
                 >
                   <div className="flex-1 flex items-center justify-center mb-6">
                     <img
@@ -492,7 +498,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                     />
                   </div>
                   <div>
-                    <h4 className="text-2xl md:text-xl font-semibold text-gray-900 mb-10 md:mb-2">
+                    <h4 className="text-2xl md:text-xl md:text-center font-semibold text-gray-900 mb-10 md:mb-2">
                       {step.title}
                     </h4>
                     <p className="text-gray-700">{step.description}</p>
@@ -630,6 +636,9 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
           </div>
         </div>
       </section>
+
+      {/* Seed Section */}
+      <SeedsSection />
 
       {/* Premium Learning Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-16 bg-growtt-gray">
