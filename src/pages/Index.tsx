@@ -207,7 +207,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                   src="/images/logo.png"
                   alt="Investor"
                   loading="lazy"
-                  className="block w-[140px] h-[40px] object-cover md:scale-x-40 md:block hidden"
+                  className="block w-[140px] h-[40px] object-cover md:scale-x-40"
                 />
 
             {/* Desktop Navigation */}
@@ -372,7 +372,22 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                   onClick={() => setShowWaitlistModal(true)}
                   className="px-6 py-3 border border-growtt-orange text-white rounded-md hover:bg-white/10 transition-colors flex items-center gap-2"
                 >
-                  Coming Soon
+                  <div className="flex justify-center gap-2 items-center">
+                  <img
+                  src="/images/Vector (4).png"
+                  alt="Investor"
+                  loading="lazy"
+                  className="block w-[15px] h-[15px] object-cover"
+                /> <span>|</span>
+                <img
+                  src="/images/playstore logo.png"
+                  alt="Investor"
+                  loading="lazy"
+                  className="block w-[15px] h-[15px] object-cover"
+                />
+                <span>Coming Soon</span>
+                  </div>
+                  
                 </button>
               </div>
 
