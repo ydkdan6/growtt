@@ -2,19 +2,17 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogClose } from "./../components/ui/dialog";
 import { 
-  Target, 
-  Eye, 
-  ShieldCheck, 
-  Lightbulb, 
-  EyeIcon, 
-  TrendingUp,
   Calendar,
   Rocket,
   Package,
   Users,
   ChevronDown,
-  X
+  X,
+  Menu
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ServicesDropdown } from "../components/Modal/ServicesDropdown";
+import { ContactDropdown } from "../components/Modal/ContactUsDropdown";
 
 interface ModalContent {
   icon: string;
@@ -41,7 +39,7 @@ const modalContents: Record<string, ModalContent> = {
       "Ultimately, Growtt's vision is to become Africa's most trusted digital partner for wealth creation — a platform where users learn, invest, and grow seamlessly. We want to build a generation of confident investors who not only understand money but also use it purposefully to shape their lives and their communities"
     ]
   },
-  growthmindset: {
+  "growth-mindset": {
     icon: "",
     title: "G - Growth-mindset",
     content: [
@@ -92,13 +90,19 @@ const modalContents: Record<string, ModalContent> = {
 
 export default function About() {
   const [openModal, setOpenModal] = useState<string | null>(null);
+  const [showServicesModal, setShowServicesModal] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleContactClick = () => {
+    setShowServicesModal(false);
+    setShowContactModal(true);
+  };
 
   const ModalButton = ({ 
-    // icon: Icon, 
     label, 
     modalKey 
   }: { 
-    // icon: React.ElementType; 
     label: string; 
     modalKey: string;
   }) => (
@@ -106,7 +110,6 @@ export default function About() {
       onClick={() => setOpenModal(modalKey)}
       className="flex justify-center items-center gap-3 px-4 text-center py-4 border border-gray-300/20 rounded-lg bg-white hover:bg-gray-50 transition-colors cursor-pointer w-full"
     >
-      {/* <Icon className="w-6 h-6 text-gray-900 flex-shrink-0" /> */}
       <span className="text-gray-900 text-base font-normal text-center">{label}</span>
     </button>
   );
@@ -116,16 +119,36 @@ export default function About() {
       {/* Navigation */}
       <nav className="bg-[#002626] px-4 md:px-10 lg:px-20 py-4 md:py-6 sticky top-0 z-40">
         <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-3 md:gap-8">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-3 md:gap-8">
             <Link to="/" className="text-white/60 text-sm md:text-base hover:text-white transition-colors">
               Home
             </Link>
             <span className="text-white text-sm md:text-base font-bold whitespace-nowrap">About Us</span>
-            <button className="hidden sm:flex items-center gap-2 text-white/60 text-sm md:text-base hover:text-white transition-colors">
-              Services
-              <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
-            </button>
+            <div className="relative">
+              <button 
+                onClick={() => setShowServicesModal(!showServicesModal)}
+                className="flex items-center gap-2 text-white/60 text-sm md:text-base hover:text-white transition-colors">
+                Services
+                <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
+              </button>
+              <ServicesDropdown 
+                isOpen={showServicesModal} 
+                onClose={() => setShowServicesModal(false)}
+                onContactClick={handleContactClick}
+              />
+            </div>
           </div>
+
+          {/* Mobile Navigation Links */}
+          <div className="flex md:hidden items-center gap-3">
+            <Link to="/" className="text-white/60 text-sm hover:text-white transition-colors">
+              Home
+            </Link>
+            <span className="text-white text-sm font-bold whitespace-nowrap">About Us</span>
+          </div>
+
+          {/* Right Side Buttons */}
           <div className="flex items-center gap-2 md:gap-4">
             <button className="px-3 md:px-5 py-1.5 md:py-2 border border-white/20 rounded-lg text-white text-sm md:text-base hover:bg-white/10 transition-colors whitespace-nowrap">
               <Link to='/login'>Login</Link>
@@ -133,8 +156,77 @@ export default function About() {
             <button className="px-3 md:px-5 py-1.5 md:py-2 bg-teal-600 border border-teal-600 rounded-lg text-white text-sm md:text-base hover:bg-teal-700 transition-colors whitespace-nowrap">
               <Link to='/signup'>Get Started</Link>
             </button>
+            
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden text-white p-2"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <>
+              {/* Overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden"
+                onClick={() => setMobileMenuOpen(false)}
+              />
+
+              {/* Menu */}
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                className="fixed top-0 right-0 h-screen w-screen bg-gradient-to-b from-[#003B36] to-[#022C22] md:hidden z-[60] flex flex-col justify-center items-center text-center"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="absolute top-5 right-6 text-white/80 hover:text-white transition"
+                >
+                  ✕
+                </button>
+
+                {/* Navigation Links */}
+                <div className="flex flex-col gap-8 text-white/90 text-2xl font-medium">
+                  <Link to="/" className="hover:text-white transition-colors">
+                    Home
+                  </Link>
+                  <span className="text-white font-bold">About Us</span>
+                  <button 
+                    onClick={() => {
+                      setShowServicesModal(true);
+                      setMobileMenuOpen(false);
+                    }}
+                    className="flex items-center gap-2 hover:text-white transition-colors">
+                    Services
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                  <Link to="/login" className="hover:text-white transition-colors">
+                    Login
+                  </Link>
+                  <Link to="/signup" className="hover:text-white transition-colors">
+                    Get Started
+                  </Link>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Hero Section */}
@@ -146,7 +238,7 @@ export default function About() {
         }}
       >
         <div className="flex flex-col items-center justify-center text-center px-4 md:px-8 py-20 md:py-32 lg:py-40">
-          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold italic leading-tight tracking-tight max-w-2xl mb-4" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif', letterSpacing: '-2px' }}>
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold italic leading-tight traccng-tight max-w-2xl mb-4" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif', letterSpacing: '-2px' }}>
             Empowering Smarter Investments for Everyone
           </h1>
           <p className="text-white text-sm md:text-base leading-relaxed max-w-2xl" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif' }}>
@@ -226,11 +318,6 @@ export default function About() {
             name="JP"
             role="CTO"
           />
-          {/* <TeamMember
-            image="https://api.builder.io/api/v1/image/assets/TEMP/cdad65e997a6117f5fc30c4630c66804250ce75f?width=538"
-            name="Emily Rodriguez"
-            role="Head of Product"
-          /> */}
         </div>
       </section>
 
@@ -261,6 +348,12 @@ export default function About() {
           2025 Broker Connect. All rights reserved.
         </p>
       </footer>
+
+      {/* Contact Modal */}
+      <ContactDropdown 
+        isOpen={showContactModal} 
+        onClose={() => setShowContactModal(false)} 
+      />
 
       {/* Modals */}
       <Dialog open={openModal !== null} onOpenChange={(open) => !open && setOpenModal(null)}>

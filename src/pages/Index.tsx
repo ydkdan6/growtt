@@ -21,6 +21,8 @@ import { GrowttLogo } from "../components/logo";
 import { FAQModal } from "../components/Modal/FAQModal";
 import { NewsletterModal } from "../components/Modal/Newsletter";
 import { WaitlistModal } from "../components/Modal/WaitListModal";
+import { ServicesDropdown } from "../components/Modal/ServicesDropdown";
+import { ContactDropdown } from "../components/Modal/ContactUsDropdown";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -41,10 +43,11 @@ export default function Index() {
   const [currentLearningIndex, setCurrentLearningIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showNewsletterModal, setShowNewsletterModal] = useState(true);
-  const [showWaitlistModal, setShowWaitlistModal] = useState(true);
+  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
   const [showFAQModal, setShowFAQModal] = useState(false);
   const [showServicesModal, setShowServicesModal] = useState(false);
   const [showEbookModal, setShowEbookModal] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
 const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
   const navigate = useNavigate();
 
@@ -52,6 +55,11 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
   const handleLogin = () => {
     navigate('/login');
   }
+
+  const handleContactClick = () => {
+  setShowServicesModal(false);
+  setShowContactModal(true);
+};
 
   const ScrollButtons = () => {
     const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -160,6 +168,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
     title: "Investment Made Simple",
     description: "Start from 10k naira and build wealth",
     price: "₦2,000",
+    url: "https://selar.com/666dh55544",
     fullTitle: "Investing Made Simple: How to Start from ₦10,000 and Build Wealth",
     fullDescription: "A beginner's roadmap to making your money work for you — the Growtt way",
     details: `This guide demystifies the world of investing in Nigeria. It teaches you the fundamentals of wealth-building, showing how to start small, manage risks, and grow your money over time — even on a student or entry-level budget. Readers will learn about different investment options (from treasury bills to mutual funds, stocks, and real estate), how to build their first investment portfolio, and the power of compounding that turns small monthly deposits into big results.`,
@@ -170,6 +179,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
     title: "5 Skills to learn and earn as a student",
     description: "Learn Skill earn income",
     price: "₦2,000",
+    url: "https://selar.com/5u5334k24e",
     fullTitle: "5 In-Demand Skills You Can Learn and Monetize as a Student",
     fullDescription: "Your practical guide to earning income while studying",
     details: `This ebook reveals five high-demand, beginner-friendly skills that students can learn and start earning from within months. From freelance writing and graphic design to social media management, video editing, and web development basics — each skill is broken down with learning resources, real income potential, and tips on getting your first clients. Perfect for students looking to build financial independence without waiting for graduation.`,
@@ -180,10 +190,11 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
     title: "Webinar: Mastering the New Tax Rules",
     description: "Tips for 2026",
     price: "₦2,000",
+    url: "https://selar.com/554843d751",
     fullTitle: "What the New Tax Policy Means for You and I",
     fullDescription: "Understand how Nigeria's 2025 tax reforms affect your money, business, and future.",
     details: `This e-book simplifies Nigeria's new tax regime into plain, practical language for both individuals and businesses. You'll discover how taxes are now calculated, what has changed under the new Tax Administration Act (NTAA 2025), and how to legally reduce your tax burden through smart planning. It breaks down real examples — from employee salaries to SME revenues — helping readers understand their obligations and opportunities under the new policy. By the end, you'll know how to stay compliant, save money, and make smarter financial decisions in 2025 and beyond.`,
-    idealFor: "Entrepreneurs, salary earners, freelancers, and business owners who want clarity on Nigeria's evolving tax landscape."
+    idealFor: "Entrepreneur, salary earners, freelancers, and business owners who want clarity on Nigeria's evolving tax landscape."
   },
 ];
 
@@ -195,145 +206,142 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
   return (
     <div className="min-h-screen bg-white overflow-x-hidden w-full">
       {/* Navigation */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 right-0 z-50 bg-growtt-dark-teal/95 backdrop-blur-sm"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-4">
-          <div className="flex items-center justify-between">
-            <img
-                  src="/images/logo.png"
-                  alt="Investor"
-                  loading="lazy"
-                  className="block w-[140px] h-[40px] object-cover md:scale-x-40"
-                />
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex md:justify-start items-center gap-8">
-              <div className="flex items-center gap-6 text-sm text-white/90">
-                <a href="#" className="hover:text-white transition-colors">
-                  Home
-                </a>
-                <Link to='/about' className="hover:text-white transition-colors">
-                  About Us
-                </Link>
-                <button 
-          onClick={() => {
-              setShowServicesModal(true);
-              setMobileMenuOpen(false);
-            }}
-          className="hidden sm:flex items-center gap-2 text-white/60 text-sm md:text-base hover:text-white transition-colors">
-              Services
-              <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
-            </button>
-              </div>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setShowFAQModal(true)}
-                  className="px-4 py-1 text-[15px] text-white border border-growtt-orange rounded-md hover:bg-white/10 transition-colors"
-                >
-                  FAQs
-                </button>
-                <button
-                  // id="explore"
-                  className="px-4 py-1 text-[15px] bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors"
-                >
-                  <a href="#explore" className="decoration-none">
-                    {" "}
-                    Explore{" "}
-                  </a>
-                </button>
-              </div>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white p-2 z-[60] "
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6 mr-4" />
-              ) : (
-                <Menu className="w-6 h-6 mr-[4px]" />
-              )}
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-<AnimatePresence>
-  {mobileMenuOpen && (
-    <>
-      {/* Overlay */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden"
-        onClick={() => setMobileMenuOpen(false)}
+<motion.nav
+  initial={{ y: -100 }}
+  animate={{ y: 0 }}
+  transition={{ duration: 0.6 }}
+  className="fixed top-0 left-0 right-0 z-50 bg-growtt-dark-teal/95 backdrop-blur-sm"
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-4">
+    <div className="flex items-center justify-between">
+      <img
+        src="/images/logo.png"
+        alt="Investor"
+        loading="lazy"
+        className="block w-[140px] h-[40px] object-cover md:scale-x-40"
       />
 
-      {/* Sidebar / Full-screen Menu */}
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        exit={{ x: "100%" }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="fixed top-0 right-0 h-screen w-screen bg-gradient-to-b from-[#003B36] to-[#022C22] md:hidden z-[60] flex flex-col justify-center items-center text-center"
-      >
-        {/* Close Button */}
-        <button
-          onClick={() => setMobileMenuOpen(false)}
-          className="absolute top-5 right-6 text-white/80 hover:text-white transition"
-        >
-          ✕
-        </button>
-
-        {/* Navigation Links */}
-        <div className="flex flex-col gap-8 text-white/90 text-2xl font-medium">
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex md:justify-start items-center gap-8">
+        <div className="flex items-center gap-6 text-sm text-white/90">
           <a href="#" className="hover:text-white transition-colors">
             Home
           </a>
           <Link to='/about' className="hover:text-white transition-colors">
-                  About Us
-                </Link>
-<div className="flex gap-2">
-          <button 
-          onClick={() => {
-              setShowServicesModal(true);
-              setMobileMenuOpen(false);
-            }}
-          className="hover:text-white transition-colors">
+            About Us
+          </Link>
+          <div className="relative">
+            <button 
+              onClick={() => setShowServicesModal(!showServicesModal)}
+              className="flex items-center gap-2 text-white/90 text-sm md:text-base hover:text-white transition-colors">
               Services
               <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
             </button>
-</div>
+            <ServicesDropdown 
+              isOpen={showServicesModal} 
+              onClose={() => setShowServicesModal(false)}
+              onContactClick={handleContactClick}
+            />
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
           <button
-            onClick={() => {
-              setShowWaitlistModal(true)
-              setMobileMenuOpen(false);
-            }}
-            className="hover:text-white transition-colors"
+            onClick={() => setShowFAQModal(true)}
+            className="px-4 py-1 text-[15px] text-white border border-growtt-orange rounded-md hover:bg-white/10 transition-colors"
           >
-            Join Waitlist
+            FAQs
+          </button>
+          <button
+            className="px-4 py-1 text-[15px] bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors"
+          >
+            <a href="#explore" className="decoration-none">
+              Explore
+            </a>
           </button>
         </div>
+      </div>
 
-        {/* Footer / Social Icons (optional)
-        <div className="absolute bottom-10 flex gap-6 text-white/70 text-xl">
-          <a href="#" className="hover:text-white transition-colors">🌐</a>
-          <a href="#" className="hover:text-white transition-colors">📞</a>
-          <a href="#" className="hover:text-white transition-colors">✉️</a>
-        </div> */}
-      </motion.div>
-    </>
-  )}
-</AnimatePresence>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        className="md:hidden text-white p-2 z-[60]"
+      >
+        {mobileMenuOpen ? (
+          <X className="w-6 h-6 mr-4" />
+        ) : (
+          <Menu className="w-6 h-6 mr-[4px]" />
+        )}
+      </button>
+    </div>
 
-        </div>
-      </motion.nav>
+    {/* Mobile Menu */}
+    <AnimatePresence>
+      {mobileMenuOpen && (
+        <>
+          {/* Overlay */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+
+          {/* Sidebar / Full-screen Menu */}
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            className="fixed top-0 right-0 h-screen w-screen bg-gradient-to-b from-[#003B36] to-[#022C22] md:hidden z-[60] flex flex-col justify-center items-center text-center"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="absolute top-5 right-6 text-white/80 hover:text-white transition"
+            >
+              ✕
+            </button>
+
+            {/* Navigation Links */}
+            <div className="flex flex-col gap-8 text-white/90 text-2xl font-medium">
+              <a href="#" className="hover:text-white transition-colors">
+                Home
+              </a>
+              <Link to='/about' className="hover:text-white transition-colors">
+                About Us
+              </Link>
+              <div className="relative">
+            <button 
+              onClick={() => setShowServicesModal(!showServicesModal)}
+              className="flex items-center gap-2 text-white/90 text-2xl md:text-base hover:text-white transition-colors">
+              Services
+              <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
+            </button>
+            <ServicesDropdown 
+              isOpen={showServicesModal} 
+              onClose={() => setShowServicesModal(false)}
+              onContactClick={handleContactClick}
+            />
+          </div>
+              <button
+                onClick={() => {
+                  setShowWaitlistModal(true)
+                  setMobileMenuOpen(false);
+                }}
+                className="hover:text-white transition-colors"
+              >
+                Join Waitlist
+              </button>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+
+  </div>
+</motion.nav>
 
       {/* Hero Section */}
       <section className="relative bg-growtt-dark-teal text-white pt-[46px] pb-20 px-4 sm:px-6 lg:px-16 overflow-hidden">
@@ -925,6 +933,12 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
         </div>
       </footer>
 
+      {/* Contact Modal */}
+<ContactDropdown 
+  isOpen={showContactModal} 
+  onClose={() => setShowContactModal(false)} 
+/>
+
       {/* Modals */}
       <NewsletterModal
         open={showNewsletterModal}
@@ -938,7 +952,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
       <FAQModal open={showFAQModal} onOpenChange={setShowFAQModal} />
 
       {/* Services Coming Soon Modal */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showServicesModal && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -963,7 +977,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       {/* Ebook Preview Modal */}
 <AnimatePresence>
@@ -1019,15 +1033,18 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
             {learningModules[selectedEbook].idealFor}
           </p>
           
-          <button 
-            onClick={() => {
-              setShowEbookModal(false);
-              setSelectedEbook(null);
-            }}
-            className="w-full px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors font-medium"
-          >
-            Get eBook
-          </button>
+          <a 
+  href={learningModules[selectedEbook].url}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => {
+    setShowEbookModal(false);
+    setSelectedEbook(null);
+  }}
+  className="block w-full px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors font-medium text-center no-underline"
+>
+  Get eBook
+</a>
         </div>
       </motion.div>
     </motion.div>
