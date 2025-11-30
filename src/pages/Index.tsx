@@ -901,7 +901,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
           </div>
           <div className="border-t border-gray-200 pt-8">
             <div className="flex flex-wrap gap-6 justify-center text-sm text-gray-600">
-              <p>© 2025 Growtt. All rights reserved.</p>
+              <p>2025 Brokers Connect.</p>
               <a
                 href="#"
                 className="underline hover:text-growtt-teal transition-colors"

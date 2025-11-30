@@ -33,7 +33,7 @@ export default function Login() {
           </p>
         </div>
 
-        <form className="flex flex-col gap-8 mb-12">
+        <form className="flex flex-col gap-8 mb-8">
           <AuthInput
             label="Email"
             type="email"
@@ -71,7 +71,7 @@ export default function Login() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <button className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M20.5371 8.10369L14.6671 7.88016C14.1624 7.86096 14.1259 8.02094 14.5363 8.31532C15.7737 9.20254 17.7986 11.3719 15.3015 15.0406L11.6927 21.439C11.4445 21.8787 11.653 22.2682 12.1576 22.254C18.1903 22.0853 24.096 16.1796 21.7662 8.99593C21.6103 8.51553 21.0417 8.12288 20.5371 8.10369ZM3.87915 7.15384C3.62089 6.72006 3.17293 6.70223 2.93022 7.1451C0.524982 11.5341 1.38021 18.8362 8.30977 21.5747C8.77921 21.7603 9.43743 21.5701 9.76608 21.1871L13.5924 16.7226C13.9211 16.3391 13.8191 16.2139 13.3332 16.3505C12.0214 16.7203 9.49091 16.9251 7.84993 13.8251L3.87915 7.15384ZM19.6956 6.57973C20.197 6.52168 20.3908 6.12401 20.0777 5.7277C16.9768 1.79806 9.78207 -0.311896 4.86556 4.6261C4.50948 4.98401 4.41852 5.67102 4.62924 6.12995L7.06967 11.4355C7.28085 11.8939 7.40564 11.8555 7.46003 11.3536C7.60447 10.0189 8.41216 7.66761 12.2824 7.43587L19.6956 6.57973Z" fill="black"/>
@@ -93,7 +93,7 @@ export default function Login() {
           </div>
         </div>
 
-        <div className="mt-auto pt-8 text-center">
+        <div className="mt-2 pt-2 text-center">
           <p className="text-[rgba(3,7,18,0.6)] text-base leading-[150%]">
             Don't have an account?{" "}
             <Link to="/signup" className="text-brand-teal hover:underline">

@@ -41,40 +41,51 @@ const modalContents: Record<string, ModalContent> = {
       "Ultimately, Growtt's vision is to become Africa's most trusted digital partner for wealth creation — a platform where users learn, invest, and grow seamlessly. We want to build a generation of confident investors who not only understand money but also use it purposefully to shape their lives and their communities"
     ]
   },
-  trust: {
-    icon: "🛡️",
-    title: "Trust",
+  growthmindset: {
+    icon: "",
+    title: "G - Growth-mindset",
     content: [
-      "Trust is the cornerstone of everything we do at InvestSmart. We understand that when you invest with us, you're placing your financial future in our hands, and we take that responsibility seriously.",
-      "We maintain the highest standards of security, transparency, and regulatory compliance to ensure your investments and personal information are always protected. Our platform uses bank-level encryption and follows industry best practices.",
-      "We believe in building long-term relationships with our users based on honesty, reliability, and consistent performance. Your trust drives us to continuously improve and deliver on our promises."
+      "Each letter of Growtt reflects who we are, what we believe, and how we build lasting value."
     ]
   },
-  innovation: {
-    icon: "💡",
-    title: "Innovation",
+  reliability: {
+    icon: "",
+    title: "R - Reliability",
     content: [
-      "Innovation is at the heart of InvestSmart. We constantly push the boundaries of what's possible in financial technology to provide you with cutting-edge tools and insights that give you a competitive advantage.",
-      "Our team leverages artificial intelligence, machine learning, and advanced analytics to deliver personalized investment recommendations and market insights that were once only available to institutional investors.",
-      "We're committed to staying ahead of market trends and technological advancements, ensuring that our platform evolves with your needs and the changing financial landscape."
+      "We stand for trust and consistency. Every insight, connection, and opportunity on",
+      "Growtt is backed by transparency and expertise you can rely on"
+    ]
+  },
+  opportunity: {
+    icon: "",
+    title: "O - Opportunity",
+    content: [
+      "We create access. From learning pathways to investment openings, Growtt exists to",
+      "connect people with the right opportunities to thrive."
+    ]
+  },
+  wisdom: {
+    icon: "",
+    title: "W - Wisdom",
+    content: [
+      "Knowledge is our currency. We pursue depth over hype, equipping our community",
+      "with insights that inspire informed and impactful decisions."
     ]
   },
   transparency: {
-    icon: "👁️",
-    title: "Transparency",
+    icon: "",
+    title: "T -Transparency",
     content: [
-      "Transparency is fundamental to building trust and empowering our users. At InvestSmart, we believe you have the right to understand exactly how your money is being invested and what fees you're paying.",
-      "We provide clear, detailed information about all investment products, their associated risks, and potential returns. No hidden fees, no fine print - just honest, straightforward communication.",
-      "Our commitment to transparency extends to our business practices, our decision-making processes, and our communication with you. We're always here to answer your questions and explain our reasoning."
+      "We operate with clarity and honesty in every interaction because growth built on",
+      "trust lasts longer."
     ]
   },
-  growth: {
-    icon: "📈",
-    title: "Growth",
+  tenacity: {
+    icon: "",
+    title: "T - Tenacity",
     content: [
-      "Growth is our shared objective - both yours and ours. We're dedicated to helping you grow your wealth through smart, strategic investments while we grow as a company and a community.",
-      "We focus on sustainable, long-term growth strategies rather than quick wins. Our investment philosophy emphasizes steady, consistent returns that compound over time to build lasting wealth.",
-      "We invest in your growth through education, resources, and support. As you grow as an investor, we grow as a platform, continuously improving our services based on your feedback and needs."
+      "We stay commited to our mission, evolving with purpose and resillence to keep",
+      "delivering value to our community."
     ]
   }
 };
@@ -83,20 +94,20 @@ export default function About() {
   const [openModal, setOpenModal] = useState<string | null>(null);
 
   const ModalButton = ({ 
-    icon: Icon, 
+    // icon: Icon, 
     label, 
     modalKey 
   }: { 
-    icon: React.ElementType; 
+    // icon: React.ElementType; 
     label: string; 
     modalKey: string;
   }) => (
     <button
       onClick={() => setOpenModal(modalKey)}
-      className="flex items-center gap-3 px-4 py-4 border border-gray-300/20 rounded-lg bg-white hover:bg-gray-50 transition-colors cursor-pointer w-full"
+      className="flex justify-center items-center gap-3 px-4 text-center py-4 border border-gray-300/20 rounded-lg bg-white hover:bg-gray-50 transition-colors cursor-pointer w-full"
     >
-      <Icon className="w-6 h-6 text-gray-900 flex-shrink-0" />
-      <span className="text-gray-900 text-base font-normal">{label}</span>
+      {/* <Icon className="w-6 h-6 text-gray-900 flex-shrink-0" /> */}
+      <span className="text-gray-900 text-base font-normal text-center">{label}</span>
     </button>
   );
 
@@ -117,10 +128,10 @@ export default function About() {
           </div>
           <div className="flex items-center gap-2 md:gap-4">
             <button className="px-3 md:px-5 py-1.5 md:py-2 border border-white/20 rounded-lg text-white text-sm md:text-base hover:bg-white/10 transition-colors whitespace-nowrap">
-              Login
+              <Link to='/login'>Login</Link>
             </button>
             <button className="px-3 md:px-5 py-1.5 md:py-2 bg-teal-600 border border-teal-600 rounded-lg text-white text-sm md:text-base hover:bg-teal-700 transition-colors whitespace-nowrap">
-              Get Started
+              <Link to='/signup'>Get Started</Link>
             </button>
           </div>
         </div>
@@ -149,9 +160,9 @@ export default function About() {
         <h2 className="text-gray-900 text-2xl font-bold mb-8" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif' }}>
           Our Mission & Vision
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl">
-          <ModalButton icon={Target} label="Our Mission" modalKey="mission" />
-          <ModalButton icon={Eye} label="Our Vision" modalKey="vision" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl text-center">
+          <ModalButton label="Our Mission" modalKey="mission" />
+          <ModalButton label="Our Vision" modalKey="vision" />
         </div>
       </section>
 
@@ -161,10 +172,12 @@ export default function About() {
           Our Values
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
-          <ModalButton icon={ShieldCheck} label="Trust" modalKey="trust" />
-          <ModalButton icon={Lightbulb} label="Innovation" modalKey="innovation" />
-          <ModalButton icon={EyeIcon} label="Transparency" modalKey="transparency" />
-          <ModalButton icon={TrendingUp} label="Growth" modalKey="growth" />
+          <ModalButton label="G - Growth Mindset" modalKey="growth-mindset" />
+          <ModalButton label="R - Reliability" modalKey="reliability" />
+          <ModalButton label="O - Opportunity" modalKey="opportunity" />
+          <ModalButton label="W - Wisdom" modalKey="wisdom" />
+          <ModalButton label="T - Transparency" modalKey="transparency" />
+          <ModalButton label="T - Tenacity" modalKey="tenacity" />
         </div>
       </section>
 
@@ -245,7 +258,7 @@ export default function About() {
           </Link>
         </div>
         <p className="text-gray-600 text-base text-center">
-          @2025 Broker Connect. All rights reserved.
+          2025 Broker Connect. All rights reserved.
         </p>
       </footer>
 
