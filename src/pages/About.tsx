@@ -8,8 +8,14 @@ import {
   Users,
   ChevronDown,
   X,
+  Facebook,
+    Instagram,
+    Twitter,
+    Linkedin,
+    Youtube,
   Menu
 } from "lucide-react";
+import { GrowttLogo } from "../components/logo";
 import { motion, AnimatePresence } from "framer-motion";
 import { ServicesDropdown } from "../components/Modal/ServicesDropdown";
 import { ContactDropdown } from "../components/Modal/ContactUsDropdown";
@@ -239,10 +245,12 @@ export default function About() {
       >
         <div className="flex flex-col items-center justify-center text-center px-4 md:px-8 py-20 md:py-32 lg:py-40">
           <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold italic leading-tight traccng-tight max-w-2xl mb-4" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif', letterSpacing: '-2px' }}>
-            Empowering Smarter Investments for Everyone
+            Empowering Smarter <br/>Investments for Everyone
           </h1>
           <p className="text-white text-sm md:text-base leading-relaxed max-w-2xl" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif' }}>
-            At InvestSmart, we believe that everyone deserves access to sophisticated investment tools and insights. Our platform is designed to simplify complex financial decisions, making it easier for you to achieve your financial goals.
+              At Growtt, we believe that everyone deserves access to sophisticated investment tools and insights.
+               Our platform is designed to simplify complex financial decisions,
+               making it easier for you to achieve your financial goals.
           </p>
         </div>
       </section>
@@ -252,7 +260,7 @@ export default function About() {
         <h2 className="text-gray-900 text-2xl font-bold mb-8" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif' }}>
           Our Mission & Vision
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl text-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl md:text-left">
           <ModalButton label="Our Mission" modalKey="mission" />
           <ModalButton label="Our Vision" modalKey="vision" />
         </div>
@@ -281,15 +289,15 @@ export default function About() {
         <div className="space-y-2">
           <JourneyItem
             icon={Calendar}
-            title="Founded InvestSmart"
-            year="2018"
+            title="Founded Growtt"
+            year="2025"
           />
-          <JourneyItem
+          {/* <JourneyItem
             icon={Rocket}
             title="Launched Core Investment Platform"
             year="2019"
-          />
-          <JourneyItem
+          /> */}
+          {/* <JourneyItem
             icon={Package}
             title="Expanded Product Suite"
             year="2021"
@@ -298,7 +306,7 @@ export default function About() {
             icon={Users}
             title="Reached 1 Million Users"
             year="2023"
-          />
+          /> */}
         </div>
       </section>
 
@@ -310,13 +318,13 @@ export default function About() {
         <div className="px-4 md:ml-[197px] lg:px-20 mt-16 md:mt-24 mb-12 md:mb-16 flex flex-row items-center text-center">
           <TeamMember
             image="/images/founder.png"
-            name="Ukut Ifiok"
-            role="CEO"
+            name="Ifiok Ukut"
+            role="FOUNDER"
           />
           <TeamMember
             image="/images/cto.png"
-            name="JP"
-            role="CTO"
+            name="John Paul Sani"
+            role="CO-FOUNDER"
           />
         </div>
       </section>
@@ -332,22 +340,107 @@ export default function About() {
       </section>
 
       {/* Footer */}
-      <footer className="px-4 md:px-10 lg:px-20 py-8 md:py-10 border-t border-gray-200">
-        <div className="flex flex-wrap justify-center gap-8 mb-6">
-          <Link to="/privacy" className="text-gray-600 text-base text-center hover:text-gray-900 transition-colors">
-            Privacy Policy
-          </Link>
-          <Link to="/terms" className="text-gray-600 text-base text-center hover:text-gray-900 transition-colors" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif' }}>
-            Terms of Service
-          </Link>
-          <Link to="/contact" className="text-gray-600 text-base text-center hover:text-gray-900 transition-colors">
-            Contact Us
-          </Link>
-        </div>
-        <p className="text-gray-600 text-base text-center">
-          2025 Broker Connect. All rights reserved.
-        </p>
-      </footer>
+            <footer className="py-16 px-4 sm:px-6 lg:px-16 bg-white border-t border-gray-200">
+              <div className="max-w-7xl mx-auto">
+                <div className="grid md:grid-cols-4 gap-8 mb-12">
+                  <div>
+                    <GrowttLogo />
+                  </div>
+                  <div className="flex flex-wrap gap-8 md:col-span-2 justify-center">
+                    <a
+                      href="#"
+                      className="text-gray-900 hover:text-growtt-teal transition-colors text-sm"
+                    >
+                      About Us
+                    </a>
+                    <a
+                      href="#"
+                      className="text-gray-900 hover:text-growtt-teal transition-colors text-sm"
+                    >
+                      Our Services
+                    </a>
+                    <a
+                      href="#"
+                      className="text-gray-900 hover:text-growtt-teal transition-colors text-sm"
+                    >
+                      Contact Us
+                    </a>
+                    <a
+                      href="#"
+                      className="text-gray-900 hover:text-growtt-teal transition-colors text-sm"
+                    >
+                      Blog Posts
+                    </a>
+                    <a
+                      href="#"
+                      className="text-gray-900 hover:text-growtt-teal transition-colors text-sm"
+                    >
+                      Help Center
+                    </a>
+                  </div>
+                  <div className="flex gap-3 justify-end">
+                    <a
+                      href="#"
+                      target="_blank"
+                      className="text-gray-900 hover:text-growtt-teal transition-colors"
+                    >
+                      <Facebook className="w-6 h-6" />
+                    </a>
+                    <a
+                      href="https://www.instagram.com/growttco/?hl=am-et"
+                      target="_blank"
+                      className="text-gray-900 hover:text-growtt-teal transition-colors"
+                    >
+                      <Instagram className="w-6 h-6" />
+                    </a>
+                    <a
+                      href="#"
+                      target="_blank"
+                      className="text-gray-900 hover:text-growtt-teal transition-colors"
+                    >
+                      <Twitter className="w-6 h-6" />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/company/growttco/"
+                      target="_blank"
+                      className="text-gray-900 hover:text-growtt-teal transition-colors"
+                    >
+                      <Linkedin className="w-6 h-6" />
+                    </a>
+                    <a
+                      href="https://www.youtube.com/@GrowttCo"
+                      target="_blank"
+                      className="text-gray-900 hover:text-growtt-teal transition-colors"
+                    >
+                      <Youtube className="w-6 h-6" />
+                    </a>
+                  </div>
+                </div>
+                <div className="border-t border-gray-200 pt-8">
+                  <div className="flex flex-wrap gap-6 justify-center text-sm text-gray-600">
+                    <p>&copy; 2025 Growtt.All Right Reserved</p>
+                    <a
+                      href="#"
+                      className="underline hover:text-growtt-teal transition-colors"
+                    >
+                      Privacy Policy
+                    </a>
+                    <a
+                      href="#"
+                      className="underline hover:text-growtt-teal transition-colors"
+                    >
+                      Terms of Service
+                    </a>
+                    <a
+                      href="#"
+                      className="underline hover:text-growtt-teal transition-colors"
+                    >
+                      Cookies Settings
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </footer>
 
       {/* Contact Modal */}
       <ContactDropdown 
