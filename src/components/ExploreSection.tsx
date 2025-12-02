@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GrowttLogo } from './logo';
 import { TrendingUp, LineChart, Lock } from 'lucide-react';
@@ -23,7 +23,6 @@ const cardData = {
     { title: 'PE Deals', subtitle: 'Private Equity Opportunities', image: '/images/i.png' },
     { title: 'Green Bonds', subtitle: 'Bonds dedicated to climate projects', image: '/images/k.png' },
     { title: 'Infrastructure Notes', subtitle: 'Long-term Infrastructure Bonds', image: '/images/l.png' },
-    // { title: 'Revenue-Based Financing', subtitle: 'Flexible repayment options', image: '/images/revenue-financing.jpg' },
   ],
   private: [
     { title: 'Real Estate Investments', subtitle: 'Invest in properties and developments', image: '/images/m.png' },
@@ -31,16 +30,21 @@ const cardData = {
     { title: 'Digital Art', subtitle: 'Own unique digital artworks and NFT-based assets', image: '/images/o.png' },
     { title: 'Club deals', subtitle: 'Join group investments with pooled capital', image: '/images/p.png' },
     { title: 'Female-led startups', subtitle: 'Support innovative businesses founded by women', image: '/images/q.png' },
-    // { title: 'Real Estate Investments', subtitle: 'Invest in properties and developments', image: '/images/real-estate.jpg' },
-    // { title: 'Agro-Investments', subtitle: 'Fund agriculture projects and agribusiness ventures', image: '/images/agro-investments.jpg' },
-    // { title: 'Digital Art', subtitle: 'Own unique digital artworks and NFT-based assets', image: '/images/digital-art.jpg' },
   ],
 };
 
 const InfiniteScrollCards = ({ cards }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const duplicatedCards = [...cards, ...cards, ...cards];
-  const totalWidth = duplicatedCards.length * 296; // 280px width + 16px gap
+  const totalWidth = duplicatedCards.length * 296;
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % cards.length);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [cards.length]);
   
   return (
     <motion.div
@@ -88,25 +92,26 @@ const InfiniteScrollCards = ({ cards }) => {
       {/* Mobile: Single Card Carousel */}
       <div className="md:hidden relative">
         <div className="flex justify-center">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.3 }}
-            className="w-[280px] h-[200px] rounded-lg overflow-hidden shadow-lg relative"
-          >
-            <img
-              src={cards[currentIndex].image}
-              alt={cards[currentIndex].title}
-              className="w-full h-full object-cover"
-              loading='lazy'
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-4">
-              <h3 className="text-white font-semibold text-lg">{cards[currentIndex].title}</h3>
-              <p className="text-white/90 text-sm">{cards[currentIndex].subtitle}</p>
-            </div>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.3 }}
+              className="w-[280px] h-[200px] rounded-lg overflow-hidden shadow-lg relative"
+            >
+              <img
+                src={cards[currentIndex].image}
+                alt={cards[currentIndex].title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-4">
+                <h3 className="text-white font-semibold text-lg">{cards[currentIndex].title}</h3>
+                <p className="text-white/90 text-sm">{cards[currentIndex].subtitle}</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Navigation Dots */}
@@ -120,13 +125,6 @@ const InfiniteScrollCards = ({ cards }) => {
               }`}
             />
           ))}
-        </div>
-
-        {/* Auto-advance for mobile */}
-        <div className="hidden">
-          {setTimeout(() => {
-            setCurrentIndex((prev) => (prev + 1) % cards.length);
-          }, 3000)}
         </div>
       </div>
     </motion.div>
@@ -158,19 +156,18 @@ const ExploreSection = () => {
   ];
 
   const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
+    animate: {
+      transition: {
+        staggerChildren: 0.1,
+      },
     },
-  },
-};
+  };
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 },
-};
-
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 },
+  };
 
   return (
     <section
@@ -195,36 +192,66 @@ const fadeInUp = {
           </div>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-6 text-center"
-        >
+        {/* Mobile Layout: Vertical Stack */}
+        <div className="flex flex-col md:hidden gap-6 w-full">
           {categories.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={fadeInUp}
-              className="shadow-xl flex flex-col items-center justify-center gap-4 p-2 bg-white rounded-lg hover:bg-growtt-teal hover:shadow-lg transition-shadow"
-            >
-              <button
-                onClick={() => setActiveCategory(activeCategory === item.key ? null : item.key)}
-                className="flex items-center gap-6 btn w-full cursor-pointer hover:bg-growtt-teal transition-colors p-1 rounded-lg"
+            <div key={index} className="flex flex-col w-full">
+              <motion.div
+                variants={fadeInUp}
+                className="shadow-xl flex flex-col items-center justify-center gap-4 p-2 bg-white rounded-lg hover:shadow-lg transition-shadow"
               >
-                <item.icon className={`w-8 h-8 ${item.color}`} />
-                <p className="text-gray-900 font-medium">{item.text}</p>
-              </button>
-            </motion.div>
-          ))}
-        </motion.div>
+                <button
+                  onClick={() => setActiveCategory(activeCategory === item.key ? null : item.key)}
+                  className="flex items-center gap-6 btn w-full cursor-pointer hover:bg-gray-50 transition-colors p-4 rounded-lg"
+                >
+                  <item.icon className={`w-8 h-8 ${item.color}`} />
+                  <p className="text-gray-900 font-medium">{item.text}</p>
+                </button>
+              </motion.div>
 
-        {/* Infinite Scrolling Cards */}
-        <AnimatePresence mode="wait">
-          {activeCategory && (
-            <InfiniteScrollCards cards={cardData[activeCategory]} />
-          )}
-        </AnimatePresence>
+              {/* Cards appear directly below each button on mobile */}
+              <AnimatePresence mode="wait">
+                {activeCategory === item.key && (
+                  <InfiniteScrollCards cards={cardData[activeCategory]} />
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Layout: Grid with cards below */}
+        <div className="hidden md:block w-full">
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="grid grid-cols-3 gap-6 text-center"
+          >
+            {categories.map((item, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="shadow-xl flex flex-col items-center justify-center gap-4 p-2 bg-white rounded-lg hover:shadow-lg transition-shadow"
+              >
+                <button
+                  onClick={() => setActiveCategory(activeCategory === item.key ? null : item.key)}
+                  className="flex items-center gap-6 btn w-full cursor-pointer hover:bg-gray-50 transition-colors p-4 rounded-lg"
+                >
+                  <item.icon className={`w-8 h-8 ${item.color}`} />
+                  <p className="text-gray-900 font-medium">{item.text}</p>
+                </button>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Cards appear below all buttons on desktop */}
+          <AnimatePresence mode="wait">
+            {activeCategory && (
+              <InfiniteScrollCards cards={cardData[activeCategory]} />
+            )}
+          </AnimatePresence>
+        </div>
 
         <div className="absolute top-[600px] right-0 w-16 h-16 hidden md:block">
           <img src="/images/Vector.png" alt="vector" loading="lazy" />
