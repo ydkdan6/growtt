@@ -198,11 +198,11 @@ const ExploreSection = () => {
             <div key={index} className="flex flex-col w-full">
               <motion.div
                 variants={fadeInUp}
-                className="shadow-xl flex flex-col items-center justify-center gap-4 p-2 bg-white rounded-lg hover:shadow-lg transition-shadow"
+                className="shadow-xl flex flex-col items-center justify-center gap-4 p-2 bg-white rounded-lg hover:bg-growtt-teal hover:shadow-lg transition-shadow"
               >
                 <button
                   onClick={() => setActiveCategory(activeCategory === item.key ? null : item.key)}
-                  className="flex items-center gap-6 btn w-full cursor-pointer hover:bg-gray-50 transition-colors p-4 rounded-lg"
+                  className="flex items-center gap-6 btn w-full cursor-pointer hover:bg-growtt-teal transition-colors p-1 rounded-lg"
                 >
                   <item.icon className={`w-8 h-8 ${item.color}`} />
                   <p className="text-gray-900 font-medium">{item.text}</p>
