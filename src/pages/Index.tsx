@@ -15,6 +15,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import ExploreSection from "../components/ExploreSection";
 import { SeedsSection } from "../components/SeedSection";
 import { Link, useNavigate } from "react-router-dom";
 import { GrowttLogo } from "../components/logo";
@@ -218,11 +219,11 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
         src="/images/logo.png"
         alt="Investor"
         loading="lazy"
-        className="block w-[140px] h-[40px] object-cover md:scale-x-40"
+        className="md:hidden block w-[140px] h-[40px] object-cover md:scale-x-40"
       />
 
       {/* Desktop Navigation */}
-      <div className="hidden md:flex md:justify-start items-center gap-8">
+      <div className="hidden md:flex md:justify-between items-center flex-1">
         <div className="flex items-center gap-6 text-sm text-white/90">
           <a href="#" className="hover:text-white transition-colors">
             Home
@@ -246,17 +247,16 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
         </div>
         <div className="flex items-center gap-3">
           <button
-            onClick={() => setShowFAQModal(true)}
+            onClick={() => setShowWaitlistModal(true)}
             className="px-4 py-1 text-[15px] text-white border border-growtt-orange rounded-md hover:bg-white/10 transition-colors"
           >
-            FAQs
+            Join Waitlist
           </button>
           <button
+          onClick={() => setShowNewsletterModal(true)}
             className="px-4 py-1 text-[15px] bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors"
           >
-            <a href="#explore" className="decoration-none">
-              Explore
-            </a>
+              Subscribe
           </button>
         </div>
       </div>
@@ -345,6 +345,27 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
 
       {/* Hero Section */}
       <section className="relative bg-growtt-dark-teal text-white pt-[46px] pb-20 px-4 sm:px-6 lg:px-16 overflow-hidden">
+        {/* Background Pattern */}
+        <div 
+          className="absolute inset-0 w-[480px] h-[480px]"
+          style={{
+            backgroundImage: 'url(/images/chechpattern.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+        
+        {/* Top Left Shadow Effect */}
+        {/* <div 
+          className="absolute top-0 left-0 w-[90px] h-[90px] border-none"
+          style={{
+            border: 'transparent',
+            background: 'radial-gradient(circle at top left, rgba(165, 161, 161, 0.3) 0%, transparent 70%)',
+            boxShadow: '-20px -20px 60px rgba(109, 109, 109, 0.2) inset'
+          }}
+        /> */}
+        
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeInUp} className="space-y-6 z-10 mt-12 md:mt-0">
@@ -422,7 +443,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative flex items-center justify-center mt-8 lg:mt-0"
             >
-              <div className="relative w-full max-w-[500px] mx-auto">
+              <div className="relative w-full max-w-[500px] mx-auto mt-6">
                 <div className="w-full aspect-square overflow-hidden flex justify-center items-center">
                   <motion.div
                     animate={{ y: [0, 10, 0] }}
@@ -534,7 +555,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
       </section>
 
       {/* Diverse Investment Opportunities */}
-      <section
+      {/* <section
         id="explore"
         className="min-h-screen flex flex-col justify-center items-center py-20 px-4 sm:px-6 lg:px-16 bg-gray-50"
       >
@@ -566,17 +587,17 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
             {[
               {
                 icon: TrendingUp,
-                text: "Public Market Investments",
+                text: "Public Market Instruments",
                 color: "text-growtt-teal",
               },
               {
                 icon: LineChart,
-                text: "Alternative Bonds / Special Purpose Funds",
+                text: "Alternative Deals / Special Purpose Funds",
                 color: "text-growtt-teal",
               },
               {
                 icon: Lock,
-                text: "Private Market Investments",
+                text: "Private Market Instruments",
                 color: "text-growtt-teal",
               },
             ].map((item, index) => (
@@ -585,7 +606,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                 variants={fadeInUp}
                 className="shadow-xl flex flex-col items-center justify-center gap-4 p-2 bg-white rounded-lg hover:shadow-lg transition-shadow"
               >
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-6 btn">
                   <item.icon className={`w-8 h-8 ${item.color}`} />
                   <p className="text-gray-900 font-medium">{item.text}</p>
                 </div>
@@ -599,7 +620,8 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
             <img src="/images/Vector.png" alt="vector" loading="lazy" />
           </div>
         </div>
-      </section>
+      </section> */}
+      <ExploreSection />
 
       {/* Investment Discovery Platform */}
       <section className="py-20 px-4 sm:px-6 lg:px-16 bg-white">
@@ -639,7 +661,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                 </div>
               </div>
               <button onClick={handleLogin} className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
-                Learn More
+                Connect
               </button>
             </motion.div>
 
@@ -909,7 +931,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
           </div>
           <div className="border-t border-gray-200 pt-8">
             <div className="flex flex-wrap gap-6 justify-center text-sm text-gray-600">
-              <p>2025 Brokers Connect.</p>
+              <p>&copy; 2025 Growtt.All Right Reserved</p>
               <a
                 href="#"
                 className="underline hover:text-growtt-teal transition-colors"
