@@ -133,16 +133,16 @@ export default function About() {
             <span className="text-white text-sm md:text-base font-bold whitespace-nowrap">About Us</span>
             <div className="relative">
               <button 
-                onClick={() => setShowServicesModal(!showServicesModal)}
+                // onClick={() => setShowServicesModal(!showServicesModal)}
                 className="flex items-center gap-2 text-white/60 text-sm md:text-base hover:text-white transition-colors">
-                Services
-                <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
+                <Link to='/services'>Services</Link>
+                {/* <ChevronDown className="w-4 h-4 md:w-5 md:h-5" /> */}
               </button>
-              <ServicesDropdown 
+              {/* <ServicesDropdown 
                 isOpen={showServicesModal} 
                 onClose={() => setShowServicesModal(false)}
                 onContactClick={handleContactClick}
-              />
+              /> */}
             </div>
           </div>
 
@@ -214,13 +214,13 @@ export default function About() {
                   </Link>
                   <span className="text-white font-bold">About Us</span>
                   <button 
-                    onClick={() => {
-                      setShowServicesModal(true);
-                      setMobileMenuOpen(false);
-                    }}
+                    // onClick={() => {
+                    //   setShowServicesModal(true);
+                    //   setMobileMenuOpen(false);
+                    // }}
                     className="flex items-center gap-2 hover:text-white transition-colors">
-                    Services
-                    <ChevronDown className="w-4 h-4" />
+                <Link to='/services'>Services</Link>
+                    {/* <ChevronDown className="w-4 h-4" /> */}
                   </button>
                   <Link to="/login" className="hover:text-white transition-colors">
                     Login

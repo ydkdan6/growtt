@@ -233,16 +233,16 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
           </Link>
           <div className="relative">
             <button 
-              onClick={() => setShowServicesModal(!showServicesModal)}
+              // onClick={() => setShowServicesModal(!showServicesModal)}
               className="flex items-center gap-2 text-white/90 text-sm md:text-base hover:text-white transition-colors">
-              Services
-              <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
+                <Link to='/services'>Services</Link>
+              {/* <ChevronDown className="w-4 h-4 md:w-5 md:h-5" /> */}
             </button>
-            <ServicesDropdown 
+            {/* <ServicesDropdown 
               isOpen={showServicesModal} 
               onClose={() => setShowServicesModal(false)}
               onContactClick={handleContactClick}
-            />
+            /> */}
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -314,16 +314,16 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
           </Link>
           <div className="relative flex flex-col items-center">
             <button 
-              onClick={() => setShowServicesModal(!showServicesModal)}
+              // onClick={() => setShowServicesModal(!showServicesModal)}
               className="flex items-center justify-center gap-2 text-white/90 text-2xl md:text-base hover:text-white transition-colors">
-              Services
+                <Link to='services'>Services</Link>
               {/* <ChevronDown className="w-4 h-4 md:w-5 md:h-5" /> */}
             </button>
-            <ServicesDropdown 
+            {/* <ServicesDropdown 
               isOpen={showServicesModal} 
               onClose={() => setShowServicesModal(false)}
               onContactClick={handleContactClick}
-            />
+            /> */}
           </div>
           <button
             onClick={() => {
