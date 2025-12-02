@@ -275,47 +275,47 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
     </div>
 
     {/* Mobile Menu */}
-    <AnimatePresence>
-      {mobileMenuOpen && (
-        <>
-          {/* Overlay */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden"
-            onClick={() => setMobileMenuOpen(false)}
-          />
+<AnimatePresence>
+  {mobileMenuOpen && (
+    <>
+      {/* Overlay */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden"
+        onClick={() => setMobileMenuOpen(false)}
+      />
 
-          {/* Sidebar / Full-screen Menu */}
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            className="fixed top-0 right-0 h-screen w-screen bg-gradient-to-b from-[#003B36] to-[#022C22] md:hidden z-[60] flex flex-col justify-center items-center text-center"
-          >
-            {/* Close Button */}
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="absolute top-5 right-6 text-white/80 hover:text-white transition"
-            >
-              ✕
-            </button>
+      {/* Sidebar / Full-screen Menu */}
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className="fixed top-0 right-0 h-screen w-screen bg-gradient-to-b from-[#003B36] to-[#022C22] md:hidden z-[60] flex flex-col justify-center items-center text-center"
+      >
+        {/* Close Button */}
+        <button
+          onClick={() => setMobileMenuOpen(false)}
+          className="absolute top-5 right-6 text-white/80 hover:text-white transition"
+        >
+          ✕
+        </button>
 
-            {/* Navigation Links */}
-            <div className="flex flex-col gap-8 text-white/90 text-2xl font-medium">
-              <a href="#" className="hover:text-white transition-colors">
-                Home
-              </a>
-              <Link to='/about' className="hover:text-white transition-colors">
-                About Us
-              </Link>
-              <div className="relative">
+        {/* Navigation Links */}
+        <div className="flex flex-col gap-8 text-white/90 text-2xl font-medium items-center">
+          <a href="#" className="hover:text-white transition-colors">
+            Home
+          </a>
+          <Link to='/about' className="hover:text-white transition-colors">
+            About Us
+          </Link>
+          <div className="relative flex flex-col items-center">
             <button 
               onClick={() => setShowServicesModal(!showServicesModal)}
-              className="flex items-center gap-2 text-white/90 text-2xl md:text-base hover:text-white transition-colors">
+              className="flex items-center justify-center gap-2 text-white/90 text-2xl md:text-base hover:text-white transition-colors">
               Services
               {/* <ChevronDown className="w-4 h-4 md:w-5 md:h-5" /> */}
             </button>
@@ -325,20 +325,20 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
               onContactClick={handleContactClick}
             />
           </div>
-              <button
-                onClick={() => {
-                  setShowWaitlistModal(true)
-                  setMobileMenuOpen(false);
-                }}
-                className="hover:text-white transition-colors"
-              >
-                Join Waitlist
-              </button>
-            </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+          <button
+            onClick={() => {
+              setShowWaitlistModal(true)
+              setMobileMenuOpen(false);
+            }}
+            className="hover:text-white transition-colors"
+          >
+            Join Waitlist
+          </button>
+        </div>
+      </motion.div>
+    </>
+  )}
+</AnimatePresence>
 
   </div>
 </motion.nav>
