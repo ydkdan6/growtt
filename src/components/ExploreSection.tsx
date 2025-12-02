@@ -100,6 +100,7 @@ const InfiniteScrollCards = ({ cards }) => {
               src={cards[currentIndex].image}
               alt={cards[currentIndex].title}
               className="w-full h-full object-cover"
+              loading='lazy'
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-4">
               <h3 className="text-white font-semibold text-lg">{cards[currentIndex].title}</h3>
