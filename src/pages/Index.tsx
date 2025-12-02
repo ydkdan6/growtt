@@ -317,7 +317,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
               onClick={() => setShowServicesModal(!showServicesModal)}
               className="flex items-center gap-2 text-white/90 text-2xl md:text-base hover:text-white transition-colors">
               Services
-              <ChevronDown className="w-4 h-4 md:w-5 md:h-5" />
+              {/* <ChevronDown className="w-4 h-4 md:w-5 md:h-5" /> */}
             </button>
             <ServicesDropdown 
               isOpen={showServicesModal} 
