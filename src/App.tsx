@@ -28,6 +28,10 @@ import OnboardingStep12 from "./pages/Onboarding/OnboardingStep12";
 import OnboardingStep13 from "./pages/Onboarding/OnboardingStep13";
 import OnboardingInitial from "./pages/Onboarding/Onboarding";
 import ServicesMenu from "./components/ServiceMenu";
+import BrokerConnect from "./pages/BrokerConnect";
+import LearnMore from "./pages/LearnMore";
+import InvestmentAdvisory from "./pages/InvestmentAdvisory";
+import ConnectBroker from "./pages/ConnectBroker";
 
 
 const queryClient = new QueryClient();
@@ -61,6 +65,10 @@ const App = () => (
           <Route path="/about" element={<About />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="/services" element={<ServicesMenu />} />
+          <Route path="/learn-more" element={<LearnMore />} />
+          <Route path="/services/investment-advisory" element={<InvestmentAdvisory />} />
+          <Route path="/broker-connect" element={ <BrokerConnect />}/>
+          <Route path="/connect-broker" element={ <ConnectBroker />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

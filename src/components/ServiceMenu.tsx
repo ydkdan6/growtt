@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ChevronDown, X, Menu } from 'lucide-react';
 
 const ServicesMenu: React.FC = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const Navigate = useNavigate();
 
   const menuItems = [
     { label: 'Investments', path: '/investments', action: null },
-    { label: 'Broker Connect', path: '/broker-connect', action: null },
+    { label: 'Broker Connect', path: '/broker-connect', action: () =>  { Navigate('/broker-connect')} },
     { label: 'Contact Us', path: null, action: () => setIsContactOpen(true) }
   ];
 
@@ -20,6 +21,8 @@ const ServicesMenu: React.FC = () => {
     }
   };
 
+
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -30,9 +33,9 @@ const ServicesMenu: React.FC = () => {
             <a href="/" className="text-white/60 text-sm md:text-base hover:text-white transition-colors">
               Home
             </a>
-            <span className="text-white text-sm md:text-base font-bold whitespace-nowrap">About Us</span>
+            <span className="text-white/60 text-sm md:text-base font-bold whitespace-nowrap">About Us</span>
             <div className="relative">
-              <button className="flex items-center gap-2 text-white/60 text-sm md:text-base hover:text-white transition-colors">
+              <button className="flex items-center gap-2 text-white text-sm md:text-base hover:text-white transition-colors">
                 <Link to='/services'>Services</Link>
                 {/* <ChevronDown className="w-4 h-4 md:w-5 md:h-5" /> */}
               </button>
