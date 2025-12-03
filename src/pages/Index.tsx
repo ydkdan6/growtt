@@ -801,7 +801,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
               ))}
             </div>
             <p className="text-2xl text-gray-900 italic">
-              Never thought i'd ever get to experience straightto the point access on new investment opportunities. Growtt solved that.
+              Never thought i'd ever get to experience straight to the point access on new investment opportunities. Growtt solved that.
             </p>
             <div className="flex items-center justify-center gap-6">
               <div className="w-14 h-14 bg-gray-300 rounded-full"></div>
