@@ -392,13 +392,13 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
               {/* Desktop CTAs */}
               <div className="hidden md:flex flex-wrap gap-4">
                 <button
-                  onClick={() => setShowNewsletterModal(true)}
+                  onClick={() => setShowFAQModal(true)}
                   className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors flex items-center gap-2"
                 >
                   Explore
                 </button>
                 <button
-                  onClick={() => setShowWaitlistModal(true)}
+                  onClick={() => setShowFAQModal(true)}
                   className="px-6 py-3 border border-growtt-orange text-white rounded-md hover:bg-white/10 transition-colors flex items-center gap-2"
                 >
                   <div className="flex justify-center gap-2 items-center">
