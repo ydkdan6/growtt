@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Dialog, DialogContent, DialogClose } from "./../components/ui/dialog";
 import { 
   Calendar,
+  ChevronLeft,
   Rocket,
   Package,
   Users,
@@ -452,8 +453,8 @@ export default function About() {
       <Dialog open={openModal !== null} onOpenChange={(open) => !open && setOpenModal(null)}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl p-0">
           <div className="relative p-10 md:p-20">
-            <DialogClose className="absolute top-10 left-10 rounded-2xl border-2 border-gray-300/20 p-3 hover:bg-gray-100 transition-colors">
-              <X className="w-6 h-6 text-gray-300" />
+            <DialogClose className="absolute top-6 left-10 rounded-2xl border-2 border-gray-300/20 p-3 hover:bg-gray-100 transition-colors">
+              <ChevronLeft className="w-4 h-4 md:w-6 md:h-6 text-gray-300" />
             </DialogClose>
             
             {openModal && modalContents[openModal] && (
