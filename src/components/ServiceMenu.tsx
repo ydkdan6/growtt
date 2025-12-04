@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ChevronDown, X, Menu } from 'lucide-react';
+import HeaderNav from './header';
 
 const ServicesMenu: React.FC = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -26,97 +27,7 @@ const ServicesMenu: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <nav className="bg-[#002626] px-4 md:px-10 lg:px-20 py-4 md:py-6 sticky top-0 z-40">
-        <div className="flex items-center justify-between gap-2">
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-3 md:gap-8">
-            <a href="/" className="text-white/60 text-sm md:text-base hover:text-white transition-colors">
-              Home
-            </a>
-            <span className="text-white/60 text-sm md:text-base font-bold whitespace-nowrap">About Us</span>
-            <div className="relative">
-              <button className="flex items-center gap-2 text-white text-sm md:text-base hover:text-white transition-colors">
-                <Link to='/services'>Services</Link>
-                {/* <ChevronDown className="w-4 h-4 md:w-5 md:h-5" /> */}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation Links */}
-          <div className="flex md:hidden items-center gap-3">
-            <a href="/" className="text-white/60 text-sm hover:text-white transition-colors">
-              Home
-            </a>
-            <span className="text-white text-sm font-bold whitespace-nowrap">About Us</span>
-          </div>
-
-          {/* Right Side Buttons */}
-          <div className="flex items-center gap-2 md:gap-4">
-            <button className="px-3 md:px-5 py-1.5 md:py-2 border border-white/20 rounded-lg text-white text-sm md:text-base hover:bg-white/10 transition-colors whitespace-nowrap">
-              <a href='/login'>Login</a>
-            </button>
-            <button className="px-3 md:px-5 py-1.5 md:py-2 bg-teal-600 border border-teal-600 rounded-lg text-white text-sm md:text-base hover:bg-teal-700 transition-colors whitespace-nowrap">
-              <a href='/signup'>Get Started</a>
-            </button>
-            
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white p-2"
-            >
-              {mobileMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu Dropdown */}
-        {mobileMenuOpen && (
-          <>
-            {/* Overlay */}
-            <div
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden"
-              onClick={() => setMobileMenuOpen(false)}
-            />
-
-            {/* Menu */}
-            <div className="fixed top-0 right-0 h-screen w-screen bg-gradient-to-b from-[#003B36] to-[#022C22] md:hidden z-[60] flex flex-col justify-center items-center text-center">
-              {/* Close Button */}
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="absolute top-5 right-6 text-white/80 hover:text-white transition"
-              >
-                ✕
-              </button>
-
-              {/* Navigation Links */}
-              <div className="flex flex-col gap-8 text-white/90 text-2xl font-medium">
-                <a href="/" className="hover:text-white transition-colors">
-                  Home
-                </a>
-                <span className="text-white font-bold">About Us</span>
-                <button 
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                  }}
-                  className="flex items-center gap-2 hover:text-white transition-colors">
-                <Link to='/services'>Services</Link>
-                  {/* <ChevronDown className="w-4 h-4" /> */}
-                </button>
-                <a href="/login" className="hover:text-white transition-colors">
-                  Login
-                </a>
-                <a href="/signup" className="hover:text-white transition-colors">
-                  Get Started
-                </a>
-              </div>
-            </div>
-          </>
-        )}
-      </nav>
+      <HeaderNav />
 
       {/* Content */}
       <div className="p-6">

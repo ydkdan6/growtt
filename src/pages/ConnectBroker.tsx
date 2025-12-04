@@ -20,6 +20,7 @@ import {
 import { GrowttLogo } from "../components/logo";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Play } from "lucide-react";
+import HeaderNav from "../components/header";
 
 export default function ConnectBroker() {
 
@@ -28,120 +29,10 @@ export default function ConnectBroker() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
-      <nav className="bg-[#002626] px-4 md:px-10 lg:px-20 py-4 md:py-6 sticky top-0 z-40">
-              <div className="flex items-center justify-between gap-2">
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-3 md:gap-8">
-                  <Link to="/" className="text-white/60 text-sm md:text-base hover:text-white transition-colors">
-                    Home
-                  </Link>
-                  <span className="text-white/60 text-sm md:text-base font-bold whitespace-nowrap">About Us</span>
-                  <div className="relative">
-                    <button 
-                      // onClick={() => setShowServicesModal(!showServicesModal)}
-                      className="flex items-center gap-2 text-white text-sm md:text-base hover:text-white transition-colors">
-                      <Link to='/services'>Services</Link>
-                      {/* <ChevronDown className="w-4 h-4 md:w-5 md:h-5" /> */}
-                    </button>
-                    {/* <ServicesDropdown 
-                      isOpen={showServicesModal} 
-                      onClose={() => setShowServicesModal(false)}
-                      onContactClick={handleContactClick}
-                    /> */}
-                  </div>
-                </div>
-      
-                {/* Mobile Navigation Links */}
-                <div className="flex md:hidden items-center gap-3">
-                  <Link to="/" className="text-white/60 text-sm hover:text-white transition-colors">
-                    Home
-                  </Link>
-                  <span className="text-white text-sm font-bold whitespace-nowrap">About Us</span>
-                </div>
-      
-                {/* Right Side Buttons */}
-                <div className="flex items-center gap-2 md:gap-4">
-                  <button className="px-3 md:px-5 py-1.5 md:py-2 border border-white/20 rounded-lg text-white text-sm md:text-base hover:bg-white/10 transition-colors whitespace-nowrap">
-                    <Link to='/login'>Login</Link>
-                  </button>
-                  <button className="px-3 md:px-5 py-1.5 md:py-2 bg-teal-600 border border-teal-600 rounded-lg text-white text-sm md:text-base hover:bg-teal-700 transition-colors whitespace-nowrap">
-                    <Link to='/signup'>Get Started</Link>
-                  </button>
-                  
-                  {/* Mobile Menu Button */}
-                  <button
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    className="md:hidden text-white p-2"
-                  >
-                    {mobileMenuOpen ? (
-                      <X className="w-5 h-5" />
-                    ) : (
-                      <Menu className="w-5 h-5" />
-                    )}
-                  </button>
-                </div>
-              </div>
-      
-              {/* Mobile Menu Dropdown */}
-              <AnimatePresence>
-                {mobileMenuOpen && (
-                  <>
-                    {/* Overlay */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden"
-                      onClick={() => setMobileMenuOpen(false)}
-                    />
-      
-                    {/* Menu */}
-                    <motion.div
-                      initial={{ x: "100%" }}
-                      animate={{ x: 0 }}
-                      exit={{ x: "100%" }}
-                      transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                      className="fixed top-0 right-0 h-screen w-screen bg-gradient-to-b from-[#003B36] to-[#022C22] md:hidden z-[60] flex flex-col justify-center items-center text-center"
-                    >
-                      {/* Close Button */}
-                      <button
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="absolute top-5 right-6 text-white/80 hover:text-white transition"
-                      >
-                        ✕
-                      </button>
-      
-                      {/* Navigation Links */}
-                      <div className="flex flex-col gap-8 text-white/90 text-2xl font-medium">
-                        <Link to="/" className="hover:text-white transition-colors">
-                          Home
-                        </Link>
-                        <span className="text-white font-bold">About Us</span>
-                        <button 
-                          // onClick={() => {
-                          //   setShowServicesModal(true);
-                          //   setMobileMenuOpen(false);
-                          // }}
-                          className="flex items-center gap-2 hover:text-white transition-colors">
-                      <Link to='/services'>Services</Link>
-                          {/* <ChevronDown className="w-4 h-4" /> */}
-                        </button>
-                        <Link to="/login" className="hover:text-white transition-colors">
-                          Login
-                        </Link>
-                        <Link to="/signup" className="hover:text-white transition-colors">
-                          Get Started
-                        </Link>
-                      </div>
-                    </motion.div>
-                  </>
-                )}
-              </AnimatePresence>
-            </nav>
+      <HeaderNav />
 
       {/* Back Button */}
-      <div className="px-5 md:px-20 py-8">
+      <div className="absolute top-[50px] left-[50px] px-5 md:px-6 py-8">
         <Link 
           to="/services/investment-advisory"
           className="inline-flex items-center justify-center w-11 h-11 border-2 border-brand-dark/20 rounded-2xl hover:bg-gray-50 transition-colors"
@@ -151,7 +42,7 @@ export default function ConnectBroker() {
       </div>
 
       {/* Main Content - Split Layout */}
-      <section className="px-5 md:px-20 pb-16">
+      <section className="px-5 md:px-20 pb-16 md:mt-16">
         <div className="flex flex-col lg:flex-row border border-white/20 rounded-none overflow-hidden max-w-full">
           {/* Left Side - Hero with Image */}
           <div 
