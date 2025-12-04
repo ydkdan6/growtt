@@ -213,7 +213,8 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
   transition={{ duration: 0.6 }}
   className="fixed top-0 left-0 right-0 z-50 bg-growtt-dark-teal/95 backdrop-blur-sm"
 >
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-4">
+  <div className="w-full px-4 sm:px-6 lg:px-16 py-4">
+    <div className="max-w-7xl mx-auto">
     <div className="flex items-center justify-between">
       <img
         src="/images/logo.png"
@@ -327,19 +328,19 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
           </div>
           <button
             onClick={() => {
-              setShowWaitlistModal(true)
+              setShowFAQModal(true)
               setMobileMenuOpen(false);
             }}
             className="hover:text-white transition-colors"
           >
-            Join Waitlist
+            Faq
           </button>
         </div>
       </motion.div>
     </>
   )}
 </AnimatePresence>
-
+</div>
   </div>
 </motion.nav>
 
