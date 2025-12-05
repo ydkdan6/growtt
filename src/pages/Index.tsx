@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+ import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronLeft,
   ChevronRight,
@@ -317,9 +317,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
 
         {/* Navigation Links */}
         <div className="flex flex-col gap-8 text-white/90 text-2xl font-medium items-center">
-          <a href="#" className="hover:text-white transition-colors">
-            <Link to='/'>Home</Link>
-          </a>
+            <Link to='/' className="hover:text-white transition-colors">Home</Link>
           <Link to='/about' className="hover:text-white transition-colors">
             About Us
           </Link>
