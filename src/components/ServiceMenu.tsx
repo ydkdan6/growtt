@@ -9,7 +9,7 @@ const ServicesMenu: React.FC = () => {
   const Navigate = useNavigate();
 
   const menuItems = [
-    { label: 'Investments', path: '/investments', action: null },
+    { label: 'Investments', path: '/#investment', action: () => {Navigate('/#investment')} },
     { label: 'Broker Connect', path: '/broker-connect', action: () =>  { Navigate('/broker-connect')} },
     { label: 'Contact Us', path: null, action: () => setIsContactOpen(true) }
   ];
@@ -25,7 +25,7 @@ const ServicesMenu: React.FC = () => {
 
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 md:pt-12">
       {/* Header */}
       <HeaderNav />
 

@@ -17,7 +17,7 @@ import {
 import { useState, useRef, useEffect } from "react";
 import ExploreSection from "../components/ExploreSection";
 import { SeedsSection } from "../components/SeedSection";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { GrowttLogo } from "../components/logo";
 import { FAQModal } from "../components/Modal/FAQModal";
 import { NewsletterModal } from "../components/Modal/Newsletter";
@@ -40,6 +40,7 @@ const staggerContainer = {
 };
 
 export default function Index() {
+  const { hash } = useLocation();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentLearningIndex, setCurrentLearningIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -56,6 +57,15 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
   const handleLogin = () => {
     navigate('/login');
   }
+
+  useEffect(() => {
+    if(hash) {
+      const element = document.querySelector(hash);
+      if(element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [hash]);
 
   const handleContactClick = () => {
   setShowServicesModal(false);
@@ -333,7 +343,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
             }}
             className="hover:text-white transition-colors"
           >
-            Faq
+            FAQ
           </button>
         </div>
       </motion.div>
@@ -532,21 +542,21 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                   key={index}
                   variants={fadeInUp}
                   whileHover={{ y: -10 }}
-                  className={`bg-gradient-to-br ${step.gradient} md:text-center rounded-2xl p-14 flex flex-col justify-between min-h-[500px] md:flex-shrink-0 md:w-[290px]`}
+                  className={`bg-gradient-to-br ${step.gradient} md:text-center rounded-2xl p-14 flex flex-col justify-between min-h-[600px] md:flex-shrink-0 md:w-[290px]`}
                 >
-                  <div className="flex-1 flex items-center justify-center mb-6">
+                  <div className="flex-1 flex items-center justify-center mb-8">
                     <img
                       src={step.image}
                       loading="lazy"
                       alt=""
-                      className="w-64 h-64 object-contain md:block hidden"
+                      className="w-64 h-64 object-contain md:block"
                     />
                   </div>
                   <div>
-                    <h4 className="text-2xl md:text-xl md:text-center font-semibold text-gray-900 mb-10 md:mb-2">
+                    <h4 className="text-2xl md:text-xl text-center font-semibold text-gray-900 mb-10 md:mb-2">
                       {step.title}
                     </h4>
-                    <p className="text-gray-700">{step.description}</p>
+                    <p className=" text-gray-700">{step.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -625,7 +635,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
       <ExploreSection />
 
       {/* Investment Discovery Platform */}
-      <section className="py-20 px-4 sm:px-6 lg:px-16 bg-white">
+      <section className="w-full py-20 px-4 sm:px-6 lg:px-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -634,7 +644,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="text-4xl sm:text-5xl font-light text-gray-900">
+              <h2 className="text-4xl sm:text-5xl font-light text-gray-900" id="investment">
                 Unlock Your Financial Future with Our Investment Discovery
                 Platform
               </h2>
@@ -661,8 +671,8 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                   </p>
                 </div>
               </div>
-              <button onClick={handleLogin} className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
-                Connect
+              <button  className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors">
+                <Link to='/broker-connect'>Connect</Link>
               </button>
             </motion.div>
 
@@ -676,7 +686,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                 src="/images/unlock-image.png"
                 alt="Investment Platform"
                 loading="lazy"
-                className="w-[408px] h-auto rounded-2xl shadow-2xl md:ml-12"
+                className="w-[408px] md:w-[520px] h-auto rounded-2xl shadow-2xl md:ml-46"
               />
             </motion.div>
           </div>

@@ -20,7 +20,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Play } from "lucide-react";
 import HeaderNav from "../components/header";
 
-export default function BrokerConnect() {
+export default function BrokerConnect() { 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (

@@ -161,7 +161,7 @@ export default function HeaderNav() {
                   }}
                   className="hover:text-white transition-colors"
                 >
-                  Faq
+                  FAQ
                 </button>
               </div>
             </motion.div>
