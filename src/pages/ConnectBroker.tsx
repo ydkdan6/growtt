@@ -93,12 +93,12 @@ export default function ConnectBroker() {
 
       {/* Back Button */}
       <div className="px-5 md:px-6 py-8 mt-12">
-        <button 
-          onClick={() => console.log('Back')}
-          className="md:mt-[40px] md:ml-[39px] inline-flex items-center justify-center w-11 h-11 border-2 border-gray-900/20 rounded-2xl hover:bg-gray-50 transition-colors"
+        <Link 
+          to="/services/investment-advisory"
+          className="md:mt-[40px] md:ml-[39px] inline-flex items-center justify-center w-11 h-11 border-2 border-brand-dark/20 rounded-2xl hover:bg-gray-50 transition-colors"
         >
-          <ArrowLeft className="w-6 h-6 text-gray-900/20" />
-        </button>
+          <ArrowLeft className="w-6 h-6 text-brand-dark/20" />
+        </Link>
       </div>
 
       {/* Main Content - Split Layout */}
