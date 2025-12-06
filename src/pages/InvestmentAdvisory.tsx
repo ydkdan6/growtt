@@ -36,7 +36,7 @@ export default function InvestmentAdvisory() {
       <HeaderNav />
 
       {/* Back Button */}
-      <div className="px-5 md:px-20 py-8">
+      <div className="px-5 md:px-20 py-8 md:mt-12 mt-12">
         <Link 
           to="/broker-connect"
           className="inline-flex items-center justify-center w-11 h-11 border-2 border-brand-dark/20 rounded-2xl hover:bg-gray-50 transition-colors"

@@ -145,7 +145,7 @@ export default function HeaderNav() {
                   <button 
                     // onClick={() => setShowServicesModal(!showServicesModal)}
                     className="flex items-center justify-center gap-2 text-white/90 text-2xl md:text-base hover:text-white transition-colors">
-                      <Link to='services'>Services</Link>
+                      <Link to='/services'>Services</Link>
                     {/* <ChevronDown className="w-4 h-4 md:w-5 md:h-5" /> */}
                   </button>
                   {/* <ServicesDropdown 

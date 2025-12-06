@@ -207,7 +207,7 @@ export default function About() {
         <h2 className="text-gray-900 text-xl md:text-2xl font-bold mb-6 md:mb-4" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif' }}>
           Who We Are
         </h2>
-        <div className="px-4 md:ml-[197px] lg:px-20 mt-16 md:mt-24 mb-12 md:mb-16 flex flex-row items-center text-center">
+        <div className="px-4  lg:px-20 mt-16 md:mt-24 mb-12 md:mb-16 flex flex-row md:justify-center items-center text-center">
           <TeamMember
             image="/images/founder.png"
             name="Ifiok Ukut"
@@ -227,7 +227,7 @@ export default function About() {
           Ready to Start Your Investment Journey?
         </h2>
         <button className="px-6 py-3 bg-teal-600 border border-teal-600 rounded-lg text-white text-base shadow-lg hover:bg-teal-700 transition-colors" style={{ fontFamily: 'Gill Sans MT, -apple-system, Roboto, Helvetica, sans-serif' }}>
-          Join Us
+          <Link to='/'>Join Us</Link>
         </button>
       </section>
 

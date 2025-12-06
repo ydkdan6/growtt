@@ -142,10 +142,10 @@ export default function LearnMore() {
             </nav> */}
 
       {/* Back Button */}
-      <div className="px-5 md:px-20 py-8">
+      <div className="px-5 md:px-20 py-8 mt-12">
         <Link 
           to="/broker-connect"
-          className="inline-flex items-center justify-center w-11 h-11 border-2 border-brand-dark/20 rounded-2xl hover:bg-gray-50 transition-colors"
+          className="md:mt-[40px] inline-flex items-center justify-center w-11 h-11 border-2 border-brand-dark/20 rounded-2xl hover:bg-gray-50 transition-colors"
         >
           <ArrowLeft className="w-6 h-6 text-brand-dark/20" />
         </Link>

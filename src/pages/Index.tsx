@@ -632,7 +632,9 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
           </div>
         </div>
       </section> */}
+      <div id="investment">
       <ExploreSection />
+        </div>
 
       {/* Investment Discovery Platform */}
       <section className="w-full py-20 px-4 sm:px-6 lg:px-16 bg-white">
@@ -644,7 +646,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h2 className="text-4xl sm:text-5xl font-light text-gray-900" id="investment">
+              <h2 className="text-4xl sm:text-5xl font-light text-gray-900">
                 Unlock Your Financial Future with Our Investment Discovery
                 Platform
               </h2>

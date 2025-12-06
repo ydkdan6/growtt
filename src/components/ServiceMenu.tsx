@@ -32,7 +32,7 @@ const ServicesMenu: React.FC = () => {
       {/* Content */}
       <div className="p-6">
         {/* Back Button and Title */}
-        <div className="flex items-center mb-8">
+        <div className="flex items-center mb-8 mt-14 md:mt-0">
           <button 
             className="mr-4 p-2 hover:bg-gray-200 rounded-full transition-colors"
             onClick={() => window.history.back()}

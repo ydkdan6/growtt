@@ -29,7 +29,7 @@ export default function BrokerConnect() {
       <HeaderNav />
 
       {/* Hero Section */}
-      <section className="px-5 md:px-20 py-16 md:py-24">
+      <section className="px-5 md:px-20 py-[90px] md:py-24">
         <div
           className="relative rounded-xl overflow-hidden"
           style={{
