@@ -680,13 +680,13 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative"
+              className="w-full relative"
             >
               <img
                 src="/images/unlock-image.png"
                 alt="Investment Platform"
                 loading="lazy"
-                className="w-[408px] md:w-[520px] h-auto rounded-2xl shadow-2xl md:ml-46"
+                className="w-[408px] md:w-auto h-auto rounded-2xl shadow-2xl md:ml-46"
               />
             </motion.div>
           </div>

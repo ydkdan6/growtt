@@ -285,10 +285,10 @@ export default function LearnMore() {
             Ready to Get Started?
           </h2>
           <Link
-            to="/connect-broker"
+            to="/"
             className="px-6 py-2.5 bg-brand-teal border border-brand-teal rounded-lg text-brand-light text-base shadow-lg hover:bg-brand-teal/90 transition-colors inline-block"
           >
-            Sign Up Today
+            Join Us
           </Link>
         </div>
       </section>
