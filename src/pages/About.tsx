@@ -129,7 +129,7 @@ export default function About() {
 
       {/* Hero Section */}
       <section
-        className="mx-4 md:mx-10 lg:mx-20 mt-8 md:mt-20 py-[90px] rounded-xl bg-cover bg-center relative overflow-hidden"
+        className="mx-4 md:mx-10 lg:mx-20 mt-8 md:mt-20 mt-20 rounded-xl bg-cover bg-center relative overflow-hidden"
         style={{
           backgroundImage: `linear-gradient(90deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.40) 100%), url('https://api.builder.io/api/v1/image/assets/TEMP/0cbf38d16c3bcfeadc4f241ba87bb73edac19c9b?width=2560')`,
           minHeight: '400px'
