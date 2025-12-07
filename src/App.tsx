@@ -32,6 +32,8 @@ import BrokerConnect from "./pages/BrokerConnect";
 import LearnMore from "./pages/LearnMore";
 import InvestmentAdvisory from "./pages/InvestmentAdvisory";
 import ConnectBroker from "./pages/ConnectBroker";
+import Budget from "./pages/Budget";
+import BudgetBroker from "./pages/BudgetBroker";
 
 
 const queryClient = new QueryClient();
@@ -69,6 +71,8 @@ const App = () => (
           <Route path="/services/investment-advisory" element={<InvestmentAdvisory />} />
           <Route path="/broker-connect" element={ <BrokerConnect />}/>
           <Route path="/connect-broker" element={ <ConnectBroker />} />
+          <Route path="/services/budget" element={ <Budget />} />
+          <Route path="/services/budget-broker" element={ <BudgetBroker />} />          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

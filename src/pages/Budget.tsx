@@ -21,13 +21,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Play } from "lucide-react";
 import HeaderNav from "../components/header";
 
-export default function InvestmentAdvisory() {
+export default function Budget() {
 
       const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
       const Navigate = useNavigate();
 
       const handleSession = () => {
-        Navigate('/connect-broker');
+        Navigate('/services/budget-broker');
       }
     
   return (
@@ -49,25 +49,27 @@ export default function InvestmentAdvisory() {
       <section className="px-5 md:px-20 pb-12">
         <div className="max-w-lg space-y-4">
           <h1 className="text-3xl font-bold text-brand-dark leading-tight">
-            Expert Investment Advisory
+            Business Structuring Advisory
           </h1>
           <p className="text-sm text-brand-dark/60 leading-relaxed">
-            Work with licensed brokers to receive tailored guidance on managing your portfolio.
+            Get expert insights to structure your business, attract investors, and scale sustainably..
           </p>
         </div>
       </section>
 
       {/* Services Grid */}
       <section className="px-5 md:px-20 pb-16 space-y-16">
-        {/* Portfolio Review */}
+        {/* Investor Readiness Service */}
         <div className="border-[10px] border-brand-light rounded-2xl p-6">
           <div className="flex flex-col lg:flex-row gap-4 items-start">
             {/* Left Content */}
             <div className="flex-1 space-y-4 px-2">
-              <h2 className="text-base font-bold text-brand-dark">Portfolio Review</h2>
+              <h2 className="text-base font-bold text-brand-dark">Investor Readiness Service</h2>
               
               <p className="text-sm text-brand-dark/60 leading-relaxed">
-                Get a comprehensive analysis of your current investments and identify areas for improvement.
+We help business prepare for unding by building clarity, credibility, and confidence in their investment story.
+Our team supports you with financial modeling, valuation, pitch deck development, and restructing Advisory - ensuring your business is positioned to attract and engagethe right
+investors.
               </p>
 
               <button onClick={() => {handleSession()}} className="px-4 py-1.5 text-sm text-brand-dark border border-brand-dark/20 rounded-lg bg-white hover:bg-gray-50 transition-colors">
@@ -78,7 +80,7 @@ export default function InvestmentAdvisory() {
             {/* Right Image */}
             <div className="flex-1 lg:min-w-[50%]">
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/aeb77d14f284aebbe98b4349c077166ee8d17920?width=1374"
+                src="/images/biz (4).png"
                 alt="Portfolio review consultation"
                 className="w-full h-auto rounded-lg object-cover"
               />
@@ -86,16 +88,19 @@ export default function InvestmentAdvisory() {
           </div>
         </div>
 
-        {/* Diversification Strategies */}
+        {/* Capital Structuring */}
         <div className="border-[10px] border-brand-light rounded-2xl p-6">
           <div className="flex flex-col lg:flex-row gap-4 items-start">
             {/* Left Content */}
             <div className="flex-1 space-y-4 px-2">
-              <h2 className="text-base font-bold text-brand-dark">Diversification Strategies</h2>
+              <h2 className="text-base font-bold text-brand-dark">Capital Structuring</h2>
               
               <p className="text-sm text-brand-dark/60 leading-relaxed">
-                Explore strategies to diversify your portfolio across different asset classes for optimal risk-adjusted returns.
-              </p>
+Get expert guidance on choosing the right balance between equity and debt, 
+and structuring partnerships that strengthen your growth path. From joint 
+ventures and mergers & acquisitions to capital mix optimization, we help 
+you design structures that align with your long-term financial and strategic 
+goals.              </p>
 
               <button onClick={() => {handleSession()}} className="px-4 py-1.5 text-sm text-brand-dark border border-brand-dark/20 rounded-lg bg-white hover:bg-gray-50 transition-colors">
                 Book Session
@@ -105,7 +110,7 @@ export default function InvestmentAdvisory() {
             {/* Right Image */}
             <div className="flex-1 lg:min-w-[50%]">
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/a9eb64ae67ae7c0bdc65696aef832dc5a8997f5c?width=1374"
+                src="/images/biz (1).png"
                 alt="Diversification strategy planning"
                 className="w-full h-auto rounded-lg object-cover"
               />
@@ -113,16 +118,18 @@ export default function InvestmentAdvisory() {
           </div>
         </div>
 
-        {/* Risk Insights */}
+        {/* Market and Strategy report  */}
         <div className="border-[10px] border-brand-light rounded-2xl p-6">
           <div className="flex flex-col lg:flex-row gap-4 items-start">
             {/* Left Content */}
             <div className="flex-1 space-y-4 px-2">
-              <h2 className="text-base font-bold text-brand-dark">Risk Insights</h2>
+              <h2 className="text-base font-bold text-brand-dark">Market and Strategy report</h2>
               
               <p className="text-sm text-brand-dark/60 leading-relaxed">
-                Understand your risk tolerance and how it aligns with your investment goals.
-              </p>
+Make informed decisions backed by insight. We conduct tailored market 
+research and strategy assessments that reveal opportunities, challenges, and 
+positioning advantages. Each report is crafted to guide your strategic 
+direction and support investor confidence with data-driven clarity.               </p>
 
               <button onClick={() => {handleSession()}} className="px-4 py-1.5 text-sm text-brand-dark border border-brand-dark/20 rounded-lg bg-white hover:bg-gray-50 transition-colors">
                 Book Session
@@ -132,7 +139,37 @@ export default function InvestmentAdvisory() {
             {/* Right Image */}
             <div className="flex-1 lg:min-w-[50%]">
               <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/b63880c69d959cc213b906a1f7c7ba105212a833?width=1374"
+                src="/images/biz (2).png"
+                alt="Risk analysis and insights"
+                className="w-full h-auto rounded-lg object-cover"
+              />
+            </div>
+          </div>
+        </div>
+
+
+        {/* Governance Structuring  */}
+        <div className="border-[10px] border-brand-light rounded-2xl p-6">
+          <div className="flex flex-col lg:flex-row gap-4 items-start">
+            {/* Left Content */}
+            <div className="flex-1 space-y-4 px-2">
+              <h2 className="text-base font-bold text-brand-dark">Governance Structuring </h2>
+              
+              <p className="text-sm text-brand-dark/60 leading-relaxed">
+Establish systems that inspire trust and accountability. We help you design 
+and implement governance frameworks, compliance policies, and operational 
+controls that promote transparency, efficiency, and sustainable growth — 
+ensuring your business meets global best practices.               </p>
+
+              <button onClick={() => {handleSession()}} className="px-4 py-1.5 text-sm text-brand-dark border border-brand-dark/20 rounded-lg bg-white hover:bg-gray-50 transition-colors">
+                Book Session
+              </button>
+            </div>
+
+            {/* Right Image */}
+            <div className="flex-1 lg:min-w-[50%]">
+              <img
+                src="/images/biz.png"
                 alt="Risk analysis and insights"
                 className="w-full h-auto rounded-lg object-cover"
               />

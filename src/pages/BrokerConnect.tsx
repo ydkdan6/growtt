@@ -102,9 +102,11 @@ export default function BrokerConnect() {
                 >
                   Investment Advisory
                 </Link>
-                <button className="px-4 py-1.5 text-sm text-brand-dark border border-brand-dark/20 rounded-lg bg-white hover:bg-gray-50 transition-colors">
+                <Link 
+                to="/services/budget"
+                className="px-4 py-1.5 text-sm text-brand-dark border border-brand-dark/20 rounded-lg bg-white hover:bg-gray-50 transition-colors">
                   Business Structuring Advisory
-                </button>
+                </Link>
               </div>
             </div>
 
