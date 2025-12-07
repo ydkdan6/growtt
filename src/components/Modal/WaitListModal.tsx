@@ -7,7 +7,9 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import { GrowttLogo } from "../logo";
-import { Mail } from "lucide-react";
+import { Mail, Check, Loader2 } from "lucide-react";
+import { useApi } from "../../context/apiContext";
+import type { ApiError } from "../../services/apiClient";
 
 interface WaitlistModalProps {
   open: boolean;
@@ -16,12 +18,64 @@ interface WaitlistModalProps {
 }
 
 export function WaitlistModal({ open, onOpenChange, onSubscribe }: WaitlistModalProps) {
+  const { api } = useApi();
   const [email, setEmail] = useState("");
+    const [focus, setFocus] = useState("wailtist");
+    const [loading, setLoading] = useState(false);
+      const [showThankYou, setShowThankYou] = useState(false);
+      const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      onSubscribe();
+      const resetForm = () => {
+    setEmail("");
+    setFocus("");
+    setError(null);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      
+      // Validate inputs
+      if (!email || !focus) {
+        setError("Please fill in all fields");
+        return;
+      }
+  
+      setLoading(true);
+      setError(null);
+  
+      try {
+        await api.addNewsletterSubscriber({
+          email: email.trim(),
+          asset_class: focus.trim(),
+        });
+  
+        // Show thank you message
+        setShowThankYou(true);
+        resetForm();
+  
+        // Auto close after 3 seconds
+        setTimeout(() => {
+          setShowThankYou(false);
+          onOpenChange(false);
+        }, 3000);
+  
+      } catch (err) {
+        const apiError = err as ApiError;
+        setError(apiError.message || "Failed to subscribe. Please try again.");
+        console.error("Newsletter subscription error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const handleClose = (open: boolean) => {
+    if (!loading) {
+      onOpenChange(open);
+      if (!open) {
+        // Reset form when modal closes
+        setTimeout(resetForm, 300);
+        setShowThankYou(false);
+      }
     }
   };
 
@@ -43,6 +97,7 @@ export function WaitlistModal({ open, onOpenChange, onSubscribe }: WaitlistModal
 
           {/* Content */}
           <div className="relative z-10 flex flex-col items-center justify-center min-h-[40px] pt-16">
+
             {/* User Avatars */}
             <div className="flex items-center gap-2 mb-6">
               <div className="flex -space-x-2">
@@ -57,7 +112,23 @@ export function WaitlistModal({ open, onOpenChange, onSubscribe }: WaitlistModal
                 Join 1000+ others on the waitlist
               </span>
             </div>
-
+                {showThankYou ? (
+                              // Thank You Message
+                              <div className="text-center space-y-6 py-12 px-4 animate-in fade-in duration-500">
+                                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center">
+                                  <Check className="w-8 h-8 sm:w-10 sm:h-10 text-green-600" />
+                                </div>
+                                <div className="space-y-2">
+                                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#008080] font-['Gill_Sans_MT',sans-serif]">
+                                    Thank You!
+                                  </h3>
+                                  <p className="text-base sm:text-lg text-[#008080]/80 font-['Gill_Sans_MT',sans-serif] max-w-md mx-auto">
+                                    You've successfully joined our Waitlist. We'll keep you updated with the latest financial market insights.
+                                  </p>
+                                </div>
+                              </div>
+                            ) : (
+           <>
             {/* Heading */}
             <DialogHeader className="text-center space-y-6 mb-8">
               <DialogTitle className="text-5xl sm:text-6xl font-bold font-['Gill_Sans_MT',sans-serif] leading-tight">
@@ -90,6 +161,8 @@ export function WaitlistModal({ open, onOpenChange, onSubscribe }: WaitlistModal
                 </button>
               </div>
             </form>
+            </>
+                            )}
           </div>
         </div>
       </DialogContent>

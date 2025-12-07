@@ -42,7 +42,7 @@ export class ApiClient {
     // Request Interceptor
     this.client.interceptors.request.use(
       (config) => {
-        // Add auth token if available
+        //  auth token if available
         const token = localStorage.getItem('auth_token');
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
