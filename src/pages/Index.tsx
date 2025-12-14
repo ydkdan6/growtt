@@ -393,9 +393,10 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                 not Hype
               </h1>
               <p className="text-lg text-white/80 max-w-xl text-center md:text-left">
-                Stay ahead of the curve with the insights from Growtt. Subscribe
-                to our newsletter for investment tips, product updates and
-                exclusive pre-launch opportunities.{" "}
+                At Growtt, we bridge education and opportunity equipping you with the right 
+knowledge, tools, and community to grow confidently. 
+Whether you’re starting out or scaling up, we’re here to guide your journey toward
+meaningful and sustainable growth.{" "}
               </p>
               
               {/* Desktop CTAs */}
@@ -530,8 +531,8 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
                   image: "/images/cuate02.png",
                 },
                 {
-                  title: "Watch Your Investment Grow",
-                  description: "Monitor performance and grow your wealth",
+                  title: "Unlock Opportunities",
+                  description: "Put your knowledge to work. Use your growth and Seeds to access curated investment opportunities, programs, and real-world partnerships built to help you scale. ",
                   gradient: "from-orange-200 to-yellow-100",
                   image: "/images/rafiki.png",
                 },
