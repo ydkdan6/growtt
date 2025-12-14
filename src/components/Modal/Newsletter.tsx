@@ -7,8 +7,7 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import { GrowttLogo } from "../logo";
-import { Mail, Check, Loader2 } from "lucide-react";
-import { cn } from "../../lib/utils";
+import { Mail, Check, Loader2, AlertCircle } from "lucide-react";
 import { useApi } from "../../context/apiContext";
 import type { ApiError } from "../../services/apiClient";
 
@@ -24,11 +23,13 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
   const [loading, setLoading] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isDuplicate, setIsDuplicate] = useState(false);
 
   const resetForm = () => {
     setEmail("");
     setFocus("");
     setError(null);
+    setIsDuplicate(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,6 +43,7 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
 
     setLoading(true);
     setError(null);
+    setIsDuplicate(false);
 
     try {
       await api.addNewsletterSubscriber({
@@ -61,7 +63,25 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
 
     } catch (err) {
       const apiError = err as ApiError;
-      setError(apiError.message || "Failed to subscribe. Please try again.");
+      
+      // Check for duplicate email error
+      const errorMessage = apiError.message?.toLowerCase() || '';
+      const isDuplicateEmail = 
+        errorMessage.includes('already subscribed') ||
+        errorMessage.includes('already exists') ||
+        errorMessage.includes('duplicate') ||
+        errorMessage.includes('already registered') ||
+        errorMessage.includes('email already') ||
+        errorMessage.includes('already submitted') ||
+        apiError.status === 409;
+
+      if (isDuplicateEmail) {
+        setIsDuplicate(true);
+        setError("This email has already been subscribed to our newsletter. We'll keep you updated!");
+      } else {
+        setError(apiError.message || "Failed to subscribe. Please try again.");
+      }
+      
       console.error("Newsletter subscription error:", err);
     } finally {
       setLoading(false);
@@ -133,8 +153,13 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
                 <form onSubmit={handleSubmit} className="w-full max-w-2xl space-y-6 sm:space-y-8 px-2">
                   {/* Error Message */}
                   {error && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm sm:text-base font-['Gill_Sans_MT',sans-serif] animate-in fade-in duration-300">
-                      {error}
+                    <div className={`px-4 text-center py-3 rounded-lg text-sm sm:text-base font-['Gill_Sans_MT',sans-serif] animate-in fade-in duration-300 flex items-start gap-2 ${
+                      isDuplicate 
+                        ? 'bg-blue-50 border border-blue-200 text-blue-700'
+                        : 'bg-red-50 border border-red-200 text-red-700'
+                    }`}>
+                      <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                      <span>{error}</span>
                     </div>
                   )}
 
