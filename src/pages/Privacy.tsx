@@ -5,7 +5,7 @@ const Privacy = () => {
     return (
         <div className="min-h-screen bg-white">
             <HeaderNav />
-            <section className="px-4 md:px-10 md:py-[20px] lg:px-20 mt-12 md:mt-[68px] md:mb-12">
+            <section className="px-4 md:px-10 py-[40px] md:py-[20px] lg:px-20 mt-12 md:mt-[68px] md:mb-12">
                 
 GROWTT PRIVACY POLICY<br/>
 Growtt Alternative Investment Solutions Limited (the “Company”) is committed to maintaining robust privacy protections for its users. Our Privacy Policy (“Privacy Policy”) is designed to help you understand how we collect, use and safeguard the information you provide to us and to assist you in making informed decisions when using our Service.
