@@ -35,6 +35,7 @@ import ConnectBroker from "./pages/ConnectBroker";
 import Budget from "./pages/Budget";
 import BudgetBroker from "./pages/BudgetBroker";
 import Privacy from "./pages/Privacy";
+import Unsubscribe from "./pages/Unsubscribe";
 
 
 const queryClient = new QueryClient();
@@ -68,6 +69,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/unsubscribe" element={<Unsubscribe />} />
           <Route path="/services" element={<ServicesMenu />} />
           <Route path="/learn-more" element={<LearnMore />} />
           <Route path="/services/investment-advisory" element={<InvestmentAdvisory />} />

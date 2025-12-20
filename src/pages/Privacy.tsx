@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import HeaderNav from "../components/header";
+import { useNavigate } from "react-router-dom";
 
 const Privacy = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false); 
+  const navigate = useNavigate();
 
   const handleUnsubscribe = (e) => {
     e.preventDefault();
@@ -215,7 +217,7 @@ const Privacy = () => {
         promotional preferences you indicate by either
         <br />
         unsubscribing or opting out by clicking {" "} <button 
-          onClick={() => setShowModal(true)}
+          onClick={() => navigate("/unsubscribe")}
           className="text-[#008080] underline hover:text-blue-800 cursor-pointer"
         >
           here
@@ -262,7 +264,7 @@ const Privacy = () => {
       </section>
 
       {/* Unsubscribe Modal */}
-      {showModal && (
+      {/* {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative">
             <button
@@ -305,7 +307,7 @@ const Privacy = () => {
             )}
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
