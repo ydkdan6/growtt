@@ -299,7 +299,7 @@ const Privacy = () => {
                   type="submit"
                   className="w-full px-6 py-2 bg-[#008080] text-white rounded hover:bg-blue-700 transition-colors"
                 >
-                  Unsubscribe
+                  Unsubscribe 
                 </button>
               </form>
             )}
