@@ -17,9 +17,9 @@ const Sidebar = () => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-20 bg-dark-teal border-r border-white/60 flex-col items-center py-6 z-50">
+      <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-20 bg-[#003333] border-r border-white/60 flex-col items-center py-6 z-50">
         {/* Logo */}
-        <div className="mb-24">
+        <div className="mb-8">
           <svg width="26" height="40" viewBox="0 0 26 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_6398_6183)">
               <path fillRule="evenodd" clipRule="evenodd" d="M15.664 0.267244V5.5688C14.8353 5.26544 13.934 5.10654 12.9964 5.10654C8.65697 5.10654 5.13167 8.60238 5.13167 12.9144C5.13167 13.875 5.30612 14.7996 5.62594 15.6446C4.09226 16.6053 2.76209 17.862 1.7154 19.3427C0.625105 17.4503 0 15.2546 0 12.9144C0 5.78548 5.8222 0 12.9964 0C13.9122 0 14.799 0.0938967 15.664 0.267244Z" fill="#008080"/>
@@ -36,12 +36,12 @@ const Sidebar = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex flex-col gap-6 w-12">
+        <nav className="flex flex-col gap-4 w-12">
           {navItems.map((item, index) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`flex items-center justify-center p-3 rounded-lg transition-colors ${
+              className={`flex items-center justify-center p-2 rounded-lg transition-colors ${
                 location.pathname === item.path
                   ? 'bg-white'
                   : 'hover:bg-white/10'
@@ -78,7 +78,7 @@ const Sidebar = () => {
         </nav>
 
         {/* Logo at bottom */}
-        <div className="mt-auto">
+        {/* <div className="mt-auto">
           <svg width="41" height="13" viewBox="0 0 41 13" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_6716_8213)">
               <path d="M9.44431 1.4672V3.09246L9.51859 2.96999C10.1751 1.87611 10.8317 1.32812 11.4862 1.32812C11.9981 1.32812 12.5322 1.59589 13.0884 2.12934L12.3736 3.36229C11.9018 2.89942 11.4641 2.66902 11.0605 2.66902C10.6228 2.66902 10.2434 2.88489 9.92416 3.31663C9.60292 3.74837 9.44431 4.25899 9.44431 4.85056V8.55773H8.08105V1.4672H9.44431Z" fill="white"/>
@@ -97,7 +97,7 @@ const Sidebar = () => {
               </clipPath>
             </defs>
           </svg>
-        </div>
+        </div> */}
       </aside>
     </>
   );

@@ -1,79 +1,92 @@
+import { useEffect, useRef } from 'react';
 import Sidebar from '../../components/Dashboard/Sidebar';
 import Header from '../../components/Dashboard/Header';
-import { Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-} from 'chart.js';
 import { ChevronRight } from 'lucide-react';
 
-// Register Chart.js components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler
-);
+// Simple Line Chart Component
+function SimpleLineChart() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // Clear canvas
+    ctx.clearRect(0, 0, width, height);
+
+    // Data points for all 12 months
+    const data = [145, 180, 160, 190, 170, 205, 175, 195, 185, 210, 200, 220];
+    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    const padding = 40;
+    const chartWidth = width - padding * 2;
+    const chartHeight = height - padding * 2;
+    
+    const max = Math.max(...data);
+    const min = Math.min(...data);
+    const range = max - min;
+    
+    // Calculate points
+    const points = data.map((value, index) => ({
+      x: padding + (chartWidth / (data.length - 1)) * index,
+      y: padding + chartHeight - ((value - min) / range) * chartHeight,
+    }));
+
+    // Draw gradient fill
+    const gradient = ctx.createLinearGradient(0, padding, 0, height - padding);
+    gradient.addColorStop(0, 'rgba(0, 128, 128, 0.3)');
+    gradient.addColorStop(1, 'rgba(240, 245, 245, 0.1)');
+
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, height - padding);
+    points.forEach((point) => ctx.lineTo(point.x, point.y));
+    ctx.lineTo(points[points.length - 1].x, height - padding);
+    ctx.closePath();
+    ctx.fill();
+
+    // Draw line with smooth curves
+    ctx.strokeStyle = '#008080';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    
+    for (let i = 0; i < points.length - 1; i++) {
+      const xMid = (points[i].x + points[i + 1].x) / 2;
+      const yMid = (points[i].y + points[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points[i].x, points[i].y, xMid, yMid);
+    }
+    ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+    ctx.stroke();
+
+    // Draw labels
+    ctx.fillStyle = '#638785';
+    ctx.font = 'bold 13px Manrope, sans-serif';
+    ctx.textAlign = 'center';
+    labels.forEach((label, index) => {
+      ctx.fillText(label, points[index].x, height - 10);
+    });
+  }, []);
+
+  return (
+    <div className="overflow-x-auto scrollbar-hide">
+      <canvas
+        ref={canvasRef}
+        width={1400}
+        height={200}
+        className="h-full"
+      />
+    </div>
+  );
+}
 
 export default function Home() {
-  const chartData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-    datasets: [
-      {
-        data: [145, 180, 160, 190, 170, 205, 175],
-        borderColor: '#008080',
-        backgroundColor: 'rgba(240, 245, 245, 0.5)',
-        borderWidth: 3,
-        fill: true,
-        tension: 0.4,
-        pointRadius: 0,
-        pointHoverRadius: 0,
-      },
-    ],
-  };
-
-  const chartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        enabled: false,
-      },
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false,
-        },
-        ticks: {
-          color: '#638785',
-          font: {
-            family: 'Manrope',
-            size: 13,
-            weight: '700',
-          },
-        },
-      },
-      y: {
-        display: false,
-      },
-    },
-  };
-
   const learningResources = [
     {
       title: 'Investment Basics',
@@ -129,7 +142,7 @@ export default function Home() {
 
                   {/* Chart */}
                   <div className="h-[148px] mb-8">
-                    <Line data={chartData} options={chartOptions} />
+                    <SimpleLineChart />
                   </div>
                 </div>
 

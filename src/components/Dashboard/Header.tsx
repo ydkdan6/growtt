@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <>
       {/* Desktop Header */}
-      <header className="hidden lg:flex fixed top-0 left-20 right-0 h-20 bg-dark-teal z-40 items-center justify-between px-5">
+      <header className="hidden lg:flex fixed top-0 left-20 right-0 h-20 bg-[#003333] z-40 items-center justify-between px-5">
         {/* User Type Toggle */}
         <div className="flex items-center gap-2">
           <button
