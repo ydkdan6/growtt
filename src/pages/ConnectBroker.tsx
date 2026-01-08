@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft,
   Lock,
@@ -10,6 +10,7 @@ import HeaderNav from "../components/header";
 export default function ConnectBroker() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentBg, setCurrentBg] = useState(0);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -29,6 +30,7 @@ export default function ConnectBroker() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate('/dashboard');
     console.log('Form submitted:', formData);
     // Handle form submission
   };
