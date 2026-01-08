@@ -121,8 +121,8 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Column - Portfolio Chart */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
-                <div className="bg-card-bg rounded-xl p-6 border-2 border-gray-200/20">
+              <div className="bg-white rounded-2xl mt-6 p-6 shadow-lg">
+                <div className="bg-gray-200/20 rounded-xl p-6 border-2 border-gray-200/20">
                   {/* Portfolio Header */}
                   <div className="mb-2">
                     <p className="text-base text-text-primary">Portfolio Value</p>
@@ -179,7 +179,7 @@ export default function Home() {
                   <p className="text-white/60 text-sm mb-4">
                     Learn the basics of investing and how to get started.
                   </p>
-                  <button className="bg-teal text-white px-4 py-2 rounded-lg text-sm">
+                  <button className="bg-growtt-teal text-white px-4 py-2 rounded-lg text-sm">
                     Learn now
                   </button>
                 </div>
@@ -194,8 +194,8 @@ export default function Home() {
             {/* Right Column */}
             <div className="space-y-6">
               {/* Asset Allocation */}
-              <div className="bg-white rounded-2xl p-6 border-4 border-gray-200/20 shadow-xl">
-                <div className="bg-card-bg rounded-xl p-6">
+              <div className="bg-white rounded-2xl mt-6 p-6 border-4 border-gray-200/20 shadow-xl">
+                <div className="bg-gray-200/20 rounded-xl p-6">
                   <p className="text-base font-medium font-manrope text-text-primary mb-2">
                     Asset Allocation (Demo)
                   </p>
@@ -230,7 +230,7 @@ export default function Home() {
                   {learningResources.map((resource) => (
                     <div
                       key={resource.title}
-                      className="bg-card-bg rounded-xl p-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors"
+                      className="bg-gray-200/20 rounded-xl p-4 flex items-center gap-4 cursor-pointer hover:bg-gray-100 transition-colors"
                     >
                       <div className="w-[76px] h-[59px] rounded overflow-hidden flex-shrink-0">
                         <img
