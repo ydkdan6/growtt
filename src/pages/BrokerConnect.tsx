@@ -127,18 +127,21 @@ export default function BrokerConnect() {
         <div className="border-[10px] border-brand-light rounded-2xl p-6">
           <div className="flex flex-col lg:flex-row gap-2 bg-white rounded-xl overflow-hidden">
             {/* Video Thumbnail */}
-            <div
-              className="flex-1 relative rounded-lg overflow-hidden"
+            <a
+              href="https://youtube.com/shorts/IujN1SOpaBc?feature=shared"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 relative rounded-lg overflow-hidden block"
               style={{
                 backgroundImage:
-                  "url('https://api.builder.io/api/v1/image/assets/TEMP/a3e0e6ca413a58125fdaf5c794b6d743d737220a?width=1240')",
+                  "url('/images/thumb.jpg')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 minHeight: "256px",
               }}
             >
               <div className="absolute inset-0 flex items-center justify-center">
-                <button className="w-15 h-15 rounded-full bg-transparent hover:scale-110 transition-transform">
+                <div className="w-15 h-15 rounded-full bg-transparent hover:scale-110 transition-transform">
                   <svg
                     width="60"
                     height="60"
@@ -151,22 +154,22 @@ export default function BrokerConnect() {
                       fill="#F5F5F5"
                     />
                   </svg>
-                </button>
+                </div>
               </div>
-            </div>
+            </a>
 
             {/* Video Info */}
             <div className="flex-1 p-4 space-y-4">
               <h3 className="text-lg font-bold text-brand-dark leading-tight">
-                Master wealth management for success
+                Growtt Official Launch Announcement
               </h3>
 
               <p className="text-base text-brand-dark/60">
-                Key trends and predictions for the upcoming quarter.
+                We Educate, Connect and Empower.
               </p>
 
               <button className="flex items-center gap-2 px-4 py-1.5 text-sm text-brand-dark border border-brand-dark/20 rounded-lg bg-white hover:bg-gray-50 transition-colors">
-                <span>Watch Now</span>
+                <a href="https://youtube.com/shorts/IujN1SOpaBc?feature=shared" target="_blank">Watch Now</a>
                 <Play className="w-4 h-4" />
               </button>
             </div>

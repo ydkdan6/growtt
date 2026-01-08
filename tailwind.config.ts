@@ -13,6 +13,12 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Gill Sans MT', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
+        manrope: ['Manrope', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
+        inter: ['Inter', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
+        grotesk: ['Space Grotesk', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -70,14 +76,19 @@ export default {
           gray: "#DAD9D8",
           light: "#F5F5F5",
         },
+        'dark-teal': 'hsl(var(--dark-teal))',
+        'teal': 'hsl(var(--teal))',
+        'orange': 'hsl(var(--orange))',
+        'light-gray': 'hsl(var(--light-gray))',
+        'card-bg': 'hsl(var(--card-bg))',
+        'text-primary': 'hsl(var(--text-primary))',
+        'text-secondary': 'hsl(var(--text-secondary))',
+        'green-positive': 'hsl(var(--green-positive))',
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-      },
-      fontFamily: {
-        sans: ["Gill Sans MT", "-apple-system", "Roboto", "Helvetica", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
