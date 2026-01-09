@@ -39,6 +39,7 @@ import Unsubscribe from "./pages/Unsubscribe";
  
 // Investment Dashboard Imports
 import Home from "./pages/Dashboard/Home";
+import Invest from "./pages/Dashboard/Invest";
 
 
 const queryClient = new QueryClient();
@@ -71,6 +72,7 @@ const App = () => (
           <Route path="/Onboarding/step13" element={<OnboardingStep13 />} />
           {/* Investment Dashboard Routes */}
           <Route path="/dashboard" element={<Home />} />
+          <Route path="/invest" element={<Invest />} />
 
 
           <Route path="/about" element={<About />} />
