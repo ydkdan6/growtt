@@ -1,9 +1,22 @@
 import { useState } from 'react';
 import { Menu, Bell } from 'lucide-react';
+import { InfoModal } from './Modal';
 
-const Header = () => {
+interface HeaderProps {
+  onProfessionalClick?: () => void;
+}
+
+const Header = ({ onProfessionalClick }: HeaderProps) => {
   const [activeTab, setActiveTab] = useState<'portfolio' | 'wallet' | 'seeds'>('portfolio');
   const [userType, setUserType] = useState<'beginner' | 'professional'>('beginner');
+  const [showProfessionalModal, setShowProfessionalModal] = useState(false);
+
+  const handleProfessionalClick = () => {
+    setShowProfessionalModal(true);
+    if (onProfessionalClick) {
+      onProfessionalClick();
+    }
+  };
 
   return (
     <>
@@ -13,17 +26,17 @@ const Header = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setUserType('beginner')}
-            className={`text-base leading-6 ${
-              userType === 'beginner' ? 'text-white font-bold' : 'text-white/60 font-normal'
+            className={`text-base leading-6 transition-colors ${
+              userType === 'beginner' ? 'text-white font-bold' : 'text-white/60 font-normal hover:text-white/80'
             }`}
           >
             Beginner
           </button>
           <div className="w-px h-6 bg-white/20" />
           <button
-            onClick={() => setUserType('professional')}
-            className={`text-base leading-6 ${
-              userType === 'professional' ? 'text-white font-bold' : 'text-white/60 font-normal'
+            onClick={handleProfessionalClick}
+            className={`text-base leading-6 transition-colors ${
+              userType === 'professional' ? 'text-white font-bold' : 'text-white/60 font-normal hover:text-white/80'
             }`}
           >
             Professional
@@ -36,8 +49,8 @@ const Header = () => {
           <div className="flex items-center gap-2 px-4 py-4 rounded-[20px] border border-white/100 bg-[#333]">
             <button
               onClick={() => setActiveTab('portfolio')}
-              className={`text-base leading-6 ${
-                activeTab === 'portfolio' ? 'text-white font-bold' : 'text-white/60 font-normal'
+              className={`text-base leading-6 transition-colors ${
+                activeTab === 'portfolio' ? 'text-white font-bold' : 'text-white/60 font-normal hover:text-white/80'
               }`}
             >
               Portfolio
@@ -45,8 +58,8 @@ const Header = () => {
             <div className="w-px h-6 bg-white/20" />
             <button
               onClick={() => setActiveTab('wallet')}
-              className={`text-base leading-6 ${
-                activeTab === 'wallet' ? 'text-white font-bold' : 'text-white/60 font-normal'
+              className={`text-base leading-6 transition-colors ${
+                activeTab === 'wallet' ? 'text-white font-bold' : 'text-white/60 font-normal hover:text-white/80'
               }`}
             >
               Wallet
@@ -54,8 +67,8 @@ const Header = () => {
             <div className="w-px h-6 bg-white/20" />
             <button
               onClick={() => setActiveTab('seeds')}
-              className={`text-base leading-6 ${
-                activeTab === 'seeds' ? 'text-white font-bold' : 'text-white/60 font-normal'
+              className={`text-base leading-6 transition-colors ${
+                activeTab === 'seeds' ? 'text-white font-bold' : 'text-white/60 font-normal hover:text-white/80'
               }`}
             >
               Seeds
@@ -64,7 +77,7 @@ const Header = () => {
 
           {/* Notification and Profile */}
           <div className="flex items-center gap-8">
-            <button className="w-10 h-10 rounded-full bg-[#F0F5F5] flex items-center justify-center">
+            <button className="w-10 h-10 rounded-full bg-[#F0F5F5] flex items-center justify-center hover:bg-white/90 transition-colors">
               <Bell className="w-6 h-6 text-[#030712]" />
             </button>
             <img
@@ -101,6 +114,13 @@ const Header = () => {
         <Bell className="w-6 h-6 text-white" />
         <Menu className="w-6 h-6 text-white" />
       </header>
+
+      {/* Professional Modal */}
+      <InfoModal
+        isOpen={showProfessionalModal}
+        onClose={() => setShowProfessionalModal(false)}
+        message="Professional mode isn't available yet. For now enjoy exploring our beginner experience"
+      />
     </>
   );
 };

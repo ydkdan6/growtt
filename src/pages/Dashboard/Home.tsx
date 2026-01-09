@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Sidebar from '../../components/Dashboard/Sidebar';
 import Header from '../../components/Dashboard/Header';
+import { InfoModal } from '../../components/Dashboard/Modal';
 import { ChevronRight } from 'lucide-react';
 
 // Simple Line Chart Component
@@ -23,15 +24,15 @@ function SimpleLineChart() {
     // Data points for all 12 months
     const data = [145, 180, 160, 190, 170, 205, 175, 195, 185, 210, 200, 220];
     const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    
+
     const padding = 40;
     const chartWidth = width - padding * 2;
     const chartHeight = height - padding * 2;
-    
+
     const max = Math.max(...data);
     const min = Math.min(...data);
     const range = max - min;
-    
+
     // Calculate points
     const points = data.map((value, index) => ({
       x: padding + (chartWidth / (data.length - 1)) * index,
@@ -56,7 +57,7 @@ function SimpleLineChart() {
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo(points[0].x, points[0].y);
-    
+
     for (let i = 0; i < points.length - 1; i++) {
       const xMid = (points[i].x + points[i + 1].x) / 2;
       const yMid = (points[i].y + points[i + 1].y) / 2;
@@ -87,6 +88,17 @@ function SimpleLineChart() {
 }
 
 export default function Home() {
+  const [showDemoModal, setShowDemoModal] = useState(false);
+
+  // Show demo modal on page load
+  useEffect(() => {
+    const hasSeenModal = sessionStorage.getItem('hasSeenDemoModal');
+    if (!hasSeenModal) {
+      setShowDemoModal(true);
+      sessionStorage.setItem('hasSeenDemoModal', 'true');
+    }
+  }, []);
+
   const learningResources = [
     {
       title: 'Investment Basics',
@@ -116,7 +128,7 @@ export default function Home() {
       <Header />
 
       {/* Desktop Layout */}
-      <main className="hidden lg:block lg:ml-20 pt-20 px-6 pb-6">
+       <main className="hidden lg:block lg:ml-20 pt-20 px-6 pb-6">
         <div className="max-w-[1360px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Column - Portfolio Chart */}
@@ -168,7 +180,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
+              
               {/* Beginner's Guide Banner */}
               <div className="mt-6 bg-[#003333] rounded-2xl p-4 shadow-lg flex items-center justify-between overflow-hidden">
                 <div className="flex-1">
@@ -240,7 +252,7 @@ export default function Home() {
                         />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-base font-bold text-text-secondary mb-1">
+                        <h3 className="text-xs font-bold text-text-secondary mb-1">
                           {resource.title}
                         </h3>
                         <p className="text-sm text-text-secondary">{resource.description}</p>
@@ -331,6 +343,14 @@ export default function Home() {
           <span className="text-base text-text-secondary opacity-80">Professional</span>
         </div>
       </main>
+
+      {/* Demo Account Modal - Shows on page load */}
+      <InfoModal
+        isOpen={showDemoModal}
+        onClose={() => setShowDemoModal(false)}
+        message="This is a demo account with virtual funds, a safe space to learn and practice investing."
+      />
+
     </div>
   );
 }

@@ -5,7 +5,8 @@ import { X } from 'lucide-react';
 const Sidebar = () => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const navItems = [
     { name: 'Home', path: '/', icon: 'home' },
     { name: 'Invest', path: '/invest', icon: 'bar_chart' },
@@ -17,9 +18,15 @@ const Sidebar = () => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-20 bg-[#003333] border-r border-white/60 flex-col items-center py-6 z-50">
+      <aside
+        className={`hidden lg:flex fixed left-0 top-0 h-screen bg-[#003333] border-r border-white/60 flex-col items-center py-6 z-50 transition-all duration-300 ease-in-out ${
+          isExpanded ? 'w-64' : 'w-20'
+        }`}
+        onMouseEnter={() => setIsExpanded(true)}
+        onMouseLeave={() => setIsExpanded(false)}
+      >
         {/* Logo */}
-        <div className="mb-8">
+        <div className={`mb-8 transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-100'}`}>
           <svg width="26" height="40" viewBox="0 0 26 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_6398_6183)">
               <path fillRule="evenodd" clipRule="evenodd" d="M15.664 0.267244V5.5688C14.8353 5.26544 13.934 5.10654 12.9964 5.10654C8.65697 5.10654 5.13167 8.60238 5.13167 12.9144C5.13167 13.875 5.30612 14.7996 5.62594 15.6446C4.09226 16.6053 2.76209 17.862 1.7154 19.3427C0.625105 17.4503 0 15.2546 0 12.9144C0 5.78548 5.8222 0 12.9964 0C13.9122 0 14.799 0.0938967 15.664 0.267244Z" fill="#008080"/>
@@ -36,12 +43,14 @@ const Sidebar = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex flex-col gap-4 w-12">
+        <nav className={`flex flex-col gap-2 transition-all duration-300 ${isExpanded ? 'w-full px-4' : 'w-12'}`}>
           {navItems.map((item, index) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`flex items-center justify-center p-2 rounded-lg transition-colors ${
+              className={`flex items-center gap-3 p-3 rounded-lg transition-colors whitespace-nowrap ${
+                isExpanded ? 'justify-start' : 'justify-center'
+              } ${
                 location.pathname === item.path
                   ? 'bg-white'
                   : 'hover:bg-white/10'
@@ -73,12 +82,17 @@ const Sidebar = () => {
                   <path d="M3.85059 18.5235V17.7152C3.85059 17.0567 4.01659 16.4901 4.34859 16.0155C4.68042 15.5406 5.109 15.1801 5.63434 14.9337C6.759 14.4297 7.83975 14.0517 8.87659 13.7997C9.91325 13.5477 10.9539 13.4217 11.9986 13.4217C13.0508 13.4217 14.0907 13.5519 15.1183 13.8122C16.146 14.0726 17.2195 14.448 18.3388 14.9385C18.8868 15.1818 19.3267 15.5401 19.6583 16.0135C19.9898 16.4868 20.1556 17.0541 20.1556 17.7152V18.5235C20.1556 18.9916 19.9893 19.3926 19.6566 19.7262C19.3239 20.0599 18.9205 20.2267 18.4463 20.2267H5.55384C5.08134 20.2267 4.67934 20.0599 4.34784 19.7262C4.01634 19.3926 3.85059 18.9916 3.85059 18.5235Z" fill="white"/>
                 </svg>
               )}
+              {isExpanded && (
+                <span className="text-sm font-medium text-white transition-opacity duration-300">
+                  {item.name}
+                </span>
+              )}
             </Link>
           ))}
         </nav>
 
         {/* Logo at bottom */}
-        {/* <div className="mt-auto">
+        {/* <div className={`mt-auto transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-100'}`}>
           <svg width="41" height="13" viewBox="0 0 41 13" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_6716_8213)">
               <path d="M9.44431 1.4672V3.09246L9.51859 2.96999C10.1751 1.87611 10.8317 1.32812 11.4862 1.32812C11.9981 1.32812 12.5322 1.59589 13.0884 2.12934L12.3736 3.36229C11.9018 2.89942 11.4641 2.66902 11.0605 2.66902C10.6228 2.66902 10.2434 2.88489 9.92416 3.31663C9.60292 3.74837 9.44431 4.25899 9.44431 4.85056V8.55773H8.08105V1.4672H9.44431Z" fill="white"/>
