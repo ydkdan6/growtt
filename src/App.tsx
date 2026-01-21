@@ -40,6 +40,9 @@ import Unsubscribe from "./pages/Unsubscribe";
 // Investment Dashboard Imports
 import Home from "./pages/Dashboard/Home";
 import Invest from "./pages/Dashboard/Invest";
+import Learn from "./pages/Dashboard/Learn";
+import GrowttAI from "./pages/Dashboard/GrowttAI";
+import Profile from "./pages/Dashboard/Profile";
 
 
 const queryClient = new QueryClient();
@@ -73,6 +76,9 @@ const App = () => (
           {/* Investment Dashboard Routes */}
           <Route path="/dashboard" element={<Home />} />
           <Route path="/invest" element={<Invest />} />
+          <Route path="/learn" element={<Learn />} />
+          <Route path="/growttai" element={<GrowttAI />} />
+          <Route path="/profile" element={<Profile />} />
 
 
           <Route path="/about" element={<About />} />

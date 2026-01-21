@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import Sidebar from '../../components/Dashboard/Sidebar';
 import Header from '../../components/Dashboard/Header';
+import {
+  Dialog,
+  DialogContent,
+} from '../../components/ui/dialog';
 
 export default function Invest() {
   const [activeTab, setActiveTab] = useState<'portfolio' | 'allocation' | 'performance'>('portfolio');
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('below-10000');
 
   const filterTabs = [
     { label: 'Type', active: false },
@@ -12,38 +19,11 @@ export default function Invest() {
     { label: 'All', active: false },
   ];
 
-//   const investmentCategories = [
-//     {
-//       title: 'Treasury Bills',
-//       icon: 'universal_currency_alt',
-//       highlight: true,
-//     },
-//     {
-//       title: 'Commercial Papers',
-//       icon: 'contract_edit',
-//       highlight: false,
-//     },
-//     {
-//       title: 'FGN Bonds',
-//       icon: 'files',
-//       highlight: false,
-//     },
-//     {
-//       title: 'Equities Funds',
-//       icon: 'chart_data',
-//       highlight: false,
-//     },
-//     {
-//       title: 'Money Market Instruments',
-//       icon: 'attach_money',
-//       highlight: false,
-//     },
-//     {
-//       title: 'Green Bonds / Infra Notes',
-//       icon: 'contract_edit',
-//       highlight: false,
-//     },
-//   ];
+  const handlePurchaseClick = () => {
+    setShowConfirmModal(false);
+    setShowPurchaseModal(false);
+    // Handle purchase logic here
+  };
 
   return (
     <div className="min-h-screen bg-[#F5F5F5]">
@@ -68,31 +48,6 @@ export default function Invest() {
                   ))}
                 </div>
               </div>
-
-              {/* Investment Categories */}
-              {/* <div className="bg-[#002626] rounded-lg p-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {investmentCategories.map((category, index) => (
-                    <div
-                      key={category.title}
-                      className={`p-4 rounded-lg border transition-all cursor-pointer ${
-                        category.highlight
-                          ? 'bg-[rgba(25,229,229,0.2)] border-transparent'
-                          : 'border-[rgba(25,229,229,0.2)] hover:bg-[rgba(25,229,229,0.1)]'
-                      }`}
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="w-5 h-5 flex-shrink-0">
-                          <div className="w-full h-full bg-white/20 rounded"></div>
-                        </div>
-                        <p className="text-white font-inter text-base leading-6">
-                          {category.title}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div> */}
 
               {/* Tab Navigation */}
               <div className="flex items-center gap-2 flex-wrap">
@@ -280,7 +235,10 @@ export default function Invest() {
                   <h2 className="text-2xl font-bold font-manrope text-[#121717] mb-4">
                     ₦100,000
                   </h2>
-                  <button className="bg-white text-[#030712] px-4 py-2 rounded-2xl text-sm font-['Gill_Sans_MT',sans-serif] text-center w-full">
+                  <button 
+                    onClick={() => setShowPurchaseModal(true)}
+                    className="bg-white text-[#030712] px-4 py-2 rounded-2xl text-sm font-['Gill_Sans_MT',sans-serif] text-center w-full hover:bg-gray-50 transition-colors"
+                  >
                     Buy Demo Funds with Seeds
                   </button>
                 </div>
@@ -319,6 +277,112 @@ export default function Invest() {
           </div>
         </div>
       </main>
+
+      {/* Purchase Funds Modal */}
+      <Dialog open={showPurchaseModal} onOpenChange={setShowPurchaseModal}>
+        <DialogContent className="sm:max-w-[600px] bg-white rounded-2xl p-6 gap-8">
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4">
+              <h2 className="text-[#030712] font-['Gill_Sans_MT',sans-serif] text-[22px] leading-10">
+                Buy Demo Funds
+              </h2>
+              <p className="text-[rgba(3,7,18,0.6)] font-['Gill_Sans_MT',sans-serif] text-base leading-[21px]">
+                Select your preferred demo funds amount.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              {[
+                { id: 'below-10000', label: 'Below', amount: '₦10,000' },
+                { id: '50-seeds', label: '50 Seeds', separator: '-', amount: '₦10,000' },
+                { id: '100-seeds', label: '100 Seeds', separator: '-', amount: '₦1,000,000' },
+                { id: '500-seeds', label: '500 Seeds', separator: '-', amount: '₦5,000,000' },
+                { id: '1000-seeds', label: '1000 Seeds', separator: '-', amount: '₦10,000,000' },
+              ].map((option) => (
+                <button
+                  key={option.id}
+                  onClick={() => setSelectedOption(option.id)}
+                  className="flex items-center gap-4 px-4 py-1.5 rounded-lg border border-[#DBE6E3] bg-white hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-center gap-4 flex-1">
+                    <span className="text-[rgba(3,7,18,0.6)] font-['Gill_Sans_MT',sans-serif] text-base">
+                      {option.label}
+                    </span>
+                    {option.separator && (
+                      <span className="text-black font-['Gill_Sans_MT',sans-serif] text-base">
+                        {option.separator}
+                      </span>
+                    )}
+                    <span className="text-[rgba(3,7,18,0.6)] font-['Gill_Sans_MT',sans-serif] text-base">
+                      {option.amount}
+                    </span>
+                  </div>
+                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
+                    selectedOption === option.id ? 'border-[#4FDAC3]' : 'border-[#DDDDDD]'
+                  }`}>
+                    {selectedOption === option.id && (
+                      <div className="w-2 h-2 rounded-full bg-[#4FDAC3]" />
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center gap-2">
+            <div className="flex items-center gap-8">
+              <button
+                onClick={() => {
+                  setShowPurchaseModal(false);
+                  setShowConfirmModal(true);
+                }}
+                className="px-4 h-10 bg-[#008080] text-[#F5F5F5] rounded-xl font-['Gill_Sans_MT',sans-serif] text-sm hover:bg-[#006666] transition-colors"
+              >
+                Purchase Funds
+              </button>
+              <button
+                onClick={() => setShowPurchaseModal(false)}
+                className="px-4 h-10 bg-[#E8F2F2] text-[#030712] rounded-xl font-['Gill_Sans_MT',sans-serif] text-sm hover:bg-[#D1E8E8] transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+            <p className="text-[rgba(3,7,18,0.6)] text-center font-['Gill_Sans_MT',sans-serif] text-sm leading-[21px]">
+              By confirming, you agree to our terms and conditions.
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Confirmation Modal */}
+      <Dialog open={showConfirmModal} onOpenChange={setShowConfirmModal}>
+        <DialogContent className="sm:max-w-[600px] bg-white rounded-2xl p-6 gap-8">
+          <div className="flex flex-col items-center gap-16">
+            <img 
+              src="https://api.builder.io/api/v1/image/assets/TEMP/f46bb3d8b6cf7199b953176335f87a0d53e60f9d?width=506" 
+              alt="Buy confirmation" 
+              className="w-[253px] h-[253px]"
+            />
+            <div className="flex flex-col gap-2 w-full">
+              <h2 className="text-[#0D141C] text-center font-['Gill_Sans_MT',sans-serif] text-lg font-bold leading-[23px]">
+                Are you sure?
+              </h2>
+              <p className="text-[rgba(3,7,18,0.6)] text-center font-['Gill_Sans_MT',sans-serif] text-base leading-[21px]">
+                50 seeds will be deducted from your seeds balance.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center gap-2">
+            <button
+              onClick={handlePurchaseClick}
+              className="px-4 h-10 bg-[#008080] text-[#F5F5F5] rounded-xl font-['Gill_Sans_MT',sans-serif] text-sm hover:bg-[#006666] transition-colors"
+            >
+              Continue
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

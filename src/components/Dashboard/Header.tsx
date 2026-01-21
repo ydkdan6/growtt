@@ -90,7 +90,7 @@ const Header = ({ onProfessionalClick }: HeaderProps) => {
       </header>
 
       {/* Mobile Header */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-dark-teal z-40 flex items-center justify-center px-5 gap-4">
+      <header className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-[#003333] z-40 flex items-center justify-center px-5 gap-4">
         <div className="flex-1">
           <svg width="80" height="25" viewBox="0 0 80 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_6738_10940)">
