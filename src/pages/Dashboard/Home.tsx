@@ -22,7 +22,7 @@ function SimpleLineChart() {
     ctx.clearRect(0, 0, width, height);
 
     // Data points for all 12 months
-    const data = [145, 180, 160, 190, 170, 205, 175, 195, 185, 210, 200, 220];
+    const data = [200, 199, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200];
     const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     const padding = 40;
@@ -137,19 +137,19 @@ export default function Home() {
                 <div className="bg-gray-200/20 rounded-xl p-6 border-2 border-gray-200/20">
                   {/* Portfolio Header */}
                   <div className="mb-2">
-                    <p className="text-base text-text-primary">Portfolio Value</p>
+                    <p className="text-base text-text-primary">Total Wealth</p>
                     <p className="text-base text-text-primary">Demo</p>
                   </div>
 
                   {/* Portfolio Value */}
                   <h1 className="text-[32px] font-bold font-inter text-text-primary mb-2">
-                    ₦50,000,000
+                    ₦0
                   </h1>
 
                   {/* Time Period and Return */}
                   <div className="flex items-center gap-1 mb-4">
                     <p className="text-base text-text-primary">Last 12 Months</p>
-                    <p className="text-base font-medium text-green-positive">+15%</p>
+                    <p className="text-base font-medium text-red-500">0%</p>
                   </div>
 
                   {/* Chart */}
@@ -164,19 +164,19 @@ export default function Home() {
                     <p className="text-base font-medium font-manrope text-text-primary mb-2">
                       Total Value
                     </p>
-                    <p className="text-2xl font-bold font-manrope text-text-primary">$22,500</p>
+                    <p className="text-2xl font-bold font-manrope text-text-primary">₦0</p>
                   </div>
                   <div className="bg-white rounded-xl p-6 border-4 border-gray-200/20 shadow-sm">
                     <p className="text-base font-medium font-manrope text-text-primary mb-2">
                       Overall Return
                     </p>
-                    <p className="text-2xl font-bold font-manrope text-text-primary">+15%</p>
+                    <p className="text-2xl font-bold font-manrope text-text-primary">0%</p>
                   </div>
                   <div className="bg-white rounded-xl p-6 border-4 border-gray-200/20 shadow-sm">
                     <p className="text-base font-medium font-manrope text-text-primary mb-2">
                       Volatility
                     </p>
-                    <p className="text-2xl font-bold font-manrope text-text-primary">8%</p>
+                    <p className="text-2xl font-bold font-manrope text-text-primary">0%</p>
                   </div>
                 </div>
               </div>
@@ -212,7 +212,7 @@ export default function Home() {
                     Asset Allocation (Demo)
                   </p>
                   <h2 className="text-2xl font-bold font-manrope text-text-primary mb-3">
-                    ₦50,000,000
+                    ₦0
                   </h2>
 
                   {/* Asset Bars */}
