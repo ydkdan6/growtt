@@ -45,13 +45,60 @@ export default function Index() {
   const [currentLearningIndex, setCurrentLearningIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showNewsletterModal, setShowNewsletterModal] = useState(true);
-  const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+  // const [showWaitlistModal, setShowWaitlistModal] = useState(false);
   const [showFAQModal, setShowFAQModal] = useState(false);
   const [showServicesModal, setShowServicesModal] = useState(false);
   const [showEbookModal, setShowEbookModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
-const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
+  const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+
+  const WAITLIST_EXPIRY_DAYS = 7;
+  const WAITLIST_SUBSCRIBED = "waitlist_subscribed";
+  const WAITLIST_LAST_SEEN = "waitlist_last_seen";
+
+useEffect(() => {
+  const isSubscribed = localStorage.getItem(WAITLIST_SUBSCRIBED);
+
+  // If user already registered → NEVER show again
+  if (isSubscribed === "true") return;
+
+  const lastSeen = localStorage.getItem(WAITLIST_LAST_SEEN);
+
+  if (!lastSeen) {
+    // First-time visitor
+    setTimeout(() => setOpen(true), 1500);
+    return;
+  }
+
+  const lastSeenTime = parseInt(lastSeen, 10);
+  const now = Date.now();
+
+  const daysPassed =
+    (now - lastSeenTime) / (1000 * 60 * 60 * 24);
+
+  if (daysPassed >= WAITLIST_EXPIRY_DAYS) {
+    setTimeout(() => setOpen(true), 1500);
+  }
+}, []);
+
+  const handleOpenChange = (value: boolean) => {
+  setOpen(value);
+
+  if (!value) {
+    localStorage.setItem(
+      WAITLIST_LAST_SEEN,
+      Date.now().toString()
+    );
+  }
+};
+
+  // const handleSubscribe = () => {
+  //   // Called when user successfully joins
+  //   localStorage.setItem("waitlist_seen", "true");
+  //   setOpen(false);
+  // };
 
   //Dummy for now
   const handleLogin = () => {
@@ -165,13 +212,16 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
 
   const handleNewsletterSubscribe = () => {
     setShowNewsletterModal(false);
-    setShowWaitlistModal(true);
+    // setShowWaitlistModal(true);
   };
 
-  const handleWaitlistSubscribe = () => {
-    setShowWaitlistModal(false);
-    setShowFAQModal(true);
-  };
+ const handleWaitlistSubscribe = () => {
+  // Mark permanently subscribed
+  localStorage.setItem(WAITLIST_SUBSCRIBED, "true");
+
+  setOpen(false);
+  setShowFAQModal(true);
+};
 
   const learningModules = [
   {
@@ -258,7 +308,7 @@ const [selectedEbook, setSelectedEbook] = useState<number | null>(null);
         </div>
         <div className="flex items-center gap-3">
           <button
-            onClick={() => setShowWaitlistModal(true)}
+            onClick={() => setOpen(true)}
             className="px-4 py-1 text-[15px] text-white border border-growtt-orange rounded-md hover:bg-white/10 transition-colors"
           >
             Join Waitlist
@@ -975,14 +1025,15 @@ meaningful and sustainable growth.{" "}
 
       {/* Modals */}
       <NewsletterModal
-        open={showNewsletterModal}
-        onOpenChange={setShowNewsletterModal}
-      />
-      <WaitlistModal
-        open={showWaitlistModal}
-        onOpenChange={setShowWaitlistModal}
-        onSubscribe={handleWaitlistSubscribe}
-      />
+  open={showNewsletterModal}
+  onOpenChange={setShowNewsletterModal}
+/>
+
+<WaitlistModal
+  open={open}
+  onOpenChange={handleOpenChange}
+  onSubscribe={handleWaitlistSubscribe}
+/>
       <FAQModal open={showFAQModal} onOpenChange={setShowFAQModal} />
 
       {/* Services Coming Soon Modal */}
