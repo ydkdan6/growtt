@@ -908,7 +908,7 @@ meaningful and sustainable growth.{" "}
               Get Started
             </button>
             <button className="px-6 py-3 border border-white/20 text-white rounded-md hover:bg-white/10 transition-colors">
-              <Link to='/dashboard'>Learn More</Link>
+              <Link to='/about'>Learn More</Link>
             </button>
           </div>
         </motion.div>

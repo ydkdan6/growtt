@@ -30,7 +30,7 @@ export default function ConnectBroker() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/dashboard');
+    navigate('/about');
     console.log('Form submitted:', formData);
     // Handle form submission
   };
