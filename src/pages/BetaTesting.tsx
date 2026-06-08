@@ -71,6 +71,15 @@ export default function BetaTesting() {
   const [submitted, setSubmitted] = useState(false);
   const [showFullTerms, setShowFullTerms] = useState(false);
 
+  const handleViewFullAgreement = () => {
+    setShowFullTerms(true);
+    setTimeout(() => {
+      document
+        .getElementById("agreement-section")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -284,7 +293,7 @@ export default function BetaTesting() {
                         I have read the Beta Programme Essentials and agree to the full{" "}
                         <button
                           type="button"
-                          onClick={() => setShowFullTerms(true)}
+                          onClick={handleViewFullAgreement}
                           className="underline hover:text-[#00A4A4] transition-colors"
                         >
                           Beta Tester &amp; Confidentiality Agreement
@@ -340,7 +349,7 @@ export default function BetaTesting() {
         </div>
 
         {/* Beta Tester & Confidentiality Agreement (truncated, expandable) */}
-        <div className="max-w-4xl mx-auto mt-16 text-justify">
+        <div id="agreement-section" className="max-w-4xl mx-auto mt-16 text-justify scroll-mt-24">
           <h2 className="text-2xl font-bold text-[#008080] font-['Gill_Sans_MT',sans-serif] mb-1 text-left">
             Beta Tester &amp; Confidentiality Agreement
           </h2>
