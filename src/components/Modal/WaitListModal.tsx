@@ -53,6 +53,7 @@ export function WaitlistModal({ open, onOpenChange, onSubscribe }: WaitlistModal
 
       setShowThankYou(true);
       resetForm();
+      onSubscribe();
 
       setTimeout(() => {
         setShowThankYou(false);

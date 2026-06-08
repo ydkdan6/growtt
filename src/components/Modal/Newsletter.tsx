@@ -14,9 +14,10 @@ import type { ApiError } from "../../services/apiClient";
 interface NewsletterModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onSubscribe?: () => void;
 }
 
-export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
+export function NewsletterModal({ open, onOpenChange, onSubscribe }: NewsletterModalProps) {
   const { api } = useApi();
   const [email, setEmail] = useState("");
   const [focus, setFocus] = useState("");
@@ -54,6 +55,7 @@ export function NewsletterModal({ open, onOpenChange }: NewsletterModalProps) {
       // Show thank you message
       setShowThankYou(true);
       resetForm();
+      onSubscribe?.();
 
       // Auto close after 3 seconds
       setTimeout(() => {

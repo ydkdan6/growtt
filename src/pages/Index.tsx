@@ -44,8 +44,7 @@ export default function Index() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentLearningIndex, setCurrentLearningIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [showNewsletterModal, setShowNewsletterModal] = useState(true);
-  // const [showWaitlistModal, setShowWaitlistModal] = useState(false);
+    const [showNewsletterModal, setShowNewsletterModal] = useState(false);
   const [showFAQModal, setShowFAQModal] = useState(false);
   const [showServicesModal, setShowServicesModal] = useState(false);
   const [showEbookModal, setShowEbookModal] = useState(false);
@@ -57,31 +56,39 @@ export default function Index() {
   const WAITLIST_EXPIRY_DAYS = 7;
   const WAITLIST_SUBSCRIBED = "waitlist_subscribed";
   const WAITLIST_LAST_SEEN = "waitlist_last_seen";
+  const NEWSLETTER_SUBSCRIBED = "newsletter_subscribed";
 
-useEffect(() => {
-  const isSubscribed = localStorage.getItem(WAITLIST_SUBSCRIBED);
+  // A user who has already filled in either popup form has engaged enough —
+  // neither popup should be shown to them again.
+  const hasEngagedWithPopups = () =>
+    localStorage.getItem(WAITLIST_SUBSCRIBED) === "true" ||
+    localStorage.getItem(NEWSLETTER_SUBSCRIBED) === "true";
 
-  // If user already registered → NEVER show again
-  if (isSubscribed === "true") return;
+  const isWaitlistDue = () => {
+    const lastSeen = localStorage.getItem(WAITLIST_LAST_SEEN);
+    if (!lastSeen) return true;
 
-  const lastSeen = localStorage.getItem(WAITLIST_LAST_SEEN);
+    const daysPassed = (Date.now() - parseInt(lastSeen, 10)) / (1000 * 60 * 60 * 24);
+    return daysPassed >= WAITLIST_EXPIRY_DAYS;
+  };
 
-  if (!lastSeen) {
-    // First-time visitor
-    setTimeout(() => setOpen(true), 1500);
-    return;
-  }
+  // Show the newsletter and waitlist popups one at a time: the newsletter
+  // modal opens first, and the waitlist modal only opens once the newsletter
+  // modal has been dismissed (and only if the user hasn't already engaged).
+  useEffect(() => {
+    if (hasEngagedWithPopups()) return;
 
-  const lastSeenTime = parseInt(lastSeen, 10);
-  const now = Date.now();
+    const timer = setTimeout(() => setShowNewsletterModal(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
-  const daysPassed =
-    (now - lastSeenTime) / (1000 * 60 * 60 * 24);
+  const handleNewsletterOpenChange = (value: boolean) => {
+    setShowNewsletterModal(value);
 
-  if (daysPassed >= WAITLIST_EXPIRY_DAYS) {
-    setTimeout(() => setOpen(true), 1500);
-  }
-}, []);
+    if (!value && !hasEngagedWithPopups() && isWaitlistDue()) {
+      setTimeout(() => setOpen(true), 800);
+    }
+  };
 
   const handleOpenChange = (value: boolean) => {
   setOpen(value);
@@ -93,12 +100,6 @@ useEffect(() => {
     );
   }
 };
-
-  // const handleSubscribe = () => {
-  //   // Called when user successfully joins
-  //   localStorage.setItem("waitlist_seen", "true");
-  //   setOpen(false);
-  // };
 
   //Dummy for now
   const handleLogin = () => {
@@ -211,12 +212,12 @@ useEffect(() => {
   };
 
   const handleNewsletterSubscribe = () => {
-    setShowNewsletterModal(false);
-    // setShowWaitlistModal(true);
+    // Mark permanently subscribed so neither popup is shown again
+    localStorage.setItem(NEWSLETTER_SUBSCRIBED, "true");
   };
 
  const handleWaitlistSubscribe = () => {
-  // Mark permanently subscribed
+  // Mark permanently subscribed so neither popup is shown again
   localStorage.setItem(WAITLIST_SUBSCRIBED, "true");
 
   setOpen(false);
@@ -489,7 +490,7 @@ meaningful and sustainable growth.{" "}
                   Subscribe Now
                 </button>
                 <button
-                  onClick={() => setShowWaitlistModal(true)}
+                  onClick={() => setOpen(true)}
                   className="px-6 py-3 border border-growtt-orange text-white rounded-md hover:bg-white/10 transition-colors flex items-center gap-2"
                 >
                   Join Waitlist
@@ -1000,12 +1001,12 @@ meaningful and sustainable growth.{" "}
               >
                 Privacy Policy
               </Link>
-              <a
-                href="#"
+              <Link
+                to="/terms"
                 className="underline hover:text-growtt-teal transition-colors"
               >
                 Terms of Service
-              </a>
+              </Link>
               <a
                 href="#"
                 className="underline hover:text-growtt-teal transition-colors"
@@ -1026,7 +1027,8 @@ meaningful and sustainable growth.{" "}
       {/* Modals */}
       <NewsletterModal
   open={showNewsletterModal}
-  onOpenChange={setShowNewsletterModal}
+  onOpenChange={handleNewsletterOpenChange}
+  onSubscribe={handleNewsletterSubscribe}
 />
 
 <WaitlistModal
