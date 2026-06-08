@@ -12,6 +12,7 @@ export interface ApiError {
 export interface NewsletterSubscriberPayload {
   email: string;
   asset_class: string;
+  name?: string;
 }
 
 export interface ApiResponse<T = any> {

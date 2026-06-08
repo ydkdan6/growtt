@@ -36,6 +36,7 @@ import Budget from "./pages/Budget";
 import BudgetBroker from "./pages/BudgetBroker";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import BetaTesting from "./pages/BetaTesting";
 import Unsubscribe from "./pages/Unsubscribe";
  
 // Investment Dashboard Imports
@@ -86,6 +87,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/beta-testing" element={<BetaTesting />} />
           <Route path="/unsubscribe" element={<Unsubscribe />} />
           <Route path="/services" element={<ServicesMenu />} />
           <Route path="/learn-more" element={<LearnMore />} />

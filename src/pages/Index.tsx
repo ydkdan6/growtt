@@ -20,6 +20,7 @@ import { SeedsSection } from "../components/SeedSection";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { GrowttLogo } from "../components/logo";
 import { FAQModal } from "../components/Modal/FAQModal";
+import { BetaTesterModal } from "../components/Modal/BetaTesterModal";
 import { NewsletterModal } from "../components/Modal/Newsletter";
 import { WaitlistModal } from "../components/Modal/WaitListModal";
 import { ServicesDropdown } from "../components/Modal/ServicesDropdown";
@@ -46,6 +47,7 @@ export default function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showNewsletterModal, setShowNewsletterModal] = useState(false);
   const [showFAQModal, setShowFAQModal] = useState(false);
+  const [showBetaModal, setShowBetaModal] = useState(false);
   const [showServicesModal, setShowServicesModal] = useState(false);
   const [showEbookModal, setShowEbookModal] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
@@ -57,6 +59,7 @@ export default function Index() {
   const WAITLIST_SUBSCRIBED = "waitlist_subscribed";
   const WAITLIST_LAST_SEEN = "waitlist_last_seen";
   const NEWSLETTER_SUBSCRIBED = "newsletter_subscribed";
+  const BETA_BANNER_SEEN = "beta_banner_seen";
 
   // A user who has already filled in either popup form has engaged enough —
   // neither popup should be shown to them again.
@@ -72,11 +75,30 @@ export default function Index() {
     return daysPassed >= WAITLIST_EXPIRY_DAYS;
   };
 
-  // Show the newsletter and waitlist popups one at a time: the newsletter
-  // modal opens first, and the waitlist modal only opens once the newsletter
-  // modal has been dismissed (and only if the user hasn't already engaged).
+  // Last in the popup chain: shown once per user, after the newsletter/waitlist
+  // sequence has run its course (or been skipped), so it never overlaps them.
+  const maybeShowBetaModal = () => {
+    if (localStorage.getItem(BETA_BANNER_SEEN) !== "true") {
+      setTimeout(() => setShowBetaModal(true), 800);
+    }
+  };
+
+  const handleBetaModalOpenChange = (value: boolean) => {
+    setShowBetaModal(value);
+
+    if (!value) {
+      localStorage.setItem(BETA_BANNER_SEEN, "true");
+    }
+  };
+
+  // Show the popups one at a time, in order: newsletter -> waitlist -> beta
+  // tester banner. Each step only opens once the previous one has been
+  // dismissed, and steps are skipped when they don't apply to the user.
   useEffect(() => {
-    if (hasEngagedWithPopups()) return;
+    if (hasEngagedWithPopups()) {
+      maybeShowBetaModal();
+      return;
+    }
 
     const timer = setTimeout(() => setShowNewsletterModal(true), 1500);
     return () => clearTimeout(timer);
@@ -85,8 +107,12 @@ export default function Index() {
   const handleNewsletterOpenChange = (value: boolean) => {
     setShowNewsletterModal(value);
 
-    if (!value && !hasEngagedWithPopups() && isWaitlistDue()) {
-      setTimeout(() => setOpen(true), 800);
+    if (!value) {
+      if (!hasEngagedWithPopups() && isWaitlistDue()) {
+        setTimeout(() => setOpen(true), 800);
+      } else {
+        maybeShowBetaModal();
+      }
     }
   };
 
@@ -98,6 +124,7 @@ export default function Index() {
       WAITLIST_LAST_SEEN,
       Date.now().toString()
     );
+    maybeShowBetaModal();
   }
 };
 
@@ -603,10 +630,10 @@ meaningful and sustainable growth.{" "}
                     />
                   </div>
                   <div>
-                    <h4 className="text-2xl md:text-xl text-center font-semibold text-gray-900 mb-10 md:mb-2">
+                    <h4 className="text-2xl md:text-xl text-center font-semibold text-white mb-10 md:mb-2">
                       {step.title}
                     </h4>
-                    <p className=" text-gray-700">{step.description}</p>
+                    <p className=" text-white">{step.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -1037,6 +1064,7 @@ meaningful and sustainable growth.{" "}
   onSubscribe={handleWaitlistSubscribe}
 />
       <FAQModal open={showFAQModal} onOpenChange={setShowFAQModal} />
+      <BetaTesterModal open={showBetaModal} onOpenChange={handleBetaModalOpenChange} />
 
       {/* Services Coming Soon Modal */}
       {/* <AnimatePresence>

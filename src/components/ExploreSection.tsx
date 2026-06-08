@@ -172,7 +172,7 @@ const ExploreSection = () => {
   return (
     <section
       id="explore"
-      className="min-h-screen flex flex-col justify-center items-center py-20 px-4 sm:px-6 lg:px-16 bg-gray-50"
+      className="flex flex-col justify-center items-center py-10 px-4 sm:px-6 lg:px-16 bg-gray-50"
     >
       <div className="max-w-7xl w-full text-center flex flex-col items-center">
         <motion.div
@@ -180,14 +180,14 @@ const ExploreSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-growtt-teal font-bold text-sm uppercase tracking-wide mb-4">
+          <p className="text-growtt-teal font-bold text-sm uppercase tracking-wide mb-2">
             Invest in Variety
           </p>
-          <h2 className="text-4xl sm:text-5xl font-light text-gray-900 mb-6">
+          <h2 className="text-4xl sm:text-5xl font-light text-gray-900 mb-3">
             Explore Diverse Investment Opportunities
           </h2>
 
-          <div className="flex justify-center mb-12">
+          <div className="flex justify-center mb-6">
             <GrowttLogo />
           </div>
         </motion.div>
