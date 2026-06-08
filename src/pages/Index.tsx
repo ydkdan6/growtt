@@ -994,7 +994,7 @@ meaningful and sustainable growth.{" "}
           </div>
           <div className="border-t border-gray-200 pt-8">
             <div className="flex flex-wrap gap-6 justify-center text-sm text-gray-600">
-              <p>&copy; 2025 Growtt.All Right Reserved</p>
+              <p>&copy; 2026 Growtt.All Right Reserved</p>
               <Link
                 to="/privacy"
                 className="underline hover:text-growtt-teal transition-colors"

@@ -310,19 +310,19 @@ export default function About() {
                 </div>
                 <div className="border-t border-gray-200 pt-8">
                   <div className="flex flex-wrap gap-6 justify-center text-sm text-gray-600">
-                    <p>&copy; 2025 Growtt.All Right Reserved</p>
+                    <p>&copy; 2026 Growtt.All Right Reserved</p>
                     <Link
                                     to="/privacy"
                                     className="underline hover:text-growtt-teal transition-colors"
                                   >
                                     Privacy Policy
                                   </Link>
-                    <a
-                      href="#"
+                    <Link
+                      to="/terms"
                       className="underline hover:text-growtt-teal transition-colors"
                     >
                       Terms of Service
-                    </a>
+                    </Link>
                     <a
                       href="#"
                       className="underline hover:text-growtt-teal transition-colors"
