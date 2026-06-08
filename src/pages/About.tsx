@@ -261,12 +261,6 @@ export default function About() {
                       href="#"
                       className="text-gray-900 hover:text-growtt-teal transition-colors text-sm"
                     >
-                      Blog Posts
-                    </a>
-                    <a
-                      href="#"
-                      className="text-gray-900 hover:text-growtt-teal transition-colors text-sm"
-                    >
                       Help Center
                     </a>
                   </div>

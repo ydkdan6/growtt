@@ -13,6 +13,7 @@ import {
   LineChart,
   Lock,
   ChevronDown,
+  User,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import ExploreSection from "../components/ExploreSection";
@@ -55,33 +56,10 @@ export default function Index() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
-  const WAITLIST_EXPIRY_DAYS = 7;
   const WAITLIST_SUBSCRIBED = "waitlist_subscribed";
   const WAITLIST_LAST_SEEN = "waitlist_last_seen";
   const NEWSLETTER_SUBSCRIBED = "newsletter_subscribed";
   const BETA_BANNER_SEEN = "beta_banner_seen";
-
-  // A user who has already filled in either popup form has engaged enough —
-  // neither popup should be shown to them again.
-  const hasEngagedWithPopups = () =>
-    localStorage.getItem(WAITLIST_SUBSCRIBED) === "true" ||
-    localStorage.getItem(NEWSLETTER_SUBSCRIBED) === "true";
-
-  const isWaitlistDue = () => {
-    const lastSeen = localStorage.getItem(WAITLIST_LAST_SEEN);
-    if (!lastSeen) return true;
-
-    const daysPassed = (Date.now() - parseInt(lastSeen, 10)) / (1000 * 60 * 60 * 24);
-    return daysPassed >= WAITLIST_EXPIRY_DAYS;
-  };
-
-  // Last in the popup chain: shown once per user, after the newsletter/waitlist
-  // sequence has run its course (or been skipped), so it never overlaps them.
-  const maybeShowBetaModal = () => {
-    if (localStorage.getItem(BETA_BANNER_SEEN) !== "true") {
-      setTimeout(() => setShowBetaModal(true), 800);
-    }
-  };
 
   const handleBetaModalOpenChange = (value: boolean) => {
     setShowBetaModal(value);
@@ -91,29 +69,17 @@ export default function Index() {
     }
   };
 
-  // Show the popups one at a time, in order: newsletter -> waitlist -> beta
-  // tester banner. Each step only opens once the previous one has been
-  // dismissed, and steps are skipped when they don't apply to the user.
+  // Newsletter and waitlist popups are paused for now — only the beta tester
+  // announcement appears, once per user, on first landing.
   useEffect(() => {
-    if (hasEngagedWithPopups()) {
-      maybeShowBetaModal();
-      return;
-    }
+    if (localStorage.getItem(BETA_BANNER_SEEN) === "true") return;
 
-    const timer = setTimeout(() => setShowNewsletterModal(true), 1500);
+    const timer = setTimeout(() => setShowBetaModal(true), 1500);
     return () => clearTimeout(timer);
   }, []);
 
   const handleNewsletterOpenChange = (value: boolean) => {
     setShowNewsletterModal(value);
-
-    if (!value) {
-      if (!hasEngagedWithPopups() && isWaitlistDue()) {
-        setTimeout(() => setOpen(true), 800);
-      } else {
-        maybeShowBetaModal();
-      }
-    }
   };
 
   const handleOpenChange = (value: boolean) => {
@@ -124,7 +90,6 @@ export default function Index() {
       WAITLIST_LAST_SEEN,
       Date.now().toString()
     );
-    maybeShowBetaModal();
   }
 };
 
@@ -250,6 +215,40 @@ export default function Index() {
   setOpen(false);
   setShowFAQModal(true);
 };
+
+  const testimonials = [
+    {
+      quote:
+        "Never thought i'd ever get to experience straight to the point access on new investment opportunities. Growtt solved that.",
+      name: "Joy",
+      role: "Investor, TechCorp",
+    },
+    {
+      quote:
+        "I used to miss out on promising investment opportunities because the process was too complicated. With Growtt, everything is simple and direct.",
+      name: "Daniel",
+      role: "Entrepreneur, Lagos",
+    },
+    {
+      quote:
+        "Finding quality investment opportunities used to take so much time. Growtt gives me quick access without the unnecessary hassle.",
+      name: "Amaka",
+      role: "Business Owner, Abuja",
+    },
+    {
+      quote:
+        "Growtt changed the way I invest. The platform makes discovering new opportunities easy, transparent, and incredibly convenient.",
+      name: "Michael",
+      role: "Financial Consultant, Port Harcourt",
+    },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   const learningModules = [
   {
@@ -485,27 +484,12 @@ meaningful and sustainable growth.{" "}
                 >
                   Explore
                 </button>
-                <button
-                  onClick={() => setShowFAQModal(true)}
+                <Link
+                  to="/beta-testing"
                   className="px-6 py-3 border border-growtt-orange text-white rounded-md hover:bg-white/10 transition-colors flex items-center gap-2"
                 >
-                  <div className="flex justify-center gap-2 items-center">
-                  <img
-                  src="/images/Vector (4).png"
-                  alt="Investor"
-                  loading="lazy"
-                  className="block w-[15px] h-[15px] object-cover"
-                /> <span>|</span>
-                <img
-                  src="/images/playstore logo.png"
-                  alt="Investor"
-                  loading="lazy"
-                  className="block w-[15px] h-[15px] object-cover"
-                />
-                <span>Coming Soon</span>
-                  </div>
-                  
-                </button>
+                  Join Beta Testing
+                </Link>
               </div>
 
               {/* Mobile CTAs */}
@@ -890,21 +874,48 @@ meaningful and sustainable growth.{" "}
                 </svg>
               ))}
             </div>
-            <p className="text-2xl text-gray-900 italic">
-              Never thought i'd ever get to experience straight to the point access on new investment opportunities. Growtt solved that.
-            </p>
-            <div className="flex items-center justify-center gap-6">
-              <div className="w-14 h-14 bg-gray-300 rounded-full"></div>
-              <div className="text-left">
-                <p className="font-bold text-gray-900">Joy</p>
-                <p className="text-gray-600">Investor, TechCorp</p>
-              </div>
-              <div className="w-px h-16 bg-gray-300"></div>
-              <GrowttLogo />
-            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentTestimonial}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.5 }}
+                className="space-y-8"
+              >
+                <p className="text-2xl text-gray-900 italic">
+                  {testimonials[currentTestimonial].quote}
+                </p>
+                <div className="flex items-center justify-center gap-6">
+                  <div className="w-14 h-14 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+                    <User className="w-7 h-7" />
+                  </div>
+                  <div className="text-left">
+                    <p className="font-bold text-gray-900">
+                      {testimonials[currentTestimonial].name}
+                    </p>
+                    <p className="text-gray-600">
+                      {testimonials[currentTestimonial].role}
+                    </p>
+                  </div>
+                  <div className="w-px h-16 bg-gray-300"></div>
+                  <GrowttLogo />
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
             <div className="flex justify-center gap-2 mt-8">
-              <button className="w-2 h-2 rounded-full bg-gray-900"></button>
-              <button className="w-2 h-2 rounded-full bg-gray-300"></button>
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  aria-label={`Show testimonial ${index + 1}`}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentTestimonial ? "bg-gray-900" : "bg-gray-300"
+                  }`}
+                ></button>
+              ))}
             </div>
           </motion.div>
         </div>
@@ -967,12 +978,6 @@ meaningful and sustainable growth.{" "}
                 className="text-gray-900 hover:text-growtt-teal transition-colors text-sm"
               >
                 Contact Us
-              </a>
-              <a
-                href="#"
-                className="text-gray-900 hover:text-growtt-teal transition-colors text-sm"
-              >
-                Blog Posts
               </a>
               <a
                 href="#"

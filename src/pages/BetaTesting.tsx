@@ -96,6 +96,9 @@ export default function BetaTesting() {
       };
       console.log("Beta application ready to submit:", application);
 
+      // Once someone has applied, the landing page announcement popup
+      // should never be shown to them again, even after a reload.
+      localStorage.setItem("beta_banner_seen", "true");
       setSubmitted(true);
     } catch (err) {
       setError("Failed to submit your application. Please try again.");
