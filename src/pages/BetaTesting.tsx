@@ -65,6 +65,10 @@ export default function BetaTesting() {
   const [instagram, setInstagram] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [tiktok, setTiktok] = useState("");
+  const [hearAbout, setHearAbout] = useState("");
+  const [operatingSystem, setOperatingSystem] = useState("");
+  const [experienceLevel, setExperienceLevel] = useState("");
+  const [weeklyTime, setWeeklyTime] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -102,6 +106,10 @@ export default function BetaTesting() {
         instagram: instagram.trim(),
         linkedin: linkedin.trim(),
         tiktok: tiktok.trim(),
+        hear_about: hearAbout,
+        operating_system: operatingSystem,
+        experience_level: experienceLevel,
+        weekly_time: weeklyTime,
       };
       console.log("Beta application ready to submit:", application);
 
@@ -278,6 +286,86 @@ export default function BetaTesting() {
                           className="w-full h-11 px-4 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-sm placeholder:text-black/40 focus:outline-none focus:border-[#00A4A4] disabled:opacity-50 disabled:cursor-not-allowed sm:col-span-2"
                         />
                       </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-[#008080] font-['Gill_Sans_MT',sans-serif] mb-2">
+                        How did you hear about the GrowTT Beta Test?
+                      </label>
+                      <select
+                        value={hearAbout}
+                        onChange={(e) => setHearAbout(e.target.value)}
+                        disabled={loading}
+                        className="w-full h-12 px-4 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-base text-black/70 focus:outline-none focus:border-[#00A4A4] disabled:opacity-50 disabled:cursor-not-allowed bg-white"
+                      >
+                        <option value="" disabled>Select an option...</option>
+                        <option value="Social Media (Instagram, X, Facebook, TikTok)">Social Media (Instagram, X, Facebook, TikTok)</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="Friend or Colleague">Friend or Colleague</option>
+                        <option value="Email Newsletter">Email Newsletter</option>
+                        <option value="Online Community or Forum">Online Community or Forum</option>
+                        <option value="Search Engine">Search Engine</option>
+                        <option value="News Article or Blog">News Article or Blog</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-[#008080] font-['Gill_Sans_MT',sans-serif] mb-2">
+                        Which operating system will you primarily use to access GrowTT?
+                      </label>
+                      <select
+                        value={operatingSystem}
+                        onChange={(e) => setOperatingSystem(e.target.value)}
+                        disabled={loading}
+                        className="w-full h-12 px-4 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-base text-black/70 focus:outline-none focus:border-[#00A4A4] disabled:opacity-50 disabled:cursor-not-allowed bg-white"
+                      >
+                        <option value="" disabled>Select an option...</option>
+                        <option value="Android">Android</option>
+                        <option value="iOS (iPhone / iPad)">iOS (iPhone / iPad)</option>
+                        <option value="Windows">Windows</option>
+                        <option value="macOS">macOS</option>
+                        <option value="Both Android and iOS">Both Android and iOS</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-[#008080] font-['Gill_Sans_MT',sans-serif] mb-2">
+                        What is your primary experience level with investment and trading?
+                      </label>
+                      <select
+                        value={experienceLevel}
+                        onChange={(e) => setExperienceLevel(e.target.value)}
+                        disabled={loading}
+                        className="w-full h-12 px-4 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-base text-black/70 focus:outline-none focus:border-[#00A4A4] disabled:opacity-50 disabled:cursor-not-allowed bg-white"
+                      >
+                        <option value="" disabled>Select an option...</option>
+                        <option value="Complete Beginner — I'm just starting out">Complete Beginner — I'm just starting out</option>
+                        <option value="Beginner — I know the basics but haven't invested yet">Beginner — I know the basics but haven't invested yet</option>
+                        <option value="Intermediate — I have some investment experience">Intermediate — I have some investment experience</option>
+                        <option value="Advanced — I actively invest and trade regularly">Advanced — I actively invest and trade regularly</option>
+                        <option value="Professional — I work in finance or investment">Professional — I work in finance or investment</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-[#008080] font-['Gill_Sans_MT',sans-serif] mb-2">
+                        How much time per week can you dedicate to testing the platform and providing feedback?
+                      </label>
+                      <select
+                        value={weeklyTime}
+                        onChange={(e) => setWeeklyTime(e.target.value)}
+                        disabled={loading}
+                        className="w-full h-12 px-4 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-base text-black/70 focus:outline-none focus:border-[#00A4A4] disabled:opacity-50 disabled:cursor-not-allowed bg-white"
+                      >
+                        <option value="" disabled>Select an option...</option>
+                        <option value="Less than 1 hour">Less than 1 hour</option>
+                        <option value="1–2 hours">1–2 hours</option>
+                        <option value="3–5 hours">3–5 hours</option>
+                        <option value="5–10 hours">5–10 hours</option>
+                        <option value="More than 10 hours">More than 10 hours</option>
+                      </select>
                     </div>
 
                     <label className="flex items-start gap-3 text-sm text-[#008080]/80 font-['Gill_Sans_MT',sans-serif] cursor-pointer">
