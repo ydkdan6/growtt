@@ -495,17 +495,17 @@ meaningful and sustainable growth.{" "}
               {/* Mobile CTAs */}
               <div className="flex md:hidden justify-center flex-wrap gap-4">
                 <button
-                  onClick={() => setShowNewsletterModal(true)}
+                  onClick={() => setShowFAQModal(true)}
                   className="px-6 py-3 bg-growtt-teal text-white rounded-md hover:bg-growtt-teal/90 transition-colors flex items-center gap-2"
                 >
-                  Subscribe Now
+                  Explore
                 </button>
-                <button
-                  onClick={() => setOpen(true)}
+                <Link
+                  to="/beta-testing"
                   className="px-6 py-3 border border-growtt-orange text-white rounded-md hover:bg-white/10 transition-colors flex items-center gap-2"
                 >
-                  Join Waitlist
-                </button>
+                  Join Beta Testing
+                </Link>
               </div>
             </motion.div>
 
