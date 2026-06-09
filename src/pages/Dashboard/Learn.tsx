@@ -123,7 +123,7 @@ export default function Learn() {
             {/* Left Column - Lessons */}
             <div className="lg:col-span-2 space-y-6">
               {/* Progress Section */}
-              <div data-tour="learn-progress" className="bg-white rounded-2xl p-6 shadow-lg">
+              <div className="bg-white rounded-2xl p-6 shadow-lg">
                 <div className="flex flex-col gap-4">
                   <div className="flex justify-between items-center">
                     <p className="text-[#030712] font-['Gill_Sans_MT',sans-serif] text-base leading-6">

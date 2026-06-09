@@ -237,7 +237,7 @@ export default function Home() {
               </div>
 
               {/* Learning Resources */}
-              <div data-tour="learning-resources" className="bg-white rounded-2xl p-6 shadow-sm max-h-[392px]">
+              <div className="bg-white rounded-2xl p-6 shadow-sm max-h-[392px]">
                 <div className="space-y-3 overflow-y-auto max-h-[344px] pr-2">
                   {learningResources.map((resource) => (
                     <div
