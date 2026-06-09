@@ -94,27 +94,40 @@ export default function BetaTesting() {
     setError(null);
 
     try {
-      // TODO: submit to the dedicated beta application endpoint once it's provided.
-      const application = {
-        name: name.trim(),
-        email: email.trim(),
-        phone: phone.trim(),
-        facebook: facebook.trim(),
-        twitter: twitter.trim(),
-        instagram: instagram.trim(),
-        linkedin: linkedin.trim(),
-        tiktok: tiktok.trim(),
-        experience_level: experienceLevel,
-        weekly_time: weeklyTime,
-      };
-      console.log("Beta application ready to submit:", application);
+      const res = await fetch("https://api.growtt.com/beta-user/beta-user/", {
+        method: "POST",
+        headers: {
+          "accept": "application/json",
+          "Content-Type": "application/json",
+          "X-CSRFTOKEN": "9dc6avlMqo9RQdZ8G13HIEmJ4MejaSKfW6Dc2pgOwn4N26QZW859dYKpb8Ldu34M",
+        },
+        body: JSON.stringify({
+          full_name: name.trim(),
+          email: email.trim(),
+          phone_number: phone.trim(),
+          social_media_fb: facebook.trim(),
+          social_media_x: twitter.trim(),
+          social_media_ig: instagram.trim(),
+          social_media_tk: tiktok.trim(),
+          social_media_lk: linkedin.trim(),
+          experience_level: experienceLevel,
+          dedication_period: weeklyTime,
+          status: true,
+          pub_date: new Date().toISOString(),
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.detail || `Request failed (${res.status})`);
+      }
 
       // Once someone has applied, the landing page announcement popup
       // should never be shown to them again, even after a reload.
       localStorage.setItem("beta_banner_seen", "true");
       setSubmitted(true);
     } catch (err) {
-      setError("Failed to submit your application. Please try again.");
+      setError(err instanceof Error ? err.message : "Failed to submit your application. Please try again.");
       console.error("Beta application error:", err);
     } finally {
       setLoading(false);
