@@ -2,7 +2,7 @@ import { useState } from "react";
 import HeaderNav from "../components/header";
 import { Check, Loader2, AlertCircle, MessageCircle, ChevronDown, ChevronUp } from "lucide-react";
 
-const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/FrAeA98ebJX1iHEnOmAYDE?mode=gi_t";
+const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/LmGl7reqbRv6UOMxBS4B5p?mode=gi_t";
 
 const essentials = [
   {
