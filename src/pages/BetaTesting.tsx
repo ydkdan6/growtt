@@ -105,21 +105,32 @@ export default function BetaTesting() {
           full_name: name.trim(),
           email: email.trim(),
           phone_number: phone.trim(),
-          social_media_fb: facebook.trim(),
-          social_media_x: twitter.trim(),
-          social_media_ig: instagram.trim(),
-          social_media_tk: tiktok.trim(),
-          social_media_lk: linkedin.trim(),
+          social_media_fb: facebook.trim() || "",
+          social_media_x: twitter.trim() || "",
+          social_media_ig: instagram.trim() || "",
+          social_media_tk: tiktok.trim() || "",
+          social_media_lk: linkedin.trim() || "",
           experience_level: experienceLevel,
           dedication_period: weeklyTime,
-          status: true,
-          pub_date: new Date().toISOString(),
         }),
       });
 
       if (!res.ok) {
         const data = await res.json().catch(() => null);
-        throw new Error(data?.detail || `Request failed (${res.status})`);
+        console.error("Beta API error response:", data);
+        // DRF returns field-level errors as { field: ["msg"] } or a top-level { detail }
+        let message = `Request failed (${res.status})`;
+        if (data) {
+          if (typeof data.detail === "string") {
+            message = data.detail;
+          } else {
+            const fieldErrors = Object.entries(data)
+              .map(([field, msgs]) => `${field}: ${Array.isArray(msgs) ? msgs.join(", ") : msgs}`)
+              .join(" | ");
+            if (fieldErrors) message = fieldErrors;
+          }
+        }
+        throw new Error(message);
       }
 
       // Once someone has applied, the landing page announcement popup
