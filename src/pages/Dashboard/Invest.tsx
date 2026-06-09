@@ -36,7 +36,7 @@ export default function Invest() {
             {/* Left Column - Main Content */}
             <div className="lg:col-span-2 mt-6 space-y-6">
               {/* Filter Tabs */}
-              <div className="bg-gradient-to-r from-[#066] via-[#099] to-[#066] rounded-2xl p-4">
+              <div data-tour="invest-filters" className="bg-gradient-to-r from-[#066] via-[#099] to-[#066] rounded-2xl p-4">
                 <div className="flex items-center gap-3 flex-wrap">
                   {filterTabs.map((tab) => (
                     <button
@@ -50,7 +50,7 @@ export default function Invest() {
               </div>
 
               {/* Tab Navigation */}
-              <div className="flex items-center gap-2 flex-wrap">
+              <div data-tour="invest-portfolio" className="flex items-center gap-2 flex-wrap">
                 <button
                   onClick={() => setActiveTab('portfolio')}
                   className={`flex items-center gap-2 font-['Gill_Sans_MT',sans-serif] text-base leading-6 ${

@@ -37,6 +37,9 @@ import BudgetBroker from "./pages/BudgetBroker";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import BetaTesting from "./pages/BetaTesting";
+import { TourProvider } from "./context/TourContext";
+import { TourGuide } from "./components/TourGuide";
+import { TourInitializer } from "./components/TourInitializer";
 import Unsubscribe from "./pages/Unsubscribe";
  
 // Investment Dashboard Imports
@@ -56,7 +59,10 @@ const App = () => (
       <Sonner />
       <ApiProvider>
       <BrowserRouter>
-        <Routes>
+        <TourProvider>
+          <TourInitializer />
+          <TourGuide />
+          <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
@@ -97,7 +103,8 @@ const App = () => (
           <Route path="/services/budget" element={ <Budget />} />
           <Route path="/services/budget-broker" element={ <BudgetBroker />} />          
           <Route path="*" element={<NotFound />} />
-        </Routes>
+          </Routes>
+        </TourProvider>
       </BrowserRouter>
       </ApiProvider>
     </TooltipProvider>

@@ -96,7 +96,7 @@ export default function Profile() {
             {/* Left Column - Settings */}
             <div className="lg:col-span-2 space-y-6">
               {/* Profile Header */}
-              <div className="border-0 p-6">
+              <div data-tour="profile-header" className="border-0 p-6">
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   <img
                     src="https://api.builder.io/api/v1/image/assets/TEMP/161acb8169891fc529f6f46f62ef13634bdaa360?width=256"
@@ -481,7 +481,7 @@ export default function Profile() {
               </div>
 
               {/* Seeds & Subscriptions */}
-              <div className="bg-white rounded-2xl shadow-lg">
+              <div data-tour="seeds" className="bg-white rounded-2xl shadow-lg">
                 <div className="p-4 border-b">
                   <h2 className="text-[#030712] font-['Gill_Sans_MT',sans-serif] text-[22px] leading-[28px]">
                     Seeds & Subscriptions
