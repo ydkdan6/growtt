@@ -105,11 +105,11 @@ export default function BetaTesting() {
           full_name: name.trim(),
           email: email.trim(),
           phone_number: phone.trim(),
-          social_media_fb: facebook.trim() || "",
-          social_media_x: twitter.trim() || "",
-          social_media_ig: instagram.trim() || "",
-          social_media_tk: tiktok.trim() || "",
-          social_media_lk: linkedin.trim() || "",
+          social_media_fb: facebook.trim() || "none",
+          social_media_x: twitter.trim() || "none",
+          social_media_ig: instagram.trim() || "none",
+          social_media_tk: tiktok.trim() || "none",
+          social_media_lk: linkedin.trim() || "none",
           experience_level: experienceLevel,
           dedication_period: weeklyTime,
         }),
@@ -262,12 +262,12 @@ export default function BetaTesting() {
                         Social Media Usernames
                       </p>
                       <p className="text-xs text-[#008080]/50 font-['Gill_Sans_MT',sans-serif] mb-3">
-                        Optional — share the handles you're comfortable with.
+                        All optional — leave blank any you prefer not to share.
                       </p>
                       <div className="grid sm:grid-cols-2 gap-3">
                         <input
                           type="text"
-                          placeholder="Facebook username"
+                          placeholder="Facebook username (optional)"
                           value={facebook}
                           onChange={(e) => setFacebook(e.target.value)}
                           disabled={loading}
@@ -275,7 +275,7 @@ export default function BetaTesting() {
                         />
                         <input
                           type="text"
-                          placeholder="X (Twitter) username"
+                          placeholder="X (Twitter) username (optional)"
                           value={twitter}
                           onChange={(e) => setTwitter(e.target.value)}
                           disabled={loading}
@@ -283,7 +283,7 @@ export default function BetaTesting() {
                         />
                         <input
                           type="text"
-                          placeholder="Instagram username"
+                          placeholder="Instagram username (optional)"
                           value={instagram}
                           onChange={(e) => setInstagram(e.target.value)}
                           disabled={loading}
@@ -291,7 +291,7 @@ export default function BetaTesting() {
                         />
                         <input
                           type="text"
-                          placeholder="LinkedIn username"
+                          placeholder="LinkedIn username (optional)"
                           value={linkedin}
                           onChange={(e) => setLinkedin(e.target.value)}
                           disabled={loading}
@@ -299,7 +299,7 @@ export default function BetaTesting() {
                         />
                         <input
                           type="text"
-                          placeholder="TikTok username"
+                          placeholder="TikTok username (optional)"
                           value={tiktok}
                           onChange={(e) => setTiktok(e.target.value)}
                           disabled={loading}
