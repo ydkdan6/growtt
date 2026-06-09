@@ -66,8 +66,6 @@ export default function BetaTesting() {
   const [linkedin, setLinkedin] = useState("");
   const [tiktok, setTiktok] = useState("");
   const [hearAbout, setHearAbout] = useState("");
-  const [operatingSystem, setOperatingSystem] = useState("");
-  const [experienceLevel, setExperienceLevel] = useState("");
   const [weeklyTime, setWeeklyTime] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -107,8 +105,6 @@ export default function BetaTesting() {
         linkedin: linkedin.trim(),
         tiktok: tiktok.trim(),
         hear_about: hearAbout,
-        operating_system: operatingSystem,
-        experience_level: experienceLevel,
         weekly_time: weeklyTime,
       };
       console.log("Beta application ready to submit:", application);
@@ -307,45 +303,6 @@ export default function BetaTesting() {
                         <option value="Search Engine">Search Engine</option>
                         <option value="News Article or Blog">News Article or Blog</option>
                         <option value="Other">Other</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-[#008080] font-['Gill_Sans_MT',sans-serif] mb-2">
-                        Which operating system will you primarily use to access GrowTT?
-                      </label>
-                      <select
-                        value={operatingSystem}
-                        onChange={(e) => setOperatingSystem(e.target.value)}
-                        disabled={loading}
-                        className="w-full h-12 px-4 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-base text-black/70 focus:outline-none focus:border-[#00A4A4] disabled:opacity-50 disabled:cursor-not-allowed bg-white"
-                      >
-                        <option value="" disabled>Select an option...</option>
-                        <option value="Android">Android</option>
-                        <option value="iOS (iPhone / iPad)">iOS (iPhone / iPad)</option>
-                        <option value="Windows">Windows</option>
-                        <option value="macOS">macOS</option>
-                        <option value="Both Android and iOS">Both Android and iOS</option>
-                        <option value="Other">Other</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-[#008080] font-['Gill_Sans_MT',sans-serif] mb-2">
-                        What is your primary experience level with investment and trading?
-                      </label>
-                      <select
-                        value={experienceLevel}
-                        onChange={(e) => setExperienceLevel(e.target.value)}
-                        disabled={loading}
-                        className="w-full h-12 px-4 rounded-lg border-2 border-black/15 font-['Gill_Sans_MT',sans-serif] text-base text-black/70 focus:outline-none focus:border-[#00A4A4] disabled:opacity-50 disabled:cursor-not-allowed bg-white"
-                      >
-                        <option value="" disabled>Select an option...</option>
-                        <option value="Complete Beginner — I'm just starting out">Complete Beginner — I'm just starting out</option>
-                        <option value="Beginner — I know the basics but haven't invested yet">Beginner — I know the basics but haven't invested yet</option>
-                        <option value="Intermediate — I have some investment experience">Intermediate — I have some investment experience</option>
-                        <option value="Advanced — I actively invest and trade regularly">Advanced — I actively invest and trade regularly</option>
-                        <option value="Professional — I work in finance or investment">Professional — I work in finance or investment</option>
                       </select>
                     </div>
 
