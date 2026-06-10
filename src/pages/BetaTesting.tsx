@@ -6,39 +6,39 @@ const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/LmGl7reqbRv6UOMxBS4B5p?mo
 
 const essentials = [
   {
-    title: "01 — Confidentiality: What You See Here Stays Here.",
+    title: "01 — This Is an Exclusive, Invite-Only Experience",
     description:
-      "You must not share anything you encounter on the Beta Platform — features, design, content, or roadmap details — with anyone outside the programme, on social media, in WhatsApp groups, on LinkedIn, or anywhere else. This includes screenshots, screen recordings, descriptions of unreleased features, and forwarded materials of any kind.",
+      "Growtt's Beta Programme is a private early-access space. Because we're sharing features that aren't public yet, we ask that you keep what you see within the programme. Think of it like an early preview screening — we'd love for the full launch to feel fresh and exciting for everyone.",
   },
   {
-    title: "02 — No Screenshots. No Recordings. Full Stop.",
+    title: "02 — Please Don't Share Platform Previews Publicly",
     description:
-      "Taking screenshots or recordings of the Beta Platform and sharing them, even in private chats or small groups, is a direct breach of this Agreement. We take this seriously — it's one of the fastest ways to lose your beta access and face legal consequences under Nigerian law and this contract.",
+      "As features evolve, things change — and an out-of-context screenshot of an unfinished screen doesn't represent the final product fairly to you or to us. We ask that you hold off on sharing platform visuals publicly until we officially launch. Your feedback shapes what the world eventually sees.",
   },
   {
-    title: "03 — Nothing Here Is Financial Advice. Not One Word.",
+    title: "03 — Everything Here Is Built for Learning — Not Financial Decisions",
     description:
-      "Every feature, insight, AI output, simulated portfolio result, and market commentary on the Beta Platform is for educational and testing purposes only. None of it is financial advice, investment advice, or a recommendation to buy or sell anything. Do not make any financial decision based on what you see here.",
+      "Growtt is a financial education platform. The tools, simulations, and insights you'll explore during beta are designed to inform and educate. They are not financial advice, investment recommendations, or a signal to take any financial action. Always consult a qualified professional for personal financial decisions.",
   },
   {
-    title: "04 — Your Feedback Belongs to Growtt.",
+    title: "04 — Your Feedback Is One of the Most Valuable Things You Can Give Us",
     description:
-      "Any idea, suggestion, bug report, observation, or recommendation you share with us during the programme becomes Growtt's property automatically. We are not obligated to credit, compensate, or acknowledge any specific contribution. Your participation is voluntary and unpaid.",
+      "Every observation, suggestion, and bug report you share directly improves the platform for thousands of future users. We genuinely want to hear what works and what doesn't. As part of joining, your feedback and ideas become part of Growtt's development process — that's how we grow together.",
   },
   {
-    title: "05 — We Can Remove You at Any Time, Without Reason.",
+    title: "05 — Access Is Early and Evolving — Features Will Change",
     description:
-      "Growtt reserves the right to revoke your beta access at any time, with or without notice, and without giving a reason. This is standard for any private beta programme. Removal does not release you from your confidentiality obligations — those remain binding for two years after your participation ends.",
+      "You're seeing Growtt before it's finished, which means things will look different, break occasionally, and improve constantly. Beta access is provided as-is, and we reserve the right to adjust, pause, or evolve features at any point. We appreciate your patience as we build something worth launching.",
   },
   {
-    title: "06 — No Pay. No Equity. No Guaranteed Future Access.",
+    title: "06 — Beta Participation Is Voluntary and Non-Commercial",
     description:
-      "Beta participation earns you an additional 100 seeds upon final successful launch. However, there is no financial compensation, no equity or shares in Growtt, no commission, and no guaranteed access to the platform when it launches publicly. Any early-access benefit offered is entirely at Growtt's discretion and is not a contractual commitment.",
+      "Being a beta tester is about being part of something early — not a paid engagement. Participation doesn't come with financial compensation, equity, or a guaranteed spot when we launch publicly. What it does come with is the chance to genuinely influence a product from the ground up, before anyone else gets to.",
   },
   {
-    title: "07 — The Full Agreement Applies. This Is a Summary, Not a Substitute.",
+    title: "07 — A Short Legal Agreement Covers the Full Details",
     description:
-      "By clicking 'I Accept', you agree to the complete Beta Tester & Confidentiality Agreement and the Growtt Master Terms of Service, not just the points above. Please read both in full. The full documents govern in all cases — if anything here conflicts with the full agreement, the full agreement wins.",
+      "Everything above is covered in more depth in the Growtt Beta Tester & Confidentiality Agreement and our Master Terms of Service — both linked below. They're written clearly and aren't long. By clicking 'I Accept', you're confirming you've read and agreed to both. If you have questions before signing up, reach out to us at beta@growtt.com.",
   },
 ];
 
